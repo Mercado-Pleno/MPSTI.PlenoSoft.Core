@@ -4,54 +4,59 @@ using System.Collections.Generic;
 
 namespace MPSC.PlenoSoft.Core.Collections.Generic
 {
-	public class Lista<T> : IEnumerable<T>
+	public class Lista<TItem> : IEnumerable<TItem>
 	{
-		private readonly List<T> _lista = new List<T>();
-		private readonly Action<T> _onAdicionar;
-		private Func<IEnumerable<T>> _filler;
-		public Int32 Count { get { return _lista.Count; } }
+		private readonly List<TItem> _lista = new List<TItem>();
+		private readonly Action<TItem> _onAdicionar;
+		private readonly Action<TItem> _onRemover;
+		private Func<IEnumerable<TItem>> _filler;
+		public Int32 Count => _lista.Count;
 
-		public Lista(Action<T> onAdicionar)
+		public Lista(Action<TItem> onAdicionar, Action<TItem> onRemover = null)
 		{
 			_onAdicionar = onAdicionar;
+			_onRemover = onRemover;
 		}
 
-		public void Preencher(Func<IEnumerable<T>> filler)
+		public void Preencher(Func<IEnumerable<TItem>> filler)
 		{
 			_filler = filler;
 		}
 
-		public Lista<T> Adicionar(IEnumerable<T> lista)
+		public Lista<TItem> Adicionar(IEnumerable<TItem> lista)
 		{
 			foreach (var item in lista)
 				Adicionar(item);
 			return this;
 		}
 
-		public T Adicionar(T item)
+		public TItem Adicionar(TItem item)
 		{
-			_onAdicionar(item);
+			_onAdicionar?.Invoke(item);
 			_lista.Add(item);
 			return item;
 		}
 
-		public void Remover(IEnumerable<T> items)
+		public void Remover(IEnumerable<TItem> listaItem)
 		{
-			foreach (var item in items)
+			foreach (var item in listaItem)
 				_lista.Remove(item);
 		}
 
-		public void Remover(T item)
+		public void Remover(TItem item)
 		{
+			_onRemover?.Invoke(item);
 			_lista.Remove(item);
 		}
 
 		public void Limpar()
 		{
+			foreach (var item in _lista)
+				_onRemover?.Invoke(item);
 			_lista.Clear();
 		}
 
-		IEnumerator<T> IEnumerable<T>.GetEnumerator()
+		IEnumerator<TItem> IEnumerable<TItem>.GetEnumerator()
 		{
 			return GetEnumeratorImplementation();
 		}
@@ -61,18 +66,27 @@ namespace MPSC.PlenoSoft.Core.Collections.Generic
 			return GetEnumeratorImplementation();
 		}
 
-		private IEnumerator<T> GetEnumeratorImplementation()
+		private IEnumerator<TItem> GetEnumeratorImplementation()
 		{
-			var filler = _filler;
-			_filler = null;
-			if (filler != null)
-				Adicionar(filler());
+			if (_filler != null)
+			{
+				lock (this)
+				{
+					if (_filler != null)
+					{
+						Adicionar(_filler.Invoke());
+						_filler = null;
+					}
+				}
+			}
 			return _lista.GetEnumerator();
 		}
 
 		public override String ToString()
 		{
-			return $"Lista<{typeof(T).Name}>(Count = {Count})";
+			return $"Lista<{typeof(TItem).Name}>(Count = {Count})";
 		}
+
+		public static IEnumerable<TItem> Empty { get { yield break; } }
 	}
 }

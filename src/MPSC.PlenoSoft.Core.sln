@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2037
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28621.142
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPSC.PlenoSoft.Core.Utils", "Utils\MPSC.PlenoSoft.Core.Utils.csproj", "{8FBDC04B-B14D-474B-AF67-F42049E8F91B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSC.PlenoSoft.Core.Utils", "Utils\MPSC.PlenoSoft.Core.Utils.csproj", "{8FBDC04B-B14D-474B-AF67-F42049E8F91B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPSC.PlenoSoft.Core.Caches", "Caches\MPSC.PlenoSoft.Core.Caches.csproj", "{D3A3F5DA-F29A-4482-BC95-0B1426D6C07B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSC.PlenoSoft.Core.Caches", "Caches\MPSC.PlenoSoft.Core.Caches.csproj", "{D3A3F5DA-F29A-4482-BC95-0B1426D6C07B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPSC.PlenoSoft.Core.Collections", "Collections\MPSC.PlenoSoft.Core.Collections.csproj", "{8A73DC7E-7DA0-4D4A-9B99-D99ACD932E68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSC.PlenoSoft.Core.Collections", "Collections\MPSC.PlenoSoft.Core.Collections.csproj", "{8A73DC7E-7DA0-4D4A-9B99-D99ACD932E68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

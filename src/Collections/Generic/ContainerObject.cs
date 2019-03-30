@@ -7,6 +7,7 @@ namespace MPSC.PlenoSoft.Core.Collections.Generic
 {
 	public interface IContainerBuilder
 	{
+		IContainerBuilder Adicionar<TItem>(Func<ContainerObject, TItem> item);
 		IContainerBuilder Adicionar<TItem>(TItem item, params TItem[] items);
 		IContainerBuilder Adicionar<TItem>(IEnumerable<TItem> items);
 		ContainerObject Build();
@@ -18,7 +19,13 @@ namespace MPSC.PlenoSoft.Core.Collections.Generic
 		public virtual IEnumerable<Object> Objects => _containerLists.Values.SelectMany(v => v.OfType<Object>());
 		public virtual IEnumerable<Object> SnapshotObjects => Objects.ToArray();
 
-		public virtual IEnumerable<TItem> Obter<TItem>(Func<TItem, Boolean> filtro = null)
+		public virtual TItem Obter<TItem>(Func<TItem, Boolean> filtro)
+		{
+			var lista = ObterLista<TItem>();
+			return lista.FirstOrDefault(filtro);
+		}
+
+		public virtual IEnumerable<TItem> Todos<TItem>(Func<TItem, Boolean> filtro = null)
 		{
 			var lista = ObterLista<TItem>();
 			return (filtro == null) ? lista : lista.Where(filtro);
@@ -82,6 +89,12 @@ namespace MPSC.PlenoSoft.Core.Collections.Generic
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			return GetEnumeratorImplementation();
+		}
+
+		IContainerBuilder IContainerBuilder.Adicionar<TItem>(Func<ContainerObject, TItem> item)
+		{
+			Adicionar(item.Invoke(this));
+			return this;
 		}
 
 		IContainerBuilder IContainerBuilder.Adicionar<TItem>(TItem item, params TItem[] items)

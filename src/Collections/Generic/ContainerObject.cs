@@ -46,6 +46,21 @@ namespace MPSC.PlenoSoft.Core.Collections.Generic
 			return ((IList<TItem>)lista);
 		}
 
+		private IEnumerator<Object> GetEnumeratorImplementation()
+		{
+			return SnapshotObjects.GetEnumerator();
+		}
+
+		IEnumerator<Object> IEnumerable<Object>.GetEnumerator()
+		{
+			return GetEnumeratorImplementation();
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return GetEnumeratorImplementation();
+		}
+
 		IContainerBuilder IContainerBuilder.Adicionar<TItem>(TItem item)
 		{
 			Adicionar(item);
@@ -61,21 +76,6 @@ namespace MPSC.PlenoSoft.Core.Collections.Generic
 		ContainerObject IContainerBuilder.Build()
 		{
 			return this;
-		}
-
-		IEnumerator<Object> IEnumerable<Object>.GetEnumerator()
-		{
-			return GetEnumeratorImplementation();
-		}
-
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return GetEnumeratorImplementation();
-		}
-
-		private IEnumerator<Object> GetEnumeratorImplementation()
-		{
-			return SnapshotObjects.GetEnumerator();
 		}
 	}
 }

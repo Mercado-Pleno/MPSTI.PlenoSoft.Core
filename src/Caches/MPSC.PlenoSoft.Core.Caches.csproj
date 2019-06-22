@@ -13,8 +13,8 @@
     <Copyright>Mercado Pleno Soluções em Computação</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageId />
-    <AssemblyVersion>1.0.0.2</AssemblyVersion>
-    <FileVersion>1.0.0.2</FileVersion>
+    <AssemblyVersion>1.0.0.4</AssemblyVersion>
+    <FileVersion>1.0.0.4</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

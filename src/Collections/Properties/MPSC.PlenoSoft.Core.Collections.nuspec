@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+    <metadata minClientVersion="3.5.0">
+        <id>MPSC.PlenoSoft.Core.Collections</id>
+        <version>$version$</version>
+        <title>Pleno Collections @ Mercado Pleno Soluções em Computação</title>
+        <authors>Bruno N. Fernandes</authors>
+        <owners>software@mercadopleno.com.br</owners>
+        <projectUrl>https://github.com/Mercado-Pleno/MPSC.PlenoSoft.Core</projectUrl>
+        <iconUrl>http://mercadopleno.com.br/imgs/MPSC.PlenoSoft.Core.Collections.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>
+			MPSC.PlenoSoft.Core.Collections
+			<![CDATA[]]>
+		</description>
+        <summary>MPSC.PlenoSoft.Core.Collections</summary>
+        <releaseNotes>
+			(Atual)
+			2019/06/22 - 1.0.0.3 -> Versão inicial;
+		</releaseNotes>
+        <copyright>Mercado Pleno Soluções em Computação</copyright>
+        <language>pt-BR</language>
+        <tags>Pleno Collections @ Mercado Pleno Soluções em Computação</tags>
+        <dependencies> </dependencies>
+		<frameworkAssemblies> </frameworkAssemblies>
+	</metadata>
+	<files>
+		<file src="..\..\Bin\netcoreapp2.2\MPSC.PlenoSoft.Core.Utils.dll" target="lib\netcoreapp2.2\" />
+		<file src="..\..\Bin\netcoreapp2.2\MPSC.PlenoSoft.Core.Collections.dll" target="lib\netcoreapp2.2\" />
+	</files>
+</package>

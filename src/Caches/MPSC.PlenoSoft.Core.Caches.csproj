@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -6,12 +6,15 @@
     <PackageProjectUrl>https://github.com/Mercado-Pleno/MPSC.PlenoSoft.Core</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Mercado-Pleno/MPSC.PlenoSoft.Core</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>Bruno N. Fernandes</Authors>
-    <Company>software@mercadopleno.com.br</Company>
-    <Product>Pleno Caches @ Mercado Pleno Soluções em Computação</Product>
+    <Company>Mercado Pleno Soluções em Computação</Company>
+    <Product></Product>
     <Copyright>Mercado Pleno Soluções em Computação</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageId />
+    <AssemblyVersion>1.0.0.2</AssemblyVersion>
+    <FileVersion>1.0.0.2</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

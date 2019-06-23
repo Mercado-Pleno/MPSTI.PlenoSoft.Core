@@ -40,7 +40,7 @@ namespace MPSC.PlenoSoft.Core.Collections.Generic
 		public void Remover(IEnumerable<TItem> listaItem)
 		{
 			foreach (var item in listaItem)
-				_lista.Remove(item);
+				Remover(item);
 		}
 
 		public void Remover(TItem item)

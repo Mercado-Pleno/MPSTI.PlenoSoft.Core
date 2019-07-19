@@ -32,8 +32,8 @@ namespace MPSC.PlenoSoft.Core.Collections.Generic
 
 		public TItem Adicionar(TItem item)
 		{
-			_onAdicionar?.Invoke(item);
 			_lista.Add(item);
+			_onAdicionar?.Invoke(item);
 			return item;
 		}
 
@@ -45,8 +45,8 @@ namespace MPSC.PlenoSoft.Core.Collections.Generic
 
 		public void Remover(TItem item)
 		{
-			_onRemover?.Invoke(item);
 			_lista.Remove(item);
+			_onRemover?.Invoke(item);
 		}
 
 		public void Limpar()

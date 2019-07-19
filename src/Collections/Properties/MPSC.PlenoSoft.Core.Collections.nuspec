@@ -16,7 +16,7 @@
         <summary>MPSC.PlenoSoft.Core.Collections</summary>
         <releaseNotes>
 			(Atual)
-			2019/07/18 - 1.0.0.6 -> Correção do método de adicionar e remover itens da lista que não disparava o evento na ordem correta;
+			2019/07/18 - 1.0.0.7 -> Correção do método de adicionar e remover itens da lista que não disparava o evento na ordem correta;
 			2019/06/23 - 1.0.0.5 -> Correção do método de remover itens da lista que não disparava o evento;
 			2019/06/22 - 1.0.0.4 -> Versão inicial;
 		</releaseNotes>

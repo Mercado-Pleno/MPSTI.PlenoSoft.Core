@@ -9,12 +9,12 @@
     <Copyright>Mercado Pleno Soluções em Computação</Copyright>
     <Company>Mercado Pleno Soluções em Computação</Company>
     <Authors>Bruno N. Fernandes</Authors>
-    <Version>1.0.0.5</Version>
+    <Version>1.0.0.7</Version>
     <Product></Product>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <AssemblyVersion>1.0.0.5</AssemblyVersion>
-    <FileVersion>1.0.0.5</FileVersion>
+    <AssemblyVersion>1.0.0.7</AssemblyVersion>
+    <FileVersion>1.0.0.7</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

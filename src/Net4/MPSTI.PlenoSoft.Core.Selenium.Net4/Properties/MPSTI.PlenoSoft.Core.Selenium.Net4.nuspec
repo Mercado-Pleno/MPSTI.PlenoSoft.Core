@@ -46,6 +46,6 @@
 	</metadata>
 	<files>
 		<file src="..\Bin\Release\MPSTI.PlenoSoft.Selenium.Extension.dll" target="lib\net\" />
-		<file src="..\..\asset\package-selenium.png" target="images\" />
+		<file src="..\..\..\asset\package-selenium.png" target="images\" />
 	</files>
 </package>

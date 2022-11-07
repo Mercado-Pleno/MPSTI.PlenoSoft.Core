@@ -112,6 +112,6 @@ namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Testes.Unidade
 
 	<files>
 		<file src="..\Bin\Release\MPSTI.PlenoSoft.Core.Office.OpenXml.dll" target="lib\net" />
-		<file src="..\..\asset\package-plenoexcel.png" target="images\" />
+		<file src="..\..\..\asset\package-plenoexcel.png" target="images\" />
 	</files>
 </package>

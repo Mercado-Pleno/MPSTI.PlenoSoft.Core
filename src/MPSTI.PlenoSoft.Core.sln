@@ -14,8 +14,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[Root]", "[Root]", "{1F4BFE2D-D282-478A-8EF3-21F93A6F859C}"
 	ProjectSection(SolutionItems) = preProject
 		..\.gitignore = ..\.gitignore
-		MPSTI.PlenoSoft.Core.Selenium.Net4\Properties\MPSTI.PlenoSoft.Core.Selenium.Net4.nuspec = MPSTI.PlenoSoft.Core.Selenium.Net4\Properties\MPSTI.PlenoSoft.Core.Selenium.Net4.nuspec
-		MPSTI.PlenoSoft.Core.WatiN.Net4\Properties\MPSTI.PlenoSoft.Core.WatiN.Net4.nuspec = MPSTI.PlenoSoft.Core.WatiN.Net4\Properties\MPSTI.PlenoSoft.Core.WatiN.Net4.nuspec
+		Net4\MPSTI.PlenoSoft.Core.Office.OpenXml\Properties\MPSTI.PlenoSoft.Core.Office.OpenXml.nuspec = Net4\MPSTI.PlenoSoft.Core.Office.OpenXml\Properties\MPSTI.PlenoSoft.Core.Office.OpenXml.nuspec
+		Net4\MPSTI.PlenoSoft.Core.Selenium.Net4\Properties\MPSTI.PlenoSoft.Core.Selenium.Net4.nuspec = Net4\MPSTI.PlenoSoft.Core.Selenium.Net4\Properties\MPSTI.PlenoSoft.Core.Selenium.Net4.nuspec
+		Net4\MPSTI.PlenoSoft.Core.WatiN.Net4\Properties\MPSTI.PlenoSoft.Core.WatiN.Net4.nuspec = Net4\MPSTI.PlenoSoft.Core.WatiN.Net4\Properties\MPSTI.PlenoSoft.Core.WatiN.Net4.nuspec
 		..\.github\workflows\publish-nuget-net4.yml = ..\.github\workflows\publish-nuget-net4.yml
 		..\.github\workflows\publish-nuget-net6.yml = ..\.github\workflows\publish-nuget-net6.yml
 		..\README.md = ..\README.md
@@ -30,6 +31,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Selenium", "MPSTI.PlenoSoft.Core.Selenium\MPSTI.PlenoSoft.Core.Selenium.csproj", "{B967CBCB-58DC-41E3-B6AF-979ABAFD020F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Camunda", "MPSTI.PlenoSoft.Core.Camunda\MPSTI.PlenoSoft.Core.Camunda.csproj", "{9379B172-D26F-4FD2-BFA3-B12A59C569B4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Office.EPPlus", "MPSTI.PlenoSoft.Core.Office.EPPlus\MPSTI.PlenoSoft.Core.Office.EPPlus.csproj", "{74E47D32-53E8-4889-801C-5BCBDD5D2863}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +76,10 @@ Global
 		{9379B172-D26F-4FD2-BFA3-B12A59C569B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9379B172-D26F-4FD2-BFA3-B12A59C569B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9379B172-D26F-4FD2-BFA3-B12A59C569B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74E47D32-53E8-4889-801C-5BCBDD5D2863}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74E47D32-53E8-4889-801C-5BCBDD5D2863}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74E47D32-53E8-4889-801C-5BCBDD5D2863}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74E47D32-53E8-4889-801C-5BCBDD5D2863}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

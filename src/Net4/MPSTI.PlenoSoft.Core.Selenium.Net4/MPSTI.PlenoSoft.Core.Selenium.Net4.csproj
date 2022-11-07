@@ -59,25 +59,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\MPSTI.PlenoSoft.Core.Selenium\BrowserUpdateDriverVersion.cs">
+    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\BrowserUpdateDriverVersion.cs">
       <Link>BrowserUpdateDriverVersion.cs</Link>
     </Compile>
-    <Compile Include="..\MPSTI.PlenoSoft.Core.Selenium\ChromeUpdateDriverVersion.cs">
+    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\ChromeUpdateDriverVersion.cs">
       <Link>ChromeUpdateDriverVersion.cs</Link>
     </Compile>
-    <Compile Include="..\MPSTI.PlenoSoft.Core.Selenium\EdgeUpdateDriverVersion.cs">
+    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\EdgeUpdateDriverVersion.cs">
       <Link>EdgeUpdateDriverVersion.cs</Link>
     </Compile>
-    <Compile Include="..\MPSTI.PlenoSoft.Core.Selenium\Selenium.cs">
+    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Selenium.cs">
       <Link>Selenium.cs</Link>
     </Compile>
-    <Compile Include="..\MPSTI.PlenoSoft.Core.Selenium\SeleniumExtension.cs">
+    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\SeleniumExtension.cs">
       <Link>SeleniumExtension.cs</Link>
     </Compile>
-    <Compile Include="..\MPSTI.PlenoSoft.Core.Selenium\SeleniumFactory.cs">
+    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\SeleniumFactory.cs">
       <Link>SeleniumFactory.cs</Link>
     </Compile>
-    <Compile Include="..\MPSTI.PlenoSoft.Core.Selenium\XmlUtil.cs">
+    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\XmlUtil.cs">
       <Link>XmlUtil.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

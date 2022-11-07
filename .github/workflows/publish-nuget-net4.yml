@@ -8,10 +8,11 @@ on:
     branches: [ "master" ]
 
 env:
-  BASE_PATH: src
+  BASE_PATH: src/Net4
   SOLUTION_NAME: MPSTI.PlenoSoft.Core.Net4
   PROJECT_NAME1: MPSTI.PlenoSoft.Core.Selenium.Net4
   PROJECT_NAME2: MPSTI.PlenoSoft.Core.WatiN.Net4
+  PROJECT_NAME3: MPSTI.PlenoSoft.Core.Office.OpenXml
     
 jobs:
   build:
@@ -51,6 +52,11 @@ jobs:
       env:
         PROJECT_FILE: ${{ format('{0}/{1}/{1}.csproj', env.BASE_PATH, env.PROJECT_NAME2) }}
 
+    - name: Create Package (Release)
+      run: nuget pack ${{ env.PROJECT_FILE }} -Properties Configuration=Release
+      env:
+        PROJECT_FILE: ${{ format('{0}/{1}/{1}.csproj', env.BASE_PATH, env.PROJECT_NAME3) }}
+
     - name: Publish Package (nuget.org)
       run: nuget push ${{ env.PACKAGE_FILE }} -Source https://api.nuget.org/v3/index.json -SkipDuplicate
       env:
@@ -60,6 +66,11 @@ jobs:
       run: nuget push ${{ env.PACKAGE_FILE }} -Source https://api.nuget.org/v3/index.json -SkipDuplicate
       env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', env.PROJECT_NAME2) }}
+
+    - name: Publish Package (nuget.org)
+      run: nuget push ${{ env.PACKAGE_FILE }} -Source https://api.nuget.org/v3/index.json -SkipDuplicate
+      env:
+        PACKAGE_FILE: ${{ format('**/{0}*.nupkg', env.PROJECT_NAME3) }}
 
 # https://www.zup.com.br/blog/github-actions-variaveis-de-ambiente-e-secrets
 # https://docs.github.com/pt/github-ae@latest/actions/learn-github-actions/environment-variables

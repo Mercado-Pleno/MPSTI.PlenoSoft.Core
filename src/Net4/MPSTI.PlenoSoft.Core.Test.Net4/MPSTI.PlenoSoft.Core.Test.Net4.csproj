@@ -68,6 +68,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MPSTI.PlenoSoft.Core.Office.OpenXml\MPSTI.PlenoSoft.Core.Office.OpenXml.csproj">
+      <Project>{40124ea5-144f-41bd-97bb-6d35a2b0b3a2}</Project>
+      <Name>MPSTI.PlenoSoft.Core.PlenoExcel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MPSTI.PlenoSoft.Core.Selenium.Net4\MPSTI.PlenoSoft.Core.Selenium.Net4.csproj">
       <Project>{15901997-ba9d-4395-a71d-6eb58b06dcd6}</Project>
       <Name>MPSTI.PlenoSoft.Core.Selenium.Net4</Name>

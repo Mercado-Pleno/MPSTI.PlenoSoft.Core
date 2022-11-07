@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+	<metadata minClientVersion="3.5.0">
+		<id>MPSTI.PlenoSoft.Core.Office.OpenXml</id>
+		<title>Pleno Excel @ Mercado Pleno Soluções em Tecnologia da Informação</title>
+		<authors>mercadopleno.com.br,Bruno-N-Fernandes</authors>
+		<owners>mercadopleno.com.br,Bruno-N-Fernandes</owners>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<copyright>Mercado Pleno Soluções em Tecnologia da Informação @ 2022</copyright>
+		<language>pt-BR</language>
+		<projectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</projectUrl>
+		<summary>Um façade para o DocumentFormat.OpenXML muito simples de utilizar.</summary>
+		<tags>Document Format Open Xml Office Excel Planilha Pleno Soft DocumentFormat OpenXml Exportar</tags>
+		<icon>images\package-plenoexcel.png</icon>
+		<version>1.0.0.18</version>
+		<releaseNotes>
+			<![CDATA[(Atual)
+2022/11/05 - 1.0.0.18 -> Refatoração e limpeza do projeto, com alteração do nome de PlenoMapa para ExcelColumnAttribute;
+2021/05/07 - 1.0.0.17 -> Correção do bug de exportar uma lista de DTOs;
+2018/04/26 - 1.0.0.16 -> Inclusão da suíte de testes unitários e reestruturação das pastas de código fonte;
+2018/02/02 - 1.0.0.15 -> Correção do bug de exportar campo do tipo Decimal;
+2017/10/20 - 1.0.0.14 -> Possibilitar o carregamento automático da configuração através de arquivo XML;
+2017/10/18 - 1.0.0.13 -> Correção do posicionamento do cabeçalho;
+2017/09/14 - 1.0.0.12 -> Implementando a configuração através de recursos externos da aplicação;
+2017/08/17 - 1.0.0.11 -> Suporte à Backup durante a manipulação de arquivos;
+2017/08/07 - 1.0.0.10 -> Configuração de campos através de Atributos no DTO;
+2017/08/06 - 1.0.0.09 -> Exportação de Listas de um DTO como sheets da planilha;
+2017/08/05 - 1.0.0.08 -> Versão Inicial do façade para o DocumentFormat.OpenXML muito simples de utilizar;
+]]>
+		</releaseNotes>
+		<description>
+			Pleno Excel é um façade para o DocumentFormat.OpenXML muito simples de utilizar.
+			<![CDATA[
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Controller;
+using MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Integracao;
+using MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Util;
+
+namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Testes.Unidade
+{
+	[TestClass]
+	public class TestandoGeradorDePlanilha
+	{
+		private static readonly String cRoot = File.Exists(@"C:\Temp\") ? @"C:\Temp" : Path.GetTempPath();
+
+		[TestMethod]
+		public void Quando_Converte0()
+		{
+			var leads = new List<Lead>();
+			for (int i = 0; i < 10; i++)
+			{
+				var lead = new Lead { Properties = i };
+				leads.Add(lead);
+			}
+
+			var arquivo = new FileInfo(cRoot + @"\OfficeDTO.xlsx");
+			var plenoExcel = new PlenoExcel(arquivo, Modo.Padrao | Modo.ApagarSeExistir);
+			plenoExcel.Exportar(leads);
+			plenoExcel.Fechar();
+		}
+
+		[TestMethod]
+		public void Quando_Grava_Uma_Planilha_Excel()
+		{
+			var arquivoExcel = new FileInfo(cRoot + @"\PlenoExcel.xlsx");
+			var plenoExcel = new PlenoExcel(arquivoExcel, Modo.Seguro | Modo.SempreCriaNovo);
+
+			var plan1 = plenoExcel["Plan1"];
+
+			plan1.Escrever("A", 1, "Numero 1", Style.Header);
+			plan1.Escrever("B", 1, "Número 2", Style.Header);
+			plan1.Escrever("C", 1, "Soma", Style.Header);
+
+			plan1.Escrever("A", 2, 6, Style.Geral);
+			plan1.Escrever("B", 2, 4, Style.Geral);
+			plan1.Escrever("C", 2, "=SUM(A2:B2)", Style.Geral);
+
+			plenoExcel.Salvar();
+			plenoExcel.Fechar();
+		}
+
+
+		[TestMethod] 
+		public void Exemplo_De_Como_Gerar_Uma_Planilha_Excel_A_Partir_De_Uma_Lista_De_DTOs()
+		{
+			var arquivoExcel = new FileInfo(@"C:\Temp\PlenoExcel.xlsx");
+			var plenoExcel = new PlenoExcel(arquivoExcel, Modo.Padrao | Modo.ApagarSeExistir);
+			plenoExcel.Exportar(listaDTO);
+			plenoExcel.Fechar();
+		}
+	}
+}
+]]>
+		</description>
+
+		<dependencies>
+			<group targetFramework="net46">
+				<dependency id="DocumentFormat.OpenXml" version="2.18.0" />
+			</group>
+		</dependencies>
+
+		<frameworkAssemblies>
+			<frameworkAssembly assemblyName="System" targetFramework="" />
+			<frameworkAssembly assemblyName="System.Drawing" targetFramework="" />
+			<frameworkAssembly assemblyName="System.Xml" targetFramework="" />
+		</frameworkAssemblies>
+
+	</metadata>
+
+	<files>
+		<file src="..\Bin\Release\MPSTI.PlenoSoft.Core.Office.OpenXml.dll" target="lib\net" />
+		<file src="..\..\asset\package-plenoexcel.png" target="images\" />
+	</files>
+</package>

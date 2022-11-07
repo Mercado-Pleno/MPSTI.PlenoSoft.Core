@@ -15,10 +15,10 @@
 		<Copyright>Mercado Pleno Soluções em Tecnologia da Informação</Copyright>
 		<RepositoryType>git</RepositoryType>
 		<NeutralLanguage>pt-BR</NeutralLanguage>
-		<PackageIcon>package-crossproject.png</PackageIcon>
 	</PropertyGroup>
 
 	<PropertyGroup>
+		<PackageIcon>package-crossproject.png</PackageIcon>
 		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</RepositoryUrl>
 		<Title>CrossProject @ Mercado Pleno Soluções em Computação</Title>

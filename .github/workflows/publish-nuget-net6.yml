@@ -74,6 +74,11 @@ jobs:
     - name: Publish Package (nuget.org)
       run: nuget push ${{ env.PACKAGE_FILE }} -Source https://api.nuget.org/v3/index.json -SkipDuplicate
       env:
+        PACKAGE_FILE: ${{ format('**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Office.EPPlus') }}
+
+    - name: Publish Package (nuget.org)
+      run: nuget push ${{ env.PACKAGE_FILE }} -Source https://api.nuget.org/v3/index.json -SkipDuplicate
+      env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Selenium') }}
 
 # https://www.zup.com.br/blog/github-actions-variaveis-de-ambiente-e-secrets

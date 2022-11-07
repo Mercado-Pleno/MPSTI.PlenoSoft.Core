@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MPSC.PlenoSoft.Core.Utils.Statics
+namespace MPSTI.PlenoSoft.Core.Utils.Statics
 {
 	public static class Collections
 	{
-		public static Boolean In<T>(this T self, params T[] values)
+		public static bool In<T>(this T self, params T[] values)
 		{
 			return values.Contains(self);
 		}
 
-		public static Boolean In<T>(this T? self, params T?[] values) where T : struct
+		public static bool In<T>(this T? self, params T?[] values) where T : struct
 		{
 			return values.Contains(self);
 		}

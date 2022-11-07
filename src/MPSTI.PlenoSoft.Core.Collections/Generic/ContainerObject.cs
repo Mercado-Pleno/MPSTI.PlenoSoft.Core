@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MPSC.PlenoSoft.Core.Collections.Generic
+namespace MPSTI.PlenoSoft.Core.Collections.Generic
 {
 	public interface IContainerBuilder
 	{
@@ -13,22 +13,22 @@ namespace MPSC.PlenoSoft.Core.Collections.Generic
 		ContainerObject Build();
 	}
 
-	public class ContainerObject : IEnumerable<Object>, IContainerBuilder
+	public class ContainerObject : IEnumerable<object>, IContainerBuilder
 	{
 		private readonly Dictionary<Type, IList> _containerLists = new Dictionary<Type, IList>();
-		public virtual IEnumerable<Object> Objects => _containerLists.Values.SelectMany(v => v.OfType<Object>());
-		public virtual IEnumerable<Object> SnapshotObjects => Objects.ToArray();
+		public virtual IEnumerable<object> Objects => _containerLists.Values.SelectMany(v => v.OfType<object>());
+		public virtual IEnumerable<object> SnapshotObjects => Objects.ToArray();
 
-		public virtual TItem Obter<TItem>(Func<TItem, Boolean> filtro)
+		public virtual TItem Obter<TItem>(Func<TItem, bool> filtro)
 		{
 			var lista = ObterLista<TItem>();
 			return lista.FirstOrDefault(filtro);
 		}
 
-		public virtual IEnumerable<TItem> Todos<TItem>(Func<TItem, Boolean> filtro = null)
+		public virtual IEnumerable<TItem> Todos<TItem>(Func<TItem, bool> filtro = null)
 		{
 			var lista = ObterLista<TItem>();
-			return (filtro == null) ? lista : lista.Where(filtro);
+			return filtro == null ? lista : lista.Where(filtro);
 		}
 
 		public virtual TItem Adicionar<TItem>(TItem item)
@@ -73,15 +73,15 @@ namespace MPSC.PlenoSoft.Core.Collections.Generic
 			var type = typeof(TItem);
 			if (!_containerLists.TryGetValue(type, out var lista))
 				lista = _containerLists[type] = new List<TItem>();
-			return ((IList<TItem>)lista);
+			return (IList<TItem>)lista;
 		}
 
-		private IEnumerator<Object> GetEnumeratorImplementation()
+		private IEnumerator<object> GetEnumeratorImplementation()
 		{
 			return SnapshotObjects.GetEnumerator();
 		}
 
-		IEnumerator<Object> IEnumerable<Object>.GetEnumerator()
+		IEnumerator<object> IEnumerable<object>.GetEnumerator()
 		{
 			return GetEnumeratorImplementation();
 		}

@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6</TargetFramework>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<WarningsAsErrors />
+		<AssemblyName>MPSC.PlenoSoft.ControlFlux</AssemblyName>
+		<RootNamespace>MPSC.PlenoSoft.ControlFlux</RootNamespace>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<IsPackable>true</IsPackable>
+		<Title>Pleno Control Flux @ Mercado Pleno Soluções em Computação</Title>
+		<Authors>Bruno N. Fernandes</Authors>
+		<Company>Mercado Pleno Soluções em Computação</Company>
+		<Description>MPSC.PlenoSoft.ControlFlux</Description>
+		<Copyright>Mercado Pleno Soluções em Computação</Copyright>
+		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Flux</PackageProjectUrl>
+		<AssemblyVersion>1.0.0.3</AssemblyVersion>
+		<FileVersion>1.0.0.3</FileVersion>
+		<Version>1.0.0.3</Version>
+		<PackageReleaseNotes>
+			(Atual)
+			2022/11/06 - 1.0.0.3 -> Upgrade target Framework and enable GitHubActions;
+			2019/06/23 - 1.0.0.2 -> Changing the method name of 'If' to 'Validating' in Flux Class;
+			2019/06/20 - 1.0.0.1 -> Initial Version;
+		</PackageReleaseNotes>
+		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Flux</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>Pleno Control Flux @ Mercado Pleno Soluções em Computação</PackageTags>
+		<NeutralLanguage>pt-BR</NeutralLanguage>
+		<PackageIcon>package-icon.png</PackageIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\Assets\package-icon.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+
+</Project>

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace MPSC.PlenoSoft.Core.Utils.Abstracao
+namespace MPSTI.PlenoSoft.Core.Utils.Abstracao
 {
 	public interface IUniqueId
 	{
-		Int64 UId { get; set; }
+		long UId { get; set; }
 	}
 
 	public interface IEntidade<TId> where TId : IComparable, IComparable<TId>, IConvertible, IEquatable<TId>, IFormattable
@@ -16,7 +16,7 @@ namespace MPSC.PlenoSoft.Core.Utils.Abstracao
 
 	public abstract class ClasseBase<TId> where TId : struct, IComparable, IFormattable, IConvertible, IComparable<TId>, IEquatable<TId>
 	{
-		protected static Int64 _controle = 0;
+		protected static long _controle = 0;
 
 		[Display(Name = "Id")]
 		public TId Id { get; set; }
@@ -24,27 +24,27 @@ namespace MPSC.PlenoSoft.Core.Utils.Abstracao
 		public virtual void EhValido() { }
 	}
 
-	public abstract class Tipo : ClasseBase<Int16>
+	public abstract class Tipo : ClasseBase<short>
 	{
-		public String Sigla { get; set; }
-		public String Descricao { get; set; }
-		public Int16 OrdemApresentacao { get; set; }
+		public string Sigla { get; set; }
+		public string Descricao { get; set; }
+		public short OrdemApresentacao { get; set; }
 	}
 
-	public abstract class Cadastro : ClasseBase<Int32>
+	public abstract class Cadastro : ClasseBase<int>
 	{
 		public DateTime Inclusao { get; set; }
 		public DateTime? Alteracao { get; set; }
-		public String LoginInclusao { get; set; }
-		public String LoginAlteracao { get; set; }
+		public string LoginInclusao { get; set; }
+		public string LoginAlteracao { get; set; }
 	}
 
-	public abstract class Entidade : ClasseBase<Int64>, IUniqueId, IEntidade<Int64>
+	public abstract class Entidade : ClasseBase<long>, IUniqueId, IEntidade<long>
 	{
-		Int64 IUniqueId.UId { get => Id; set => Id = value; }
+		long IUniqueId.UId { get => Id; set => Id = value; }
 		public DateTime Inclusao { get; set; }
 		public DateTime? Alteracao { get; set; }
-		public String LoginInclusao { get; set; }
-		public String LoginAlteracao { get; set; }
+		public string LoginInclusao { get; set; }
+		public string LoginAlteracao { get; set; }
 	}
 }

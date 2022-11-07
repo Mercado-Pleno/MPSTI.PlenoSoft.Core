@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace MPSC.PlenoSoft.Core.Collections.Generic
+namespace MPSTI.PlenoSoft.Core.Collections.Generic
 {
 	public class Lista<TItem> : IEnumerable<TItem>
 	{
@@ -10,7 +10,7 @@ namespace MPSC.PlenoSoft.Core.Collections.Generic
 		private readonly Action<TItem> _onAdicionar;
 		private readonly Action<TItem> _onRemover;
 		private Func<IEnumerable<TItem>> _filler;
-		public Int32 Count => _lista.Count;
+		public int Count => _lista.Count;
 
 		public Lista(Action<TItem> onAdicionar, Action<TItem> onRemover = null)
 		{
@@ -82,7 +82,7 @@ namespace MPSC.PlenoSoft.Core.Collections.Generic
 			return _lista.GetEnumerator();
 		}
 
-		public override String ToString()
+		public override string ToString()
 		{
 			return $"Lista<{typeof(TItem).Name}>(Count = {Count})";
 		}

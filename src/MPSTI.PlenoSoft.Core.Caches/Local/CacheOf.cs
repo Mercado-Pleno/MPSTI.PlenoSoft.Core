@@ -2,32 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using MPSC.PlenoSoft.Core.Utils.Abstracao;
+using MPSTI.PlenoSoft.Core.Utils.Abstracao;
 
-namespace MPSC.PlenoSoft.Core.Caches.Local
+namespace MPSTI.PlenoSoft.Core.Caches.Local
 {
 	public sealed class CacheOf<TEntidade> where TEntidade : IUniqueId
 	{
 		private readonly TimeSpan _timeOut;
 		private readonly Func<IEnumerable<TEntidade>> _getCollectionFromSource;
-		private readonly Action<TEntidade, Int64> _onAdd;
+		private readonly Action<TEntidade, long> _onAdd;
 		private readonly List<TEntidade> _collection = new List<TEntidade>();
 		private DateTime _lastUpdate = DateTime.Now;
-		private Int64 _id = 0;
+		private long _id = 0;
 
-		internal CacheOf(TimeSpan timeOut, Func<IEnumerable<TEntidade>> getCollectionFromSource, Action<TEntidade, Int64> onAdd)
+		internal CacheOf(TimeSpan timeOut, Func<IEnumerable<TEntidade>> getCollectionFromSource, Action<TEntidade, long> onAdd)
 		{
 			_timeOut = timeOut;
 			_getCollectionFromSource = getCollectionFromSource;
 			_onAdd = onAdd;
 		}
 
-		public Boolean EhValido => (_collection.Any() && (_lastUpdate.Add(_timeOut) > DateTime.Now));
+		public bool EhValido => _collection.Any() && _lastUpdate.Add(_timeOut) > DateTime.Now;
 		private List<TEntidade> ListaAtualizada => EhValido ? _collection : ColocarEmCache();
 
-		public IEnumerable<TEntidade> Obter(Func<TEntidade, Boolean> filter)
+		public IEnumerable<TEntidade> Obter(Func<TEntidade, bool> filter)
 		{
-			return (filter == null) ? ListaAtualizada : ListaAtualizada.Where(filter);
+			return filter == null ? ListaAtualizada : ListaAtualizada.Where(filter);
 		}
 
 		public void Incluir(TEntidade entidade)

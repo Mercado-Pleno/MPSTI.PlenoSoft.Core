@@ -1,0 +1,47 @@
+name: Publish Nuget .Net6
+
+on:
+  push:
+    branches: [ "master" ]
+
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  BASE_PATH: src
+  SOLUTION_NAME: MPSC.PlenoSoft.Core
+
+
+jobs:
+  build:
+    name: Build, Pack & Publish (On ubuntu-latest)
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Git Source
+      uses: actions/checkout@v3
+      
+    - name: Install NuGet.exe
+      uses: NuGet/setup-nuget@v1.1.1
+      with:
+        nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+        nuget-version: 'latest'
+
+    - name: Install DotNet.exe
+      uses: actions/setup-dotnet@v3.0.3
+      with:
+        dotnet-version: '6.0.x'
+
+    - name: Build Solution (Release)
+      run: dotnet build ${{ env.SOLUTION_FILE }} --configuration Release
+      env:
+        SOLUTION_FILE: ${{ format('{0}/{1}.sln', env.BASE_PATH, env.SOLUTION_NAME) }}
+
+    - name: Publish Package (nuget.org)
+      run: nuget push ${{ env.PACKAGE_FILE }} -Source https://api.nuget.org/v3/index.json -SkipDuplicate
+      env:
+        PACKAGE_FILE: ${{ format('**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Caches') }}
+
+# https://www.zup.com.br/blog/github-actions-variaveis-de-ambiente-e-secrets
+# https://docs.github.com/pt/github-ae@latest/actions/learn-github-actions/environment-variables
+# https://docs.github.com/en/actions/learn-github-actions/environment-variables

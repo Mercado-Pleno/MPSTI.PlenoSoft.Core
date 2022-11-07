@@ -3,28 +3,28 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace MPSC.PlenoSoft.Core.Utils.Statics
+namespace MPSTI.PlenoSoft.Core.Utils.Statics
 {
 	public static class Criptografia
 	{
 		private static readonly Encoding _encoding = Encoding.UTF8;
-		private const String cKey = "p2eS9hDBNZCxmyOdeGyDgQ==";
-		private const String cIV = "IVJjFZBCW9w=";
+		private const string cKey = "p2eS9hDBNZCxmyOdeGyDgQ==";
+		private const string cIV = "IVJjFZBCW9w=";
 
-		public static String Encripta(this String mensagem)
+		public static string Encripta(this string mensagem)
 		{
-			return Encripta(mensagem, cKey, cIV);
+			return mensagem.Encripta(cKey, cIV);
 		}
 
-		public static String Decripta(this String mensagem)
+		public static string Decripta(this string mensagem)
 		{
-			return Decripta(mensagem, cKey, cIV);
+			return mensagem.Decripta(cKey, cIV);
 		}
 
-		public static String Criptografar(this String mensagem)
+		public static string Criptografar(this string mensagem)
 		{
 			var stringBuilder = new StringBuilder();
-			var md5CryptoServiceProvider = new MD5CryptoServiceProvider();
+			var md5CryptoServiceProvider = MD5.Create();
 			var bytes = md5CryptoServiceProvider.ComputeHash(_encoding.GetBytes(mensagem));
 
 			foreach (var vByte in bytes)
@@ -33,10 +33,10 @@ namespace MPSC.PlenoSoft.Core.Utils.Statics
 			return stringBuilder.ToString().ToLower();
 		}
 
-		public static String Encripta(this String mensagem, String key, String vetor)
+		public static string Encripta(this string mensagem, string key, string vetor)
 		{
 			var bytes = _encoding.GetBytes(mensagem);
-			var rc2CryptoServiceProvider = new RC2CryptoServiceProvider();
+			var rc2CryptoServiceProvider = RC2.Create();
 			var iCryptoTransform = rc2CryptoServiceProvider.CreateEncryptor(Convert.FromBase64String(key), Convert.FromBase64String(vetor));
 			var memoryStream = new MemoryStream();
 
@@ -48,11 +48,11 @@ namespace MPSC.PlenoSoft.Core.Utils.Statics
 			return Convert.ToBase64String(memoryStream.ToArray());
 		}
 
-		public static String Decripta(this String mensagem, String key, String vetor)
+		public static string Decripta(this string mensagem, string key, string vetor)
 		{
-			var buffer = new Byte[256];
+			var buffer = new byte[256];
 			var stringBuilder = new StringBuilder();
-			var rc2CryptoServiceProvider = new RC2CryptoServiceProvider();
+			var rc2CryptoServiceProvider = RC2.Create();
 			var iCryptoTransform = rc2CryptoServiceProvider.CreateDecryptor(Convert.FromBase64String(key), Convert.FromBase64String(vetor));
 			var memoryStream = new MemoryStream(Convert.FromBase64String(mensagem));
 

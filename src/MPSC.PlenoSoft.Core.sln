@@ -1,13 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28621.142
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSC.PlenoSoft.Core.Utils", "Utils\MPSC.PlenoSoft.Core.Utils.csproj", "{8FBDC04B-B14D-474B-AF67-F42049E8F91B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Utils", "MPSTI.PlenoSoft.Core.Utils\MPSTI.PlenoSoft.Core.Utils.csproj", "{8FBDC04B-B14D-474B-AF67-F42049E8F91B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSC.PlenoSoft.Core.Caches", "Caches\MPSC.PlenoSoft.Core.Caches.csproj", "{D3A3F5DA-F29A-4482-BC95-0B1426D6C07B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Caches", "MPSTI.PlenoSoft.Core.Caches\MPSTI.PlenoSoft.Core.Caches.csproj", "{D3A3F5DA-F29A-4482-BC95-0B1426D6C07B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSC.PlenoSoft.Core.Collections", "Collections\MPSC.PlenoSoft.Core.Collections.csproj", "{8A73DC7E-7DA0-4D4A-9B99-D99ACD932E68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Collections", "MPSTI.PlenoSoft.Core.Collections\MPSTI.PlenoSoft.Core.Collections.csproj", "{8A73DC7E-7DA0-4D4A-9B99-D99ACD932E68}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Flux", "MPSTI.PlenoSoft.Core.Flux\MPSTI.PlenoSoft.Core.Flux.csproj", "{37EADC4F-3F73-4817-B5DD-9FE7888F1649}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[Root]", "[Root]", "{1F4BFE2D-D282-478A-8EF3-21F93A6F859C}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+		..\.github\workflows\publish-nuget-net6.yml = ..\.github\workflows\publish-nuget-net6.yml
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Test", "MPSTI.PlenoSoft.Core.Test\MPSTI.PlenoSoft.Core.Test.csproj", "{9669E048-A18F-4755-816D-020B6D47A087}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +38,14 @@ Global
 		{8A73DC7E-7DA0-4D4A-9B99-D99ACD932E68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A73DC7E-7DA0-4D4A-9B99-D99ACD932E68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A73DC7E-7DA0-4D4A-9B99-D99ACD932E68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37EADC4F-3F73-4817-B5DD-9FE7888F1649}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37EADC4F-3F73-4817-B5DD-9FE7888F1649}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37EADC4F-3F73-4817-B5DD-9FE7888F1649}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37EADC4F-3F73-4817-B5DD-9FE7888F1649}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9669E048-A18F-4755-816D-020B6D47A087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9669E048-A18F-4755-816D-020B6D47A087}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9669E048-A18F-4755-816D-020B6D47A087}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9669E048-A18F-4755-816D-020B6D47A087}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

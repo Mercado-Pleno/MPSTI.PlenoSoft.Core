@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6</TargetFramework>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<WarningsAsErrors />
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSC.PlenoSoft.Core</RepositoryUrl>
+		<RepositoryType>Git</RepositoryType>
+		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSC.PlenoSoft.Core</PackageProjectUrl>
+		<Copyright>Mercado Pleno Soluções em Computação</Copyright>
+		<Company>Mercado Pleno Soluções em Computação</Company>
+		<Authors>Bruno N. Fernandes</Authors>
+		<Version>1.0.0.7</Version>
+		<Product></Product>
+		<PackageLicenseUrl></PackageLicenseUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<AssemblyVersion>1.0.0.8</AssemblyVersion>
+		<FileVersion>1.0.0.8</FileVersion>
+	</PropertyGroup>
+
+</Project>

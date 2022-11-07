@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
 		<TargetFramework>net6</TargetFramework>
@@ -15,36 +15,35 @@
 		<Copyright>Mercado Pleno Soluções em Tecnologia da Informação</Copyright>
 		<RepositoryType>git</RepositoryType>
 		<NeutralLanguage>pt-BR</NeutralLanguage>
-		<PackageIcon>package-flux.png</PackageIcon>
+		<PackageIcon>package-crossproject-web.png</PackageIcon>
 	</PropertyGroup>
 
 	<PropertyGroup>
 		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</RepositoryUrl>
-		<Title>Flux @ Mercado Pleno Soluções em Computação</Title>
-		<Description>MPSTI.PlenoSoft.Core.Flux</Description>
-		<PackageTags>Flux Mercado Pleno Soluções em Tecnologia da Informação</PackageTags>
+		<Title>CrossProject @ Mercado Pleno Soluções em Computação</Title>
+		<Description>MPSTI.PlenoSoft.Core.CrossProject.Web</Description>
+		<PackageTags>CrossProject Web Mercado Pleno Soluções em Tecnologia da Informação</PackageTags>
 		<AssemblyVersion>1.0.0.17</AssemblyVersion>
 		<FileVersion>1.0.0.17</FileVersion>
 		<Version>1.0.0.17</Version>
 		<PackageReleaseNotes>
 			(Atual)
 			2022/11/07 - 1.0.0.17 - Inclusão de CrossProject e definindo icones para os pacotes nuget;
-			2022/11/06 - 1.0.0.11 - Ajustes do namespace;
-			2022/11/06 - 1.0.0.01 - Upgrade target Framework and enable GitHubActions;
+			2022/11/06 - 1.0.0.16 - Separação do projeto e migração para o GitHub.
+			2022/01/20 - 1.0.0.15 - atualização do enumerado e downgrade de versão.
+			2021/05/19 - 1.0.0.0 - Versão Inicial
 		</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Include="..\asset\package-flux.png">
+	  <None Include="..\asset\package-crossproject-web.png">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Extensions\MPSTI.PlenoSoft.Core.Extensions.csproj" />
+		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.CrossProject\MPSTI.PlenoSoft.Core.CrossProject.csproj" />
 	</ItemGroup>
-
 </Project>
-

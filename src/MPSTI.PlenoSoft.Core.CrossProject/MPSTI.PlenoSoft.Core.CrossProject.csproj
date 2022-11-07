@@ -15,36 +15,50 @@
 		<Copyright>Mercado Pleno Soluções em Tecnologia da Informação</Copyright>
 		<RepositoryType>git</RepositoryType>
 		<NeutralLanguage>pt-BR</NeutralLanguage>
-		<PackageIcon>package-flux.png</PackageIcon>
+		<PackageIcon>package-crossproject.png</PackageIcon>
 	</PropertyGroup>
 
 	<PropertyGroup>
 		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</RepositoryUrl>
-		<Title>Flux @ Mercado Pleno Soluções em Computação</Title>
-		<Description>MPSTI.PlenoSoft.Core.Flux</Description>
-		<PackageTags>Flux Mercado Pleno Soluções em Tecnologia da Informação</PackageTags>
+		<Title>CrossProject @ Mercado Pleno Soluções em Computação</Title>
+		<Description>MPSTI.PlenoSoft.Core.CrossProject</Description>
+		<PackageTags>CrossProject Mercado Pleno Soluções em Tecnologia da Informação</PackageTags>
 		<AssemblyVersion>1.0.0.17</AssemblyVersion>
 		<FileVersion>1.0.0.17</FileVersion>
 		<Version>1.0.0.17</Version>
 		<PackageReleaseNotes>
 			(Atual)
 			2022/11/07 - 1.0.0.17 - Inclusão de CrossProject e definindo icones para os pacotes nuget;
-			2022/11/06 - 1.0.0.11 - Ajustes do namespace;
-			2022/11/06 - 1.0.0.01 - Upgrade target Framework and enable GitHubActions;
+			2022/11/06 - 1.0.0.16 - Separação do projeto e migração para o GitHub.
+			2022/01/20 - 1.0.0.15 - atualização do enumerado e downgrade de versão.
+			2021/05/19 - 1.0.0.0 - Versão Inicial
 		</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Include="..\asset\package-flux.png">
+	  <None Include="..\asset\package-crossproject.png">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Extensions\MPSTI.PlenoSoft.Core.Extensions.csproj" />
+		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="6.0.10" />
+		<PackageReference Include="MySqlClient" Version="5.4.2" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="RestSharp" Version="108.0.2" />
+		<PackageReference Include="SQLitePCLRaw.bundle_winsqlite3" Version="2.1.2" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.4" />
+		<PackageReference Include="System.Data.SQLite.Core" Version="1.0.116" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.25.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Assets\CrossProject.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 </Project>
-

@@ -20,6 +20,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[Root]", "[Root]", "{1F4BFE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Test", "MPSTI.PlenoSoft.Core.Test\MPSTI.PlenoSoft.Core.Test.csproj", "{9669E048-A18F-4755-816D-020B6D47A087}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.CrossProject", "MPSTI.PlenoSoft.Core.CrossProject\MPSTI.PlenoSoft.Core.CrossProject.csproj", "{40A15D84-3D44-4006-B427-AA157739ABB0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.CrossProject.Web", "MPSTI.PlenoSoft.Core.CrossProject.Web\MPSTI.PlenoSoft.Core.CrossProject.Web.csproj", "{41B983FA-D2E2-4AFB-BB47-74B6CA53BB3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +50,14 @@ Global
 		{9669E048-A18F-4755-816D-020B6D47A087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9669E048-A18F-4755-816D-020B6D47A087}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9669E048-A18F-4755-816D-020B6D47A087}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40A15D84-3D44-4006-B427-AA157739ABB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40A15D84-3D44-4006-B427-AA157739ABB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40A15D84-3D44-4006-B427-AA157739ABB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40A15D84-3D44-4006-B427-AA157739ABB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41B983FA-D2E2-4AFB-BB47-74B6CA53BB3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41B983FA-D2E2-4AFB-BB47-74B6CA53BB3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41B983FA-D2E2-4AFB-BB47-74B6CA53BB3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41B983FA-D2E2-4AFB-BB47-74B6CA53BB3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

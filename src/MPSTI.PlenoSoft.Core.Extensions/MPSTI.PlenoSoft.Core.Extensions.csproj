@@ -6,6 +6,7 @@
 		<WarningsAsErrors />
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<IsPackable>true</IsPackable>
+		<OutputType>Library</OutputType>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -14,15 +15,8 @@
 		<Copyright>Mercado Pleno Soluções em Tecnologia da Informação</Copyright>
 		<RepositoryType>git</RepositoryType>
 		<NeutralLanguage>pt-BR</NeutralLanguage>
-		<PackageIcon>package-icon.png</PackageIcon>
+		<PackageIcon>package-extensions.png</PackageIcon>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<None Include="..\Assets\package-icon.png">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-	</ItemGroup>
 
 	<PropertyGroup>
 		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</PackageProjectUrl>
@@ -30,14 +24,22 @@
 		<Title>Extensions @ Mercado Pleno Soluções em Computação</Title>
 		<Description>MPSTI.PlenoSoft.Core.Extensions</Description>
 		<PackageTags>Extensions Mercado Pleno Soluções em Tecnologia da Informação</PackageTags>
-		<AssemblyVersion>1.0.0.11</AssemblyVersion>
-		<FileVersion>1.0.0.11</FileVersion>
-		<Version>1.0.0.11</Version>
+		<AssemblyVersion>1.0.0.17</AssemblyVersion>
+		<FileVersion>1.0.0.17</FileVersion>
+		<Version>1.0.0.17</Version>
 		<PackageReleaseNotes>
 			(Atual)
-			2022/11/06 - 1.0.0.11 -&gt; Ajustes do namespace;
-			2022/11/06 - 1.0.0.01 -&gt; Upgrade target Framework and enable GitHubActions;
+			2022/11/07 - 1.0.0.17 - Inclusão de CrossProject e definindo icones para os pacotes nuget;
+			2022/11/06 - 1.0.0.11 - Ajustes do namespace;
+			2022/11/06 - 1.0.0.01 - Upgrade target Framework and enable GitHubActions;
 		</PackageReleaseNotes>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="..\asset\package-extensions.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
 
 </Project>

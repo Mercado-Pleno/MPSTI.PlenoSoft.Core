@@ -9,9 +9,9 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<Authors>Bruno N. Fernandes,mercadopleno.com.br</Authors>
-		<Company>Mercado Pleno Soluções em Computação</Company>
-		<Copyright>Mercado Pleno Soluções em Computação</Copyright>
+		<Authors>Bruno-N-Fernandes,mercadopleno.com.br</Authors>
+		<Company>Mercado Pleno Soluções em Tecnologia da Informação</Company>
+		<Copyright>Mercado Pleno Soluções em Tecnologia da Informação</Copyright>
 		<RepositoryType>git</RepositoryType>
 		<NeutralLanguage>pt-BR</NeutralLanguage>
 		<PackageIcon>package-icon.png</PackageIcon>
@@ -27,20 +27,21 @@
 	<PropertyGroup>
 		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</RepositoryUrl>
-		<Title>Pleno Flux @ Mercado Pleno Soluções em Computação</Title>
-		<Description>MPSTI.PlenoSoft.Core.Flux</Description>
-		<PackageTags>Pleno Flux @ Mercado Pleno Soluções em Computação</PackageTags>
-		<AssemblyVersion>1.0.0.10</AssemblyVersion>
-		<FileVersion>1.0.0.10</FileVersion>
-		<Version>1.0.0.10</Version>
+		<Title>Caches @ Mercado Pleno Soluções em Computação</Title>
+		<Description>MPSTI.PlenoSoft.Core.Caches</Description>
+		<PackageTags>Cache Mercado Pleno Soluções em Tecnologia da Informação</PackageTags>
+		<AssemblyVersion>1.0.0.11</AssemblyVersion>
+		<FileVersion>1.0.0.11</FileVersion>
+		<Version>1.0.0.11</Version>
 		<PackageReleaseNotes>
 			(Atual)
-			2022/11/06 - 1.0.0.10 -&gt; Upgrade target Framework and enable GitHubActions;
+			2022/11/06 - 1.0.0.11 -&gt; Ajustes do namespace;
+			2022/11/06 - 1.0.0.01 -&gt; Upgrade target Framework and enable GitHubActions;
 		</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Utils\MPSTI.PlenoSoft.Core.Utils.csproj" />
+		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Extensions\MPSTI.PlenoSoft.Core.Extensions.csproj" />
 	</ItemGroup>
 
 </Project>

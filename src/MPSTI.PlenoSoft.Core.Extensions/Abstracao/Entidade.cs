@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace MPSTI.PlenoSoft.Core.Utils.Abstracao
+namespace MPSTI.PlenoSoft.Core.Extensions.Abstracao
 {
 	public interface IUniqueId
 	{

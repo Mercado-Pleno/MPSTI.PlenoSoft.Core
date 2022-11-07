@@ -1,22 +1,22 @@
-﻿using MPSC.PlenoSoft.ControlFlux.Messages;
-using MPSC.PlenoSoft.ControlFlux.Utils;
+﻿using MPSTI.PlenoSoft.Core.Extensions.Static;
+using MPSTI.PlenoSoft.Core.Flux.Messages;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
 
-namespace MPSC.PlenoSoft.ControlFlux.Parameters
+namespace MPSTI.PlenoSoft.Core.Flux.Parameters
 {
-	public class FluxArg
+	public class FlowArg
 	{
 		private readonly List<Message> _messages = new List<Message>();
 		public dynamic Params { get; } = new ExpandoObject();
 
-		public Boolean Status { get; private set; } = true;
+		public bool Status { get; private set; } = true;
 		public IEnumerable<Message> Messages { get { return _messages.ToArray(); } }
 
-		public FluxArg AddParam<T>(String name, T value)
+		public FlowArg AddParam<T>(string name, T value)
 		{
-			var dicParams = Params as IDictionary<String, Object>;
+			var dicParams = Params as IDictionary<string, object>;
 			if (!(dicParams?.TryAdd(name, value)).GetValueOrDefault(false))
 			{
 				if (dicParams.TryGetValue(name, out var existingValue))
@@ -32,17 +32,17 @@ namespace MPSC.PlenoSoft.ControlFlux.Parameters
 			return this;
 		}
 
-		public void AddTrack(String description)
+		public void AddTrack(string description)
 		{
-			AddMessage(new Message { Description = description, FullDescription = (Status ? "OK" : "No"), Type = MessageType.Track });
+			AddMessage(new Message { Description = description, FullDescription = Status ? "OK" : "No", Type = MessageType.Track });
 		}
 
-		public void AddValidation(String description, String fullDescription = null, Int64? messageCode = null)
+		public void AddValidation(string description, string fullDescription = null, long? messageCode = null)
 		{
 			AddMessage(new Message(messageCode) { Description = description, FullDescription = fullDescription ?? description, Type = MessageType.Validation });
 		}
 
-		public void AddInformation(String description, String fullDescription = null, Int64? messageCode = null)
+		public void AddInformation(string description, string fullDescription = null, long? messageCode = null)
 		{
 			AddMessage(new Message(messageCode) { Description = description, FullDescription = fullDescription ?? description, Type = MessageType.Information });
 		}
@@ -60,9 +60,9 @@ namespace MPSC.PlenoSoft.ControlFlux.Parameters
 			return message;
 		}
 
-		public void MergeFrom(FluxArg fluxArg)
+		public void MergeFrom(FlowArg flowArg)
 		{
-			fluxArg.Messages.ForEach(m => AddMessage(m));
+			flowArg.Messages.ForEach(m => AddMessage(m));
 		}
 	}
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using MPSTI.PlenoSoft.Core.Utils.Abstracao;
+using MPSTI.PlenoSoft.Core.Extensions.Abstracao;
 
 namespace MPSTI.PlenoSoft.Core.Caches.Local
 {

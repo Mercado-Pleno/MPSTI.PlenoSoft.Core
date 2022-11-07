@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Utils", "MPSTI.PlenoSoft.Core.Utils\MPSTI.PlenoSoft.Core.Utils.csproj", "{8FBDC04B-B14D-474B-AF67-F42049E8F91B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Extensions", "MPSTI.PlenoSoft.Core.Extensions\MPSTI.PlenoSoft.Core.Extensions.csproj", "{8FBDC04B-B14D-474B-AF67-F42049E8F91B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Caches", "MPSTI.PlenoSoft.Core.Caches\MPSTI.PlenoSoft.Core.Caches.csproj", "{D3A3F5DA-F29A-4482-BC95-0B1426D6C07B}"
 EndProject

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MPSTI.PlenoSoft.Core.Utils.Statics
+namespace MPSTI.PlenoSoft.Core.Extensions.Static
 {
 	public static class Exceptions
 	{

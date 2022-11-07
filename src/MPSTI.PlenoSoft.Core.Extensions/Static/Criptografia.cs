@@ -3,7 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace MPSTI.PlenoSoft.Core.Utils.Statics
+namespace MPSTI.PlenoSoft.Core.Extensions.Static
 {
 	public static class Criptografia
 	{

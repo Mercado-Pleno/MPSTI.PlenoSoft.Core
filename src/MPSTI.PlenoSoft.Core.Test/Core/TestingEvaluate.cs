@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace MPSC.PlenoSoft.ControlFlux.Test.Core
+namespace MPSTI.PlenoSoft.Core.Test.Core
 {
 	public class TestingEvaluate
 	{

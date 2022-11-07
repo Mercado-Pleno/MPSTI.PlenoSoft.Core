@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace MPSC.PlenoSoft.ControlFlux.Messages
+namespace MPSTI.PlenoSoft.Core.Flux.Messages
 {
-	[Serializable, DataContract, Flags]
+	[Serializable, Flags]
 	public enum MessageType
 	{
 		Information = 1,

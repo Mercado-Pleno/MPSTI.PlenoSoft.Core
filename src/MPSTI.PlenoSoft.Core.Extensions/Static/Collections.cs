@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MPSTI.PlenoSoft.Core.Utils.Statics
+namespace MPSTI.PlenoSoft.Core.Extensions.Static
 {
 	public static class Collections
 	{

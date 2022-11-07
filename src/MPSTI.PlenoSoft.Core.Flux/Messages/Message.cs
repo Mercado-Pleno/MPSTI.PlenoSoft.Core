@@ -1,27 +1,27 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace MPSC.PlenoSoft.ControlFlux.Messages
+namespace MPSTI.PlenoSoft.Core.Flux.Messages
 {
-	[Serializable, DataContract]
+	[Serializable]
 	public class Message
 	{
-		private static Int64 _messageCode = 0L;
+		private static long _messageCode = 0L;
 		public Guid Id { get; } = Guid.NewGuid();
 		public DateTime Created { get; } = DateTime.UtcNow;
-		public Int64 MessageCode { get; set; }
+		public long MessageCode { get; set; }
 		public MessageType Type { get; set; }
-		public String Description { get; set; }
-		public String FullDescription { get; set; }
+		public string Description { get; set; }
+		public string FullDescription { get; set; }
 
-		public Message(Int64? messageCode = null)
+		public Message(long? messageCode = null)
 		{
-			MessageCode = messageCode ?? (++_messageCode);
+			MessageCode = messageCode ?? ++_messageCode;
 		}
 
-		public override String ToString()
+		public override string ToString()
 		{
-			return 
+			return
 				"Type = " + Type
 				+ ", Description = " + Description
 				+ ", FullDescription = " + FullDescription

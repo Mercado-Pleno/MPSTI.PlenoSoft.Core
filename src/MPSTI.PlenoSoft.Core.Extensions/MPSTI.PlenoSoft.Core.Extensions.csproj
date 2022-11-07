@@ -27,9 +27,9 @@
 	<PropertyGroup>
 		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</RepositoryUrl>
-		<Title>Collections @ Mercado Pleno Soluções em Computação</Title>
-		<Description>MPSTI.PlenoSoft.Core.Collections</Description>
-		<PackageTags>Collections Mercado Pleno Soluções em Tecnologia da Informação</PackageTags>
+		<Title>Extensions @ Mercado Pleno Soluções em Computação</Title>
+		<Description>MPSTI.PlenoSoft.Core.Extensions</Description>
+		<PackageTags>Extensions Mercado Pleno Soluções em Tecnologia da Informação</PackageTags>
 		<AssemblyVersion>1.0.0.11</AssemblyVersion>
 		<FileVersion>1.0.0.11</FileVersion>
 		<Version>1.0.0.11</Version>

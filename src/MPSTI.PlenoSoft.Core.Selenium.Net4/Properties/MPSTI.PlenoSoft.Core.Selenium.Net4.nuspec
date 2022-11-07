@@ -2,18 +2,20 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
 	<metadata minClientVersion="3.5.0">
 		<id>MPSTI.PlenoSoft.Core.Selenium.Net4</id>
-		<title>PlenoSoft Selenium Extension @ Mercado Pleno Soluções em Computação</title>
-		<authors>Bruno N. Fernandes</authors>
-		<owners>software@mercadopleno.com.br</owners>
+		<title>PlenoSoft Selenium Extension @ Mercado Pleno Soluções em Tecnologia da Informação</title>
+		<authors>mercadopleno.com.br,Bruno-N-Fernandes</authors>
+		<owners>mercadopleno.com.br,Bruno-N-Fernandes</owners>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<copyright>Mercado Pleno Soluções em Tecnologia da Informação @ 2022</copyright>
 		<language>pt-BR</language>
-		<projectUrl>https://github.com/Bruno-N-Fernandes/MPSTI.PlenoSoft.Core</projectUrl>
+		<projectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</projectUrl>
 		<summary>O Selenium.Extension é um conjunto de ferramentas que facilita o uso do Selenium muito simples de utilizar. </summary>
 		<tags>Selenium WebDriver Test Teste Interface front frontEnd Pleno Soft</tags>
-		<version>1.0.0.17</version>
+		<icon>images\package-selenium.png</icon>
+		<version>1.0.0.18</version>
 		<releaseNotes>
 			<![CDATA[(Atual)
+2022/11/07 - 1.0.0.18 - Ícones o Pacote do Selenium e migração do repositório WatiN;
 2022/11/07 - 1.0.0.17 - Migração de repositório do Selenium;
 2022/11/05 - 1.0.0.9 - Habilitando o GitHub Actions;
 2022/11/04 - 1.0.0.8 - Automatizando a geração de pacotes para o Net6 e o Net48;
@@ -24,7 +26,7 @@
 2021/06/29 - 1.0.0.3 - Tratamento de erro no reload das páginas;
 2021/05/05 - 1.0.0.2 - Ajuste do namespace das classes;
 2021/05/04 - 1.0.0.1 - Versão Inicial do Selenium.Extension é um conjunto de ferramentas que facilita o uso do Selenium muito simples de utilizar;
-			]]>
+]]>
 		</releaseNotes>
 		<description>O Selenium.Extension é um conjunto de ferramentas que facilita o uso do Selenium muito simples de utilizar.</description>
 		<dependencies>
@@ -44,5 +46,6 @@
 	</metadata>
 	<files>
 		<file src="..\Bin\Release\MPSTI.PlenoSoft.Selenium.Extension.dll" target="lib\net\" />
+		<file src="..\..\asset\package-selenium.png" target="images\" />
 	</files>
 </package>

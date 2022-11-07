@@ -24,23 +24,25 @@
 		<Title>CrossProject @ Mercado Pleno Soluções em Computação</Title>
 		<Description>MPSTI.PlenoSoft.Core.CrossProject</Description>
 		<PackageTags>CrossProject Mercado Pleno Soluções em Tecnologia da Informação</PackageTags>
-		<AssemblyVersion>1.0.0.17</AssemblyVersion>
-		<FileVersion>1.0.0.17</FileVersion>
-		<Version>1.0.0.17</Version>
+		<AssemblyVersion>1.0.0.18</AssemblyVersion>
+		<FileVersion>1.0.0.18</FileVersion>
+		<Version>1.0.0.18</Version>
 		<PackageReleaseNotes>
-			(Atual)
-			2022/11/07 - 1.0.0.17 - Inclusão de CrossProject e definindo icones para os pacotes nuget;
-			2022/11/06 - 1.0.0.16 - Separação do projeto e migração para o GitHub.
-			2022/01/20 - 1.0.0.15 - atualização do enumerado e downgrade de versão.
-			2021/05/19 - 1.0.0.0 - Versão Inicial
+			<![CDATA[(Atual)
+2022/11/07 - 1.0.0.18 - Ícones o Pacote do Selenium e migração do repositório WatiN;
+2022/11/07 - 1.0.0.17 - Inclusão de CrossProject e definindo icones para os pacotes nuget;
+2022/11/06 - 1.0.0.16 - Separação do projeto e migração para o GitHub.
+2022/01/20 - 1.0.0.15 - atualização do enumerado e downgrade de versão.
+2021/05/19 - 1.0.0.0 - Versão Inicial
+]]>
 		</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Include="..\asset\package-crossproject.png">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
+		<None Include="..\asset\package-crossproject.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -55,10 +57,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="Assets\CrossProject.png">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
+		<None Update="Assets\CrossProject.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
 </Project>

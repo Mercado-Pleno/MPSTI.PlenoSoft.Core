@@ -14,6 +14,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[Root]", "[Root]", "{1F4BFE2D-D282-478A-8EF3-21F93A6F859C}"
 	ProjectSection(SolutionItems) = preProject
 		..\.gitignore = ..\.gitignore
+		MPSTI.PlenoSoft.Core.Selenium.Net4\Properties\MPSTI.PlenoSoft.Core.Selenium.Net4.nuspec = MPSTI.PlenoSoft.Core.Selenium.Net4\Properties\MPSTI.PlenoSoft.Core.Selenium.Net4.nuspec
+		MPSTI.PlenoSoft.Core.WatiN.Net4\Properties\MPSTI.PlenoSoft.Core.WatiN.Net4.nuspec = MPSTI.PlenoSoft.Core.WatiN.Net4\Properties\MPSTI.PlenoSoft.Core.WatiN.Net4.nuspec
 		..\.github\workflows\publish-nuget-net4.yml = ..\.github\workflows\publish-nuget-net4.yml
 		..\.github\workflows\publish-nuget-net6.yml = ..\.github\workflows\publish-nuget-net6.yml
 		..\README.md = ..\README.md

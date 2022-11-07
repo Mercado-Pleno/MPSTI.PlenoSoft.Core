@@ -22,20 +22,24 @@
 		<Description>MPSTI.PlenoSoft.Core.Camunda</Description>
 		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</RepositoryUrl>
-		<Version>1.0.0.17</Version>
+		<AssemblyVersion>1.0.0.18</AssemblyVersion>
+		<FileVersion>1.0.0.18</FileVersion>
+		<Version>1.0.0.18</Version>
 		<PackageReleaseNotes>
-			(Atual)
-			2022/11/07 - 1.0.0.17 - Migração de repositório do Camunda;
-			2022/11/05 - 1.0.0.5 - Versão Inicial usando o GitHub Actions;
+			<![CDATA[(Atual)
+2022/11/07 - 1.0.0.18 - Ícones o Pacote do Selenium e migração do repositório WatiN;
+2022/11/07 - 1.0.0.17 - Migração de repositório do Camunda;
+2022/11/05 - 1.0.0.5 - Versão Inicial usando o GitHub Actions;
+]]>
 		</PackageReleaseNotes>
 		<PackageIcon>package-camunda.png</PackageIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Include="..\asset\package-camunda.png">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
+		<None Include="..\asset\package-camunda.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>

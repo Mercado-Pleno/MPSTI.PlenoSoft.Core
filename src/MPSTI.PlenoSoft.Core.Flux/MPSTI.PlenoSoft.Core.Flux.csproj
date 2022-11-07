@@ -24,22 +24,24 @@
 		<Title>Flux @ Mercado Pleno Soluções em Computação</Title>
 		<Description>MPSTI.PlenoSoft.Core.Flux</Description>
 		<PackageTags>Flux Mercado Pleno Soluções em Tecnologia da Informação</PackageTags>
-		<AssemblyVersion>1.0.0.17</AssemblyVersion>
-		<FileVersion>1.0.0.17</FileVersion>
-		<Version>1.0.0.17</Version>
+		<AssemblyVersion>1.0.0.18</AssemblyVersion>
+		<FileVersion>1.0.0.18</FileVersion>
+		<Version>1.0.0.18</Version>
 		<PackageReleaseNotes>
-			(Atual)
-			2022/11/07 - 1.0.0.17 - Inclusão de CrossProject e definindo icones para os pacotes nuget;
-			2022/11/06 - 1.0.0.11 - Ajustes do namespace;
-			2022/11/06 - 1.0.0.01 - Upgrade target Framework and enable GitHubActions;
+			<![CDATA[(Atual)
+2022/11/07 - 1.0.0.18 - Ícones o Pacote do Selenium e migração do repositório WatiN;
+2022/11/07 - 1.0.0.17 - Inclusão de CrossProject e definindo icones para os pacotes nuget;
+2022/11/06 - 1.0.0.11 - Ajustes do namespace;
+2022/11/06 - 1.0.0.01 - Upgrade target Framework and enable GitHubActions;
+]]>
 		</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Include="..\asset\package-flux.png">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
+		<None Include="..\asset\package-flux.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>

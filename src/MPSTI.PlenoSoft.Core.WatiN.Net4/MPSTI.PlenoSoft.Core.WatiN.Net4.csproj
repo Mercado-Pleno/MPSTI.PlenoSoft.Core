@@ -8,8 +8,8 @@
     <ProjectGuid>{FAC1375E-239A-4A7B-A040-475AA4031E25}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MPSC.PlenoSoft.WatiN.Extension</RootNamespace>
-    <AssemblyName>MPSC.PlenoSoft.WatiN.Extension</AssemblyName>
+    <RootNamespace>MPSTI.PlenoSoft.Core.WatiN.Net4</RootNamespace>
+    <AssemblyName>MPSTI.PlenoSoft.Core.WatiN.Net4</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>

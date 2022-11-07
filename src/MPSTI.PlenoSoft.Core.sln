@@ -14,6 +14,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "[Root]", "[Root]", "{1F4BFE2D-D282-478A-8EF3-21F93A6F859C}"
 	ProjectSection(SolutionItems) = preProject
 		..\.gitignore = ..\.gitignore
+		..\.github\workflows\publish-nuget-net4.yml = ..\.github\workflows\publish-nuget-net4.yml
 		..\.github\workflows\publish-nuget-net6.yml = ..\.github\workflows\publish-nuget-net6.yml
 		..\README.md = ..\README.md
 	EndProjectSection
@@ -23,6 +24,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.CrossProject", "MPSTI.PlenoSoft.Core.CrossProject\MPSTI.PlenoSoft.Core.CrossProject.csproj", "{40A15D84-3D44-4006-B427-AA157739ABB0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.CrossProject.Web", "MPSTI.PlenoSoft.Core.CrossProject.Web\MPSTI.PlenoSoft.Core.CrossProject.Web.csproj", "{41B983FA-D2E2-4AFB-BB47-74B6CA53BB3D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Selenium", "MPSTI.PlenoSoft.Core.Selenium\MPSTI.PlenoSoft.Core.Selenium.csproj", "{B967CBCB-58DC-41E3-B6AF-979ABAFD020F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +61,10 @@ Global
 		{41B983FA-D2E2-4AFB-BB47-74B6CA53BB3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41B983FA-D2E2-4AFB-BB47-74B6CA53BB3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41B983FA-D2E2-4AFB-BB47-74B6CA53BB3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B967CBCB-58DC-41E3-B6AF-979ABAFD020F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B967CBCB-58DC-41E3-B6AF-979ABAFD020F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B967CBCB-58DC-41E3-B6AF-979ABAFD020F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B967CBCB-58DC-41E3-B6AF-979ABAFD020F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

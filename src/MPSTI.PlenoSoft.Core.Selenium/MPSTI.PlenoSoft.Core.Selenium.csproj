@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6</TargetFramework>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<WarningsAsErrors />
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<IsPackable>true</IsPackable>
+		<OutputType>Library</OutputType>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Authors>Bruno-N-Fernandes,mercadopleno.com.br</Authors>
+		<Company>Mercado Pleno Soluções em Tecnologia da Informação</Company>
+		<Copyright>Mercado Pleno Soluções em Tecnologia da Informação</Copyright>
+		<RepositoryType>git</RepositoryType>
+		<NeutralLanguage>pt-BR</NeutralLanguage>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Title>Selenium.Extension @ Mercado-Pleno</Title>
+		<Description>O Selenium.Extension é um conjunto de ferramentas que facilita o uso do Selenium muito simples de utilizar.</Description>
+		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</RepositoryUrl>
+		<AssemblyVersion>1.0.0.17</AssemblyVersion>
+		<FileVersion>1.0.0.17</FileVersion>
+		<Version>1.0.0.17</Version>
+		<PackageReleaseNotes>
+			<![CDATA[(Atual)
+			2022/11/07 - 1.0.0.17 - Migração de repositório do Selenium;
+			2022/11/05 - 1.0.0.9 - Habilitando o GitHub Actions;
+			2022/11/04 - 1.0.0.8 - Automatizando a geração de pacotes para o Net6 e o Net48;
+			2022/06/30 - 1.0.0.7 - Corrige a forma de pegar a Versão do WebDriver;
+			2021/09/30 - 1.0.0.6 - Opção do usuário poder escolher o diretório de arquivos de programas;
+			2021/06/29 - 1.0.0.5 - Expondo o RemoteWebDriver para acessar o Alert;
+			2021/06/29 - 1.0.0.4 - Ajustes no versionamento;
+			2021/06/29 - 1.0.0.3 - Tratamento de erro no reload das páginas;
+			2021/05/05 - 1.0.0.2 - Ajuste do namespace das classes;
+			2021/05/04 - 1.0.0.1 - Versão Inicial do Selenium.Extension é um conjunto de ferramentas que facilita o uso do Selenium muito simples de utilizar;
+			]]>
+		</PackageReleaseNotes>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="HtmlAgilityPack" Version="1.11.33" />
+		<PackageReference Include="Selenium.Support" Version="3.141.0" />
+		<PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+		<PackageReference Include="Selenium.WebDriverBackedSelenium" Version="3.141.0" />
+		<PackageReference Include="System.IO.Compression.ZipFile" Version="4.3.0" />
+	</ItemGroup>
+
+</Project>

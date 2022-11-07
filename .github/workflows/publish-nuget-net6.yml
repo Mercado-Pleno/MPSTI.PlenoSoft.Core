@@ -66,6 +66,11 @@ jobs:
       env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Flux') }}
 
+    - name: Publish Package (nuget.org)
+      run: nuget push ${{ env.PACKAGE_FILE }} -Source https://api.nuget.org/v3/index.json -SkipDuplicate
+      env:
+        PACKAGE_FILE: ${{ format('**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Selenium') }}
+
 # https://www.zup.com.br/blog/github-actions-variaveis-de-ambiente-e-secrets
 # https://docs.github.com/pt/github-ae@latest/actions/learn-github-actions/environment-variables
 # https://docs.github.com/en/actions/learn-github-actions/environment-variables

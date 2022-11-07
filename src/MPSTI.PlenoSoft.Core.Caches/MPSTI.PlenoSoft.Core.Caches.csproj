@@ -4,19 +4,39 @@
 		<TargetFramework>net6</TargetFramework>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<WarningsAsErrors />
-		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSC.PlenoSoft.Core</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSC.PlenoSoft.Core</RepositoryUrl>
-		<RepositoryType>Git</RepositoryType>
-		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<Authors>Bruno N. Fernandes</Authors>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<IsPackable>true</IsPackable>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Authors>Bruno N. Fernandes,mercadopleno.com.br</Authors>
 		<Company>Mercado Pleno Soluções em Computação</Company>
-		<Product></Product>
 		<Copyright>Mercado Pleno Soluções em Computação</Copyright>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageId />
-		<AssemblyVersion>1.0.0.5</AssemblyVersion>
-		<FileVersion>1.0.0.5</FileVersion>
-		<Version>1.0.0.5</Version>
+		<RepositoryType>git</RepositoryType>
+		<NeutralLanguage>pt-BR</NeutralLanguage>
+		<PackageIcon>package-icon.png</PackageIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\Assets\package-icon.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<PropertyGroup>
+		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</RepositoryUrl>
+		<Title>Pleno Flux @ Mercado Pleno Soluções em Computação</Title>
+		<Description>MPSTI.PlenoSoft.Core.Flux</Description>
+		<PackageTags>Pleno Flux @ Mercado Pleno Soluções em Computação</PackageTags>
+		<AssemblyVersion>1.0.0.10</AssemblyVersion>
+		<FileVersion>1.0.0.10</FileVersion>
+		<Version>1.0.0.10</Version>
+		<PackageReleaseNotes>
+			(Atual)
+			2022/11/06 - 1.0.0.10 -&gt; Upgrade target Framework and enable GitHubActions;
+		</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>

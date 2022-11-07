@@ -4,19 +4,39 @@
 		<TargetFramework>net6</TargetFramework>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<WarningsAsErrors />
-		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSC.PlenoSoft.Core</RepositoryUrl>
-		<RepositoryType>Git</RepositoryType>
-		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSC.PlenoSoft.Core</PackageProjectUrl>
-		<Copyright>Mercado Pleno Soluções em Computação</Copyright>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<IsPackable>true</IsPackable>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Authors>Bruno N. Fernandes,mercadopleno.com.br</Authors>
 		<Company>Mercado Pleno Soluções em Computação</Company>
-		<Authors>Bruno N. Fernandes</Authors>
-		<Version>1.0.0.7</Version>
-		<Product></Product>
-		<PackageLicenseUrl></PackageLicenseUrl>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<AssemblyVersion>1.0.0.8</AssemblyVersion>
-		<FileVersion>1.0.0.8</FileVersion>
+		<Copyright>Mercado Pleno Soluções em Computação</Copyright>
+		<RepositoryType>git</RepositoryType>
+		<NeutralLanguage>pt-BR</NeutralLanguage>
+		<PackageIcon>package-icon.png</PackageIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\Assets\package-icon.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<PropertyGroup>
+		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</RepositoryUrl>
+		<Title>Pleno Flux @ Mercado Pleno Soluções em Computação</Title>
+		<Description>MPSTI.PlenoSoft.Core.Flux</Description>
+		<PackageTags>Pleno Flux @ Mercado Pleno Soluções em Computação</PackageTags>
+		<AssemblyVersion>1.0.0.10</AssemblyVersion>
+		<FileVersion>1.0.0.10</FileVersion>
+		<Version>1.0.0.10</Version>
+		<PackageReleaseNotes>
+			(Atual)
+			2022/11/06 - 1.0.0.10 -&gt; Upgrade target Framework and enable GitHubActions;
+		</PackageReleaseNotes>
 	</PropertyGroup>
 
 </Project>

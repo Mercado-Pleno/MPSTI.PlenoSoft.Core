@@ -44,6 +44,11 @@ jobs:
     - name: Publish Package (nuget.org)
       run: nuget push ${{ env.PACKAGE_FILE }} -Source https://api.nuget.org/v3/index.json -SkipDuplicate
       env:
+        PACKAGE_FILE: ${{ format('**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Camunda') }}
+
+    - name: Publish Package (nuget.org)
+      run: nuget push ${{ env.PACKAGE_FILE }} -Source https://api.nuget.org/v3/index.json -SkipDuplicate
+      env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Collections') }}
 
     - name: Publish Package (nuget.org)

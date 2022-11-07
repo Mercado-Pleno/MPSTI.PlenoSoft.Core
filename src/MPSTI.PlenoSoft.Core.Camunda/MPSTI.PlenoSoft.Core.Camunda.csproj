@@ -18,28 +18,30 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<PackageIcon>package-collections.png</PackageIcon>
+		<Title>MPSTI.PlenoSoft.Camunda @ Mercado-Pleno</Title>
+		<Description>MPSTI.PlenoSoft.Core.Camunda</Description>
 		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</RepositoryUrl>
-		<Title>Collections @ Mercado Pleno Soluções em Computação</Title>
-		<Description>MPSTI.PlenoSoft.Core.Collections</Description>
-		<PackageTags>Collections Mercado Pleno Soluções em Tecnologia da Informação</PackageTags>
-		<AssemblyVersion>1.0.0.17</AssemblyVersion>
-		<FileVersion>1.0.0.17</FileVersion>
 		<Version>1.0.0.17</Version>
 		<PackageReleaseNotes>
 			(Atual)
-			2022/11/07 - 1.0.0.17 - Inclusão de CrossProject e definindo icones para os pacotes nuget;
-			2022/11/06 - 1.0.0.11 - Ajustes do namespace;
-			2022/11/06 - 1.0.0.01 - Upgrade target Framework and enable GitHubActions;
+			2022/11/07 - 1.0.0.17 - Migração de repositório do Camunda;
+			2022/11/05 - 1.0.0.5 - Versão Inicial usando o GitHub Actions;
 		</PackageReleaseNotes>
+		<PackageIcon>package-camunda.png</PackageIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Include="..\asset\package-collections.png">
+	  <None Include="..\asset\package-camunda.png">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
 	</ItemGroup>
 
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
+		<PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="4.3.0" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+		<PackageReference Include="Polly" Version="7.2.3" />
+	</ItemGroup>
 </Project>

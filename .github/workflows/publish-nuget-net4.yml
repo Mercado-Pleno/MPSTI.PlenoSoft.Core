@@ -9,7 +9,7 @@ on:
 
 env:
   BASE_PATH: src
-  SOLUTION_NAME: MPSTI.PlenoSoft.Core.Selenium.Net4
+  SOLUTION_NAME: MPSTI.PlenoSoft.Core.Net4
   PROJECT_NAME: MPSTI.PlenoSoft.Core.Selenium.Net4
     
 jobs:

@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.CrossP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Selenium", "MPSTI.PlenoSoft.Core.Selenium\MPSTI.PlenoSoft.Core.Selenium.csproj", "{B967CBCB-58DC-41E3-B6AF-979ABAFD020F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Camunda", "MPSTI.PlenoSoft.Core.Camunda\MPSTI.PlenoSoft.Core.Camunda.csproj", "{9379B172-D26F-4FD2-BFA3-B12A59C569B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{B967CBCB-58DC-41E3-B6AF-979ABAFD020F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B967CBCB-58DC-41E3-B6AF-979ABAFD020F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B967CBCB-58DC-41E3-B6AF-979ABAFD020F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9379B172-D26F-4FD2-BFA3-B12A59C569B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9379B172-D26F-4FD2-BFA3-B12A59C569B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9379B172-D26F-4FD2-BFA3-B12A59C569B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9379B172-D26F-4FD2-BFA3-B12A59C569B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

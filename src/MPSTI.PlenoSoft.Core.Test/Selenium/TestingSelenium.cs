@@ -1,26 +1,19 @@
 using MPSTI.PlenoSoft.Core.Selenium;
-using System.IO;
 
 namespace MPSTI.PlenoSoft.Core.Test.Selenium
 {
     public class TestingSelenium
     {
-        [Fact]
-        public void Test()
-        {
-            Assert.NotNull("");
-        }
-
-        [Fact(Skip = "ignore")]
-        public void Test1()
+        [FactDebuggerOnly]
+        public void QuandoFazUpdate_ChromeUpdateDriverVersion()
         {
             var update = ChromeUpdateDriverVersion.Update(@"Program Files");
 
             Assert.NotNull(update);
         }
 
-        [Fact(Skip = "ignore")]
-        public void Test2()
+        [FactDebuggerOnly]
+        public void QuandoChamaChromeWebDriver_SeleniumFactory()
         {
             var driverPath = @"D:\Prj\Git\MPSC.PlenoSoft.WhatsApp.API\src\Libs\";
 

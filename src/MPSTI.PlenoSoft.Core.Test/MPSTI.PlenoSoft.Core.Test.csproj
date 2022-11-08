@@ -1,16 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-		<ImplicitUsings>false</ImplicitUsings>
-		<Nullable>disable</Nullable>
-
+		<TargetFramework>net6</TargetFramework>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<WarningsAsErrors />
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<Compile Remove="TestandoGeradorDePlanilha.cs" />
-	</ItemGroup>
+	<PropertyGroup>
+		<Authors>Bruno-N-Fernandes,mercadopleno.com.br</Authors>
+		<Company>Mercado Pleno Soluções em Tecnologia da Informação</Company>
+		<Copyright>Mercado Pleno Soluções em Tecnologia da Informação</Copyright>
+		<RepositoryType>git</RepositoryType>
+	</PropertyGroup>
+
 
 	<ItemGroup>
 		<PackageReference Include="FluentAssertions" Version="6.8.0" />
@@ -31,8 +35,12 @@
 	<ItemGroup>
 		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Flux\MPSTI.PlenoSoft.Core.Flux.csproj" />
 		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Selenium\MPSTI.PlenoSoft.Core.Selenium.csproj" />
+		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.xUnit\MPSTI.PlenoSoft.Core.xUnit.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<Compile Remove="TestandoGeradorDePlanilha.cs" />
+	</ItemGroup>
 	<ItemGroup>
 		<None Update="Abstracao\appsettings.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>

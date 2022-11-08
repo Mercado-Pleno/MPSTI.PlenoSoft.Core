@@ -34,7 +34,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Camund
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Office.EPPlus", "MPSTI.PlenoSoft.Core.Office.EPPlus\MPSTI.PlenoSoft.Core.Office.EPPlus.csproj", "{74E47D32-53E8-4889-801C-5BCBDD5D2863}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPSTI.PlenoSoft.Core.Azure.ServiceBus", "MPSTI.PlenoSoft.Core.Azure.ServiceBus\MPSTI.PlenoSoft.Core.Azure.ServiceBus.csproj", "{379A47A7-CA07-4901-A470-ECB948D44B1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Azure.ServiceBus", "MPSTI.PlenoSoft.Core.Azure.ServiceBus\MPSTI.PlenoSoft.Core.Azure.ServiceBus.csproj", "{379A47A7-CA07-4901-A470-ECB948D44B1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPSTI.PlenoSoft.Core.xUnit", "MPSTI.PlenoSoft.Core.xUnit\MPSTI.PlenoSoft.Core.xUnit.csproj", "{97546BD2-EE06-4EC2-A432-5884B7BB29F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,6 +88,10 @@ Global
 		{379A47A7-CA07-4901-A470-ECB948D44B1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{379A47A7-CA07-4901-A470-ECB948D44B1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{379A47A7-CA07-4901-A470-ECB948D44B1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97546BD2-EE06-4EC2-A432-5884B7BB29F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97546BD2-EE06-4EC2-A432-5884B7BB29F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97546BD2-EE06-4EC2-A432-5884B7BB29F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97546BD2-EE06-4EC2-A432-5884B7BB29F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

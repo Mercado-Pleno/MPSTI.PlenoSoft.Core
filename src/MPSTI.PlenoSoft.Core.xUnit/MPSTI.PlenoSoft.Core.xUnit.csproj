@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net6</TargetFramework>
@@ -18,35 +18,36 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<PackageIcon>package-camunda.png</PackageIcon>
+		<PackageIcon>package-xunit.png</PackageIcon>
 		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</RepositoryUrl>
-		<Title>MPSTI.PlenoSoft.Core.Camunda @ Mercado-Pleno</Title>
-		<Description>MPSTI.PlenoSoft.Core.Camunda</Description>
-		<PackageTags>Camunda Mercado Pleno Soluções Tecnologia Informação</PackageTags>
-		<AssemblyVersion>1.0.0.19</AssemblyVersion>
-		<FileVersion>1.0.0.19</FileVersion>
-		<Version>1.0.0.19</Version>
+		<Title>MPSTI.PlenoSoft.Core.xUnit @ Mercado-Pleno</Title>
+		<Description>MPSTI.PlenoSoft.Core.xUnit</Description>
+		<PackageTags>xUnit Test Mercado Pleno Soluções Tecnologia Informação</PackageTags>
+		<AssemblyVersion>1.0.0.1</AssemblyVersion>
+		<FileVersion>1.0.0.1</FileVersion>
+		<Version>1.0.0.1</Version>
 		<PackageReleaseNotes>
 			<![CDATA[(Atual)
-2022/11/07 - 1.0.0.19 - Refatoração dos namespaces e separação do pacote de Azure Service Bus;
-2022/11/07 - 1.0.0.18 - Ícones o Pacote do Selenium e migração do repositório WatiN;
-2022/11/07 - 1.0.0.17 - Migração de repositório do Camunda;
-2022/11/05 - 1.0.0.5 - Versão Inicial usando o GitHub Actions;
+2022/11/08 - 1.0.0.1 - Inclusão do pacote MPSTI.PlenoSoft.Core.xUnit;
 ]]>
 		</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\asset\package-camunda.png">
+		<None Include="..\asset\package-xunit.png">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
 	</ItemGroup>
 
+
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
-		<PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
-		<PackageReference Include="Polly" Version="7.2.3" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+		<PackageReference Include="Moq" Version="4.18.1" />
+		<PackageReference Include="xunit" Version="2.4.1" />
 	</ItemGroup>
+
 </Project>

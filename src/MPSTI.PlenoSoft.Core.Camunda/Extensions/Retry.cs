@@ -3,7 +3,7 @@ using Polly.Retry;
 using System;
 using System.Threading.Tasks;
 
-namespace MPSTI.PlenoSoft.Camunda.Extensions
+namespace MPSTI.PlenoSoft.Core.Camunda.Extensions
 {
 	public static class Retry
 	{

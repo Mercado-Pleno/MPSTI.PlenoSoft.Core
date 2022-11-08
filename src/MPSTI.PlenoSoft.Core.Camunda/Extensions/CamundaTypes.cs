@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MPSTI.PlenoSoft.Camunda.Extensions
+namespace MPSTI.PlenoSoft.Core.Camunda.Extensions
 {
 	public static class CamundaTypes
 	{

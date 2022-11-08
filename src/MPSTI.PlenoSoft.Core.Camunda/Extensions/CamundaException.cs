@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace MPSTI.PlenoSoft.Camunda.Extensions
+namespace MPSTI.PlenoSoft.Core.Camunda.Extensions
 {
 	[Serializable]
 	public class CamundaException : Exception

@@ -26,3 +26,4 @@ Endereços dos pacotes NuGet (.Net Framework 4.8):
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Selenium.Net4
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.WatiN.Net4
 
+

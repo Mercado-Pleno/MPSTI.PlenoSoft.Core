@@ -36,6 +36,11 @@ jobs:
       env:
         SOLUTION_FILE: ${{ format('{0}/{1}.sln', env.BASE_PATH, env.SOLUTION_NAME) }}
 
+    - name: Test Solution (Release)
+      run: dotnet test ${{ env.SOLUTION_FILE }} --no-restore --verbosity normal
+      env:
+        SOLUTION_FILE: ${{ format('{0}/{1}.sln', env.BASE_PATH, env.SOLUTION_NAME) }}
+
     - name: Publish Package (nuget.org)
       run: nuget push ${{ env.PACKAGE_FILE }} -Source https://api.nuget.org/v3/index.json -SkipDuplicate
       env:

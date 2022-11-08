@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -9,12 +9,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="TestandoGeradorDePlanilha.cs" />
+		<Compile Remove="TestandoGeradorDePlanilha.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="FluentAssertions" Version="6.8.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
 		<PackageReference Include="xunit" Version="2.4.1" />
+
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
@@ -28,6 +31,12 @@
 	<ItemGroup>
 		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Flux\MPSTI.PlenoSoft.Core.Flux.csproj" />
 		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Selenium\MPSTI.PlenoSoft.Core.Selenium.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Abstracao\appsettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace MPSTI.PlenoSoft.Core.Test.Core
+namespace MPSTI.PlenoSoft.Core.Test.Dojo
 {
 	public class TestingEvaluate
 	{

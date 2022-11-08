@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MPSTI.PlenoSoft.Camunda.Services.Extensions
+namespace MPSTI.PlenoSoft.Core.Extensions.Static
 {
 	public static class DateTimeBrazil
 	{

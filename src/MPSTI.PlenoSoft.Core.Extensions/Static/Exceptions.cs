@@ -5,7 +5,7 @@ namespace MPSTI.PlenoSoft.Core.Extensions.Static
 {
 	public static class Exceptions
 	{
-		public static string Messages(this Exception exception, string join = " -> ")
+		public static string Messages(this Exception exception, string join = " - ")
 		{
 			return string.Join(join, exception.Message());
 		}

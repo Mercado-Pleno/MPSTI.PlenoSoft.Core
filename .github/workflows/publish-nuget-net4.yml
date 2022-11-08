@@ -26,8 +26,9 @@ jobs:
     - name: Install NuGet.exe
       uses: NuGet/setup-nuget@v1.1.1
       with:
-        nuget-api-key: ${{ secrets.NUGET_API_KEY }}
         nuget-version: 'latest'
+        nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+        nuget-api-key-source: 'https://api.nuget.org/v3/index.json'
   
     - name: Install MSBuild.exe
       uses: microsoft/setup-msbuild@v1.1
@@ -43,32 +44,32 @@ jobs:
         SOLUTION_FILE: ${{ format('{0}/{1}.sln', env.BASE_PATH, env.SOLUTION_NAME) }}
 
     - name: Create Package (Release)
-      run: nuget pack ${{ env.PROJECT_FILE }} -Properties Configuration=Release
+      run: nuget pack -Properties Configuration=Release ${{ env.PROJECT_FILE }}
       env:
         PROJECT_FILE: ${{ format('{0}/{1}/{1}.csproj', env.BASE_PATH, env.PROJECT_NAME1) }}
 
     - name: Create Package (Release)
-      run: nuget pack ${{ env.PROJECT_FILE }} -Properties Configuration=Release
+      run: nuget pack -Properties Configuration=Release ${{ env.PROJECT_FILE }}
       env:
         PROJECT_FILE: ${{ format('{0}/{1}/{1}.csproj', env.BASE_PATH, env.PROJECT_NAME2) }}
 
     - name: Create Package (Release)
-      run: nuget pack ${{ env.PROJECT_FILE }} -Properties Configuration=Release
+      run: nuget pack -Properties Configuration=Release ${{ env.PROJECT_FILE }}
       env:
         PROJECT_FILE: ${{ format('{0}/{1}/{1}.csproj', env.BASE_PATH, env.PROJECT_NAME3) }}
 
     - name: Publish Package (nuget.org)
-      run: nuget push ${{ env.PACKAGE_FILE }} -Source https://api.nuget.org/v3/index.json -SkipDuplicate
+      run: nuget push -SkipDuplicate ${{ env.PACKAGE_FILE }}
       env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', env.PROJECT_NAME1) }}
 
     - name: Publish Package (nuget.org)
-      run: nuget push ${{ env.PACKAGE_FILE }} -Source https://api.nuget.org/v3/index.json -SkipDuplicate
+      run: nuget push -SkipDuplicate ${{ env.PACKAGE_FILE }}
       env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', env.PROJECT_NAME2) }}
 
     - name: Publish Package (nuget.org)
-      run: nuget push ${{ env.PACKAGE_FILE }} -Source https://api.nuget.org/v3/index.json -SkipDuplicate
+      run: nuget push -SkipDuplicate ${{ env.PACKAGE_FILE }}
       env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', env.PROJECT_NAME3) }}
 

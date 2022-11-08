@@ -36,10 +36,10 @@ jobs:
       env:
         SOLUTION_FILE: ${{ format('{0}/{1}.sln', env.BASE_PATH, env.SOLUTION_NAME) }}
 
-    - name: Test Solution (Release)
-      run: dotnet test ${{ env.SOLUTION_FILE }} --no-restore --verbosity normal
+    - name: Test Project ( ${{ env.PROJECT_FILE }} )
+      run: dotnet test ${{ env.PROJECT_FILE }} --no-restore --no-build -v normal
       env:
-        SOLUTION_FILE: ${{ format('{0}/{1}.sln', env.BASE_PATH, env.SOLUTION_NAME) }}
+        PROJECT_FILE: ${{ format('{0}/{1}/{1}.csproj', env.BASE_PATH, 'MPSTI.PlenoSoft.Core.Test') }}
 
     - name: Publish Package (nuget.org)
       run: nuget push ${{ env.PACKAGE_FILE }} -Source https://api.nuget.org/v3/index.json -SkipDuplicate

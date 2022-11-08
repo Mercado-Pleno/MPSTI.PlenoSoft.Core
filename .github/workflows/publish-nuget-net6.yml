@@ -38,10 +38,10 @@ jobs:
     - name: Test Project (Core.Test.dll)
       run: dotnet test --no-restore --no-build -v normal ${{ env.PROJECT_DLL }}
       env:
-        PROJECT_DLL: ${{ format('**/Bin/Release/**/{0}.csproj', env.BASE_PATH, 'MPSTI.PlenoSoft.Core.Test.dll') }}
+        PROJECT_DLL: ${{ format('**/Bin/Release/**/{0}.dll', 'MPSTI.PlenoSoft.Core.Test') }}
 
     - name: Publish Package (Core.Azure.ServiceBus)
-      run: nuget push ${{ env.PACKAGE_FILE }} -Source https://api.nuget.org/v3/index.json -SkipDuplicate
+      run: nuget push -Source https://api.nuget.org/v3/index.json -SkipDuplicate ${{ env.PACKAGE_FILE }}
       env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Azure.ServiceBus') }}
 

@@ -8,6 +8,7 @@ on:
     branches: [ "master" ]
 
 env:
+  NUGET_API_SOURCE: "https://api.nuget.org/v3/index.json"
   BASE_PATH: src
 
 jobs:
@@ -24,7 +25,6 @@ jobs:
       with:
         nuget-version: 'latest'
         nuget-api-key: ${{ secrets.NUGET_API_KEY }}
-        nuget-api-key-source: 'https://api.nuget.org/v3/index.json'
 
     - name: Install DotNet.exe
       uses: actions/setup-dotnet@v3.0.3
@@ -42,52 +42,52 @@ jobs:
         PROJECT_DLL: ${{ format('**/Bin/Release/**/{0}.dll', 'MPSTI.PlenoSoft.Core.Test') }}
 
     - name: Publish Package (Core.Azure.ServiceBus)
-      run: nuget push -SkipDuplicate ${{ env.PACKAGE_FILE }}
+      run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
       env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Azure.ServiceBus') }}
 
     - name: Publish Package (Core.Caches)
-      run: nuget push -SkipDuplicate ${{ env.PACKAGE_FILE }}
+      run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
       env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Caches') }}
 
     - name: Publish Package (Core.Camunda)
-      run: nuget push -SkipDuplicate ${{ env.PACKAGE_FILE }}
+      run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
       env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Camunda') }}
 
     - name: Publish Package (Core.Collections)
-      run: nuget push -SkipDuplicate ${{ env.PACKAGE_FILE }}
+      run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
       env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Collections') }}
 
     - name: Publish Package (Core.CrossProject)
-      run: nuget push -SkipDuplicate ${{ env.PACKAGE_FILE }}
+      run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
       env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.CrossProject') }}
 
     - name: Publish Package (Core.CrossProject.Web)
-      run: nuget push -SkipDuplicate ${{ env.PACKAGE_FILE }}
+      run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
       env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.CrossProject.Web') }}
 
     - name: Publish Package (Core.Extensions)
-      run: nuget push -SkipDuplicate ${{ env.PACKAGE_FILE }}
+      run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
       env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Extensions') }}
 
     - name: Publish Package (Core.Flux)
-      run: nuget push -SkipDuplicate ${{ env.PACKAGE_FILE }}
+      run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
       env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Flux') }}
 
     - name: Publish Package (Core.Office.EPPlus)
-      run: nuget push -SkipDuplicate ${{ env.PACKAGE_FILE }}
+      run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
       env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Office.EPPlus') }}
 
     - name: Publish Package (Core.Selenium)
-      run: nuget push -SkipDuplicate ${{ env.PACKAGE_FILE }}
+      run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
       env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Selenium') }}
 

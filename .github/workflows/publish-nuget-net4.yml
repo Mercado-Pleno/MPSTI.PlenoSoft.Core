@@ -8,6 +8,7 @@ on:
     branches: [ "master" ]
 
 env:
+  NUGET_API_SOURCE: "https://api.nuget.org/v3/index.json"
   BASE_PATH: src/Net4
   SOLUTION_NAME: MPSTI.PlenoSoft.Core.Net4
   PROJECT_NAME1: MPSTI.PlenoSoft.Core.Selenium.Net4
@@ -28,7 +29,6 @@ jobs:
       with:
         nuget-version: 'latest'
         nuget-api-key: ${{ secrets.NUGET_API_KEY }}
-        nuget-api-key-source: 'https://api.nuget.org/v3/index.json'
   
     - name: Install MSBuild.exe
       uses: microsoft/setup-msbuild@v1.1
@@ -59,17 +59,17 @@ jobs:
         PROJECT_FILE: ${{ format('{0}/{1}/{1}.csproj', env.BASE_PATH, env.PROJECT_NAME3) }}
 
     - name: Publish Package (nuget.org)
-      run: nuget push -SkipDuplicate ${{ env.PACKAGE_FILE }}
+      run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
       env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', env.PROJECT_NAME1) }}
 
     - name: Publish Package (nuget.org)
-      run: nuget push -SkipDuplicate ${{ env.PACKAGE_FILE }}
+      run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
       env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', env.PROJECT_NAME2) }}
 
     - name: Publish Package (nuget.org)
-      run: nuget push -SkipDuplicate ${{ env.PACKAGE_FILE }}
+      run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
       env:
         PACKAGE_FILE: ${{ format('**/{0}*.nupkg', env.PROJECT_NAME3) }}
 

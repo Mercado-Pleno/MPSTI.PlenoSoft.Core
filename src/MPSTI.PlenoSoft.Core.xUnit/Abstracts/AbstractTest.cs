@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MPSTI.PlenoSoft.Core.Extensions.Interfaces;
+using MPSTI.PlenoSoft.Core.Extensions.Providers;
 using MPSTI.PlenoSoft.Core.xUnit.Factories;
 using System;
 using System.Diagnostics;

@@ -21,8 +21,8 @@
 		<PackageIcon>package-servicebus.png</PackageIcon>
 		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</RepositoryUrl>
-		<Title>MPSTI.PlenoSoft.Camunda @ Mercado-Pleno</Title>
-		<Description>MPSTI.PlenoSoft.Core.ServiceBus</Description>
+		<Title>MPSTI.PlenoSoft.Core.Azure.ServiceBus @ Mercado-Pleno</Title>
+		<Description>MPSTI.PlenoSoft.Core.Azure.ServiceBus</Description>
 		<PackageTags>Azure ServiceBus Mercado Pleno Soluções Tecnologia Informação</PackageTags>
 		<AssemblyVersion>1.0.0.19</AssemblyVersion>
 		<FileVersion>1.0.0.19</FileVersion>

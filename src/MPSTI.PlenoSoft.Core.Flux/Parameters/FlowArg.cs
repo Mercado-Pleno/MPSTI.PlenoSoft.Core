@@ -1,4 +1,4 @@
-﻿using MPSTI.PlenoSoft.Core.Extensions.Static;
+﻿using MPSTI.PlenoSoft.Core.Collections.Generic;
 using MPSTI.PlenoSoft.Core.Flux.Messages;
 using System;
 using System.Collections.Generic;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using MPSTI.PlenoSoft.Core.Extensions.Abstracao;
+using System.Linq;
+using MPSTI.PlenoSoft.Core.Extensions.Abstracts;
 
 namespace MPSTI.PlenoSoft.Core.Caches.Local
 {
@@ -10,44 +11,42 @@ namespace MPSTI.PlenoSoft.Core.Caches.Local
 		private readonly TimeSpan _timeOut;
 		public Cache(TimeSpan timeOut) => _timeOut = timeOut;
 
-		public IEnumerable<TEntidade> Setup<TEntidade>(Func<IEnumerable<TEntidade>> getCollectionFromSource, Action<TEntidade, long> onAdd = null) where TEntidade : IUniqueId
+		public IEnumerable<TEntity> Setup<TEntity>(Func<IEnumerable<TEntity>> getCollectionFromSource, Action<TEntity, long> onAdd = null) where TEntity : IEntity
 		{
 			var cache = ObterCache(getCollectionFromSource, onAdd);
 			return cache.Obter(null);
 		}
 
-		public IEnumerable<TEntidade> Obter<TEntidade>(Func<TEntidade, bool> filter) where TEntidade : IUniqueId
+		public IEnumerable<TEntity> Obter<TEntity>(Func<TEntity, bool> filter) where TEntity : IEntity
 		{
-			var cache = ObterCache(Empty<TEntidade>, null);
+			var cache = ObterCache(Enumerable.Empty<TEntity>, null);
 			return cache.Obter(filter);
 		}
 
-		public void Incluir<TEntidade>(TEntidade entidade) where TEntidade : IUniqueId
+		public void Incluir<TEntity>(TEntity entidade) where TEntity : IEntity
 		{
-			var cache = ObterCache(Empty<TEntidade>, null);
+			var cache = ObterCache(Enumerable.Empty<TEntity>, null);
 			cache.Incluir(entidade);
 		}
 
-		public void Excluir<TEntidade>(TEntidade entidade) where TEntidade : IUniqueId
+		public void Excluir<TEntity>(TEntity entidade) where TEntity : IEntity
 		{
-			var cache = ObterCache(Empty<TEntidade>, null);
+			var cache = ObterCache(Enumerable.Empty<TEntity>, null);
 			cache.Excluir(entidade);
 		}
 
-		public void Alterar<TEntidade>(TEntidade entidade) where TEntidade : IUniqueId
+		public void Alterar<TEntity>(TEntity entidade) where TEntity : IEntity
 		{
-			var cache = ObterCache(Empty<TEntidade>, null);
+			var cache = ObterCache(Enumerable.Empty<TEntity>, null);
 			cache.Alterar(entidade);
 		}
 
-		private CacheOf<TEntidade> ObterCache<TEntidade>(Func<IEnumerable<TEntidade>> getCollectionFromSource, Action<TEntidade, long> onAdd) where TEntidade : IUniqueId
+		private CacheOf<TEntity> ObterCache<TEntity>(Func<IEnumerable<TEntity>> getCollectionFromSource, Action<TEntity, long> onAdd) where TEntity : IEntity
 		{
-			var type = typeof(TEntidade);
+			var type = typeof(TEntity);
 			if (!_caches.TryGetValue(type, out var cache))
-				cache = _caches[type] = new CacheOf<TEntidade>(_timeOut, getCollectionFromSource, onAdd);
-			return (CacheOf<TEntidade>)cache;
+				cache = _caches[type] = new CacheOf<TEntity>(_timeOut, getCollectionFromSource, onAdd);
+			return (CacheOf<TEntity>)cache;
 		}
-
-		private IEnumerable<TEntidade> Empty<TEntidade>() { yield break; }
 	}
 }

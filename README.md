@@ -6,6 +6,7 @@ Confira a lista de todos os pacotes deste repositório no [nuget.org](https://ww
 \
 [![Publish Nuget .Net6](https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core/actions/workflows/publish-nuget-net6.yml/badge.svg)](https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core/actions/workflows/publish-nuget-net6.yml)
 Endereços dos pacotes NuGet (.Net6):
+- https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Azure.Functions
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Azure.ServiceBus
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Caches
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Camunda

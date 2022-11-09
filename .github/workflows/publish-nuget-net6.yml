@@ -44,6 +44,11 @@ jobs:
     - name: Publish Package (Core.Azure.ServiceBus)
       run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
       env:
+        PACKAGE_FILE: ${{ format('**/{0}/**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Azure.Functions') }}
+
+    - name: Publish Package (Core.Azure.ServiceBus)
+      run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
+      env:
         PACKAGE_FILE: ${{ format('**/{0}/**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Azure.ServiceBus') }}
 
     - name: Publish Package (Core.Caches)

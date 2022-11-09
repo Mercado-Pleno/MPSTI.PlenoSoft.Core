@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MPSTI.PlenoSoft.Core.Extensions.Static
+namespace MPSTI.PlenoSoft.Core.Collections.Generic
 {
-	public static class Collections
+	public static class CollectionExt
 	{
 		public static bool In<T>(this T self, params T[] values)
 		{

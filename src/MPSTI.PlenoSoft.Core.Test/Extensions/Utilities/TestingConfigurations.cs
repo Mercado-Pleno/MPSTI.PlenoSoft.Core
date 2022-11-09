@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
-using MPSTI.PlenoSoft.Core.Extensions.Static;
+using MPSTI.PlenoSoft.Core.Extensions.Utilities;
 
-namespace MPSTI.PlenoSoft.Core.Test.Extensions.Static
+namespace MPSTI.PlenoSoft.Core.Test.Extensions.Utilities
 {
 	public class TestingConfigurations : IClassFixture<ConfigurationFixture>
 	{

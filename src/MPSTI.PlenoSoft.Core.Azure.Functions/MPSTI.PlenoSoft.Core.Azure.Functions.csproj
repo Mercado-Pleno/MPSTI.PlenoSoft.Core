@@ -18,36 +18,40 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<PackageIcon>package-flux.png</PackageIcon>
+		<PackageIcon>package-function.svg</PackageIcon>
 		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</RepositoryUrl>
-		<Title>Flux @ Mercado Pleno Soluções em Computação</Title>
-		<Description>MPSTI.PlenoSoft.Core.Flux</Description>
-		<PackageTags>Flux Mercado Pleno Soluções em Tecnologia da Informação</PackageTags>
-		<AssemblyVersion>1.0.0.18</AssemblyVersion>
-		<FileVersion>1.0.0.18</FileVersion>
-		<Version>1.0.0.18</Version>
+		<Title>MPSTI.PlenoSoft.Core.Azure.Functions @ Mercado-Pleno</Title>
+		<Description>MPSTI.PlenoSoft.Core.Azure.Functions</Description>
+		<PackageTags>Azure Functions Mercado Pleno Soluções Tecnologia Informação</PackageTags>
+		<AssemblyVersion>1.0.0.1</AssemblyVersion>
+		<FileVersion>1.0.0.1</FileVersion>
+		<Version>1.0.0.1</Version>
 		<PackageReleaseNotes>
 			<![CDATA[(Atual)
-2022/11/07 - 1.0.0.18 - Ícones o Pacote do Selenium e migração do repositório WatiN;
-2022/11/07 - 1.0.0.17 - Inclusão de CrossProject e definindo icones para os pacotes nuget;
-2022/11/06 - 1.0.0.11 - Ajustes do namespace;
-2022/11/06 - 1.0.0.01 - Upgrade target Framework and enable GitHubActions;
+2022/11/09 - 1.0.0.1 - Versão Inicial usando o GitHub Actions;
 ]]>
 		</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\asset\package-flux.png">
+		<None Include="..\asset\package-function.svg">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Collections\MPSTI.PlenoSoft.Core.Collections.csproj" />
+		<PackageReference Include="Microsoft.Azure.WebJobs.Extensions.OpenApi" Version="1.3.0">
+		  <TreatAsUsed>true</TreatAsUsed>
+		</PackageReference>
+		<PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.1.1" />
+		<PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="6.15.0" />
+	</ItemGroup>
+
+
+	<ItemGroup>
 		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Extensions\MPSTI.PlenoSoft.Core.Extensions.csproj" />
 	</ItemGroup>
 
 </Project>
-

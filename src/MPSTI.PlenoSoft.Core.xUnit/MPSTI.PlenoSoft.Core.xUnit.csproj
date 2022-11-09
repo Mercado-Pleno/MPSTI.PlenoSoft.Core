@@ -50,4 +50,10 @@
 		<PackageReference Include="xunit" Version="2.4.1" />
 	</ItemGroup>
 
+
+	<ItemGroup>
+	  <ProjectReference Include="..\MPSTI.PlenoSoft.Core.Collections\MPSTI.PlenoSoft.Core.Collections.csproj" />
+	  <ProjectReference Include="..\MPSTI.PlenoSoft.Core.Extensions\MPSTI.PlenoSoft.Core.Extensions.csproj" />
+	</ItemGroup>
+
 </Project>

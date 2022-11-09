@@ -41,10 +41,10 @@ jobs:
       env:
         PROJECT_DLL: ${{ format('**/Bin/Release/**/{0}.dll', 'MPSTI.PlenoSoft.Core.Test') }}
 
-    - name: Publish Package (Core.Azure.ServiceBus)
-      run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
-      env:
-        PACKAGE_FILE: ${{ format('**/{0}/**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Azure.Functions') }}
+#    - name: Publish Package (Core.Azure.ServiceBus)
+#      run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
+#      env:
+#        PACKAGE_FILE: ${{ format('**/{0}/**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Azure.Functions') }}
 
     - name: Publish Package (Core.Azure.ServiceBus)
       run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}

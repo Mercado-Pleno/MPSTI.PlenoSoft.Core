@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net6</TargetFramework>
+		<AzureFunctionsVersion>v4</AzureFunctionsVersion>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<WarningsAsErrors />
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -43,7 +44,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Azure.WebJobs.Extensions.OpenApi" Version="1.3.0">
-		  <TreatAsUsed>true</TreatAsUsed>
+			<TreatAsUsed>true</TreatAsUsed>
 		</PackageReference>
 		<PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.1.1" />
 		<PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="6.15.0" />

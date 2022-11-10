@@ -1,17 +1,20 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MPSTI.PlenoSoft.Core.Extensions.Utilities;
+using MPSTI.PlenoSoft.Core.xUnit.Abstracts;
 
 namespace MPSTI.PlenoSoft.Core.Test.Extensions.Utilities
 {
-	public class TestingConfigurations : IClassFixture<ConfigurationFixture>
+	public class TestingConfigurations : AbstractTest<ConfigurationSingleton>
 	{
 		private readonly IConfiguration _configuration;
 		private readonly SmtpConfiguration _smtpConfiguration;
 
-		public TestingConfigurations(ConfigurationFixture configurationFixture)
+		public TestingConfigurations(ConfigurationSingleton configurationFixture, ITestOutputHelper testOutputHelper)
+			: base(configurationFixture, testOutputHelper)
 		{
 			_configuration = configurationFixture.Configuration;
 			_smtpConfiguration = _configuration.GetFromSection<SmtpConfiguration>("Smtp");
+			Trace($"{DateTime.UtcNow}");
 		}
 
 		[Fact]
@@ -57,10 +60,10 @@ namespace MPSTI.PlenoSoft.Core.Test.Extensions.Utilities
 		}
 	}
 
-	public class ConfigurationFixture : IDisposable
+	public class ConfigurationSingleton : IDisposable
 	{
 		public readonly IConfiguration Configuration;
-		public ConfigurationFixture()
+		public ConfigurationSingleton()
 		{
 			var builder = new ConfigurationBuilder();
 			builder.SetBasePath(Directory.GetCurrentDirectory());

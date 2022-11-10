@@ -43,6 +43,7 @@
 
 
 	<ItemGroup>
+		<PackageReference Include="AutoFixture" Version="4.17.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />

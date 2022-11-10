@@ -1,9 +1,9 @@
 ﻿using MPSTI.PlenoSoft.Core.Extensions.Utilities;
-using System.Threading.Tasks;
+using MPSTI.PlenoSoft.Core.xUnit.Abstracts;
 
 namespace MPSTI.PlenoSoft.Core.Test.Extensions.Utilities
 {
-	public class TestingDateTimes
+	public class TestingDateTimes : BaseTest
 	{
 		[Fact]
 		public void AoChamarDateTimeNowToIsoString_DeveRetornarStringNaoNulo() => DateTime.Now.ToIsoString().Should().NotBeNull();

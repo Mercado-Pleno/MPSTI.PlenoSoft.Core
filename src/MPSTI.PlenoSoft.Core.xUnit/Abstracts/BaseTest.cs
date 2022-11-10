@@ -14,44 +14,51 @@ using Xunit.Abstractions;
 namespace MPSTI.PlenoSoft.Core.xUnit.Abstracts
 {
 	[DebuggerNonUserCode]
-	public abstract class AbstractTest
+	public abstract class BaseTest
 	{
-		protected readonly ITestOutputHelper _testOutputHelper;
-		protected readonly IConfiguration configuration = ConfigurationFactory.Configuration;
-		protected readonly IFixture Fixture = new Fixture();
-		protected IServiceCollection _serviceCollection;
-		protected IServiceProvider _serviceProvider;
-		protected AbstractTest(ITestOutputHelper testOutputHelper = null) => _testOutputHelper = testOutputHelper;
-		protected void Trace(string message) => _testOutputHelper?.WriteLine(message);
+		private readonly ITestOutputHelper _testOutputHelper;
+		private readonly IConfiguration _configuration;
 
+		private IFixture _fixture;
+		protected virtual IFixture Fixture => _fixture ??= new Fixture();
+
+		private IServiceProvider _serviceProvider;
+		protected virtual IServiceProvider ServiceProvider => _serviceProvider ??= ServiceCollection.BuildServiceProvider();
+
+		private IServiceCollection _serviceCollection;
+		protected virtual IServiceCollection ServiceCollection => _serviceCollection ??= CreateDefaultServiceCollection();
+
+		protected BaseTest(ITestOutputHelper testOutputHelper = null)
+		{
+			_testOutputHelper = testOutputHelper;
+			_configuration = ConfigurationFactory.Configuration;
+		}
 
 		protected virtual async Task<TService> GetServiceAsync<TService>() => await Task.FromResult(GetService<TService>());
 
 		protected virtual TService GetService<TService>() => ServiceProvider.GetRequiredService<TService>();
 
-		protected virtual IServiceProvider ServiceProvider => _serviceProvider ??= ServiceCollection.BuildServiceProvider();
-
-		protected virtual IServiceCollection ServiceCollection => _serviceCollection ??= CreateDefaultServiceCollection();
-
 		protected virtual IServiceCollection CreateDefaultServiceCollection()
 		{
 			var serviceCollection = new ServiceCollection();
-			serviceCollection.AddSingleton(sp => configuration);
+			serviceCollection.AddSingleton(sp => _configuration);
 			serviceCollection.AddSingleton<ILoggerFactory, LoggerFactory>();
 			serviceCollection.AddSingleton<IFormatProviders, FormatProviders>();
 			serviceCollection.AddSingleton(sp => sp.GetRequiredService<ILoggerFactory>().CreateLogger("Test"));
-			ConfigureServices(serviceCollection);
+			ConfigureServices(serviceCollection, _configuration);
 			return serviceCollection;
 		}
 
-		protected virtual void ConfigureServices(IServiceCollection services) { }
+		protected virtual void ConfigureServices(IServiceCollection services, IConfiguration configuration) { }
+
+		protected virtual void Trace(string message) => _testOutputHelper?.WriteLine(message);
 	}
 
 	[DebuggerNonUserCode]
-	public abstract class AbstractTest<TSingletonTestContext> : AbstractTest, IClassFixture<TSingletonTestContext> where TSingletonTestContext : class, IDisposable
+	public abstract class BaseTest<TSingletonTestContext> : BaseTest, IClassFixture<TSingletonTestContext> where TSingletonTestContext : class, IDisposable
 	{
 		protected readonly TSingletonTestContext SingletonTestContext;
-		protected AbstractTest(TSingletonTestContext singletonTestContext, ITestOutputHelper testOutputHelper = null)
+		protected BaseTest(TSingletonTestContext singletonTestContext, ITestOutputHelper testOutputHelper = null)
 			: base(testOutputHelper) => SingletonTestContext = singletonTestContext;
 	}
 }

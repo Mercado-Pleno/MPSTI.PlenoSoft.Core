@@ -4,7 +4,7 @@ using MPSTI.PlenoSoft.Core.xUnit.Abstracts;
 
 namespace MPSTI.PlenoSoft.Core.Test.Extensions.Utilities
 {
-	public class TestingConfigurations : AbstractTest<ConfigurationSingleton>
+	public class TestingConfigurations : BaseTest<ConfigurationSingleton>
 	{
 		private readonly IConfiguration _configuration;
 		private readonly SmtpConfiguration _smtpConfiguration;

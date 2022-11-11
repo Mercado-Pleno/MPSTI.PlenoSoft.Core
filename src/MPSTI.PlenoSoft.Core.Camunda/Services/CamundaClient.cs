@@ -28,7 +28,7 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Services
 			};
 		}
 
-		public async Task<(HttpStatusCode HttpStatus, string Content)> Notificar(Message message)
+		public async Task<(HttpStatusCode HttpStatus, string Content)> SendMessage(Message message)
 		{
 			try
 			{
@@ -37,15 +37,15 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Services
 					retryWhen: response => !response.IsSuccessStatusCode
 				);
 
-				return await Validar(response);
+				return await Validate(response);
 			}
 			catch (Exception exception)
 			{
-				throw new CamundaException($"Houve um problema ao Notificar no Proxy do Camunda com a url: [{_httpClient.BaseAddress}]", exception);
+				throw new CamundaException($"Houve um problema ao {nameof(SendMessage)} no {nameof(CamundaClient)} com a url: [{_httpClient.BaseAddress}]", exception);
 			}
 		}
 
-		public async Task<(HttpStatusCode HttpStatus, string Content)> IniciarProcesso(ProcessInstance processInstance)
+		public async Task<(HttpStatusCode HttpStatus, string Content)> StartProcess(ProcessInstance processInstance)
 		{
 			try
 			{
@@ -54,7 +54,7 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Services
 					retryWhen: response => !response.IsSuccessStatusCode
 				);
 
-				return await Validar(response);
+				return await Validate(response);
 			}
 			catch (Exception exception)
 			{
@@ -62,7 +62,7 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Services
 			}
 		}
 
-		public async Task<IList<ExternalTask>> BuscarExternalTasks()
+		public async Task<IList<ExternalTask>> FetchExternalTask()
 		{
 			try
 			{
@@ -80,7 +80,7 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Services
 			}
 		}
 
-		public async Task<(HttpStatusCode HttpStatus, string Content)> CompletarExternalTask(ExternalTask task, Variables variables = null)
+		public async Task<(HttpStatusCode HttpStatus, string Content)> CompleteExternalTask(ExternalTask task, Variables variables = null)
 		{
 			try
 			{
@@ -94,7 +94,7 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Services
 				if (!response.IsSuccessStatusCode && response.StatusCode != HttpStatusCode.NotFound)
 					throw new HttpRequestException(await response.Content.ReadAsStringAsync(), null, response.StatusCode);
 
-				return await Validar(response);
+				return await Validate(response);
 			}
 			catch (Exception exception)
 			{
@@ -102,7 +102,7 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Services
 			}
 		}
 
-		public async Task<(HttpStatusCode HttpStatus, string Content)> ReportarErroExternalTask(ExternalTask task, Exception exception, Variables variables = null)
+		public async Task<(HttpStatusCode HttpStatus, string Content)> ReportBpmnErrorExternalTask(ExternalTask task, Exception exception, Variables variables = null)
 		{
 			try
 			{
@@ -113,7 +113,7 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Services
 					retryWhen: response => !response.IsSuccessStatusCode
 				);
 
-				return await Validar(response);
+				return await Validate(response);
 			}
 			catch (Exception ex)
 			{
@@ -121,7 +121,7 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Services
 			}
 		}
 
-		public async Task<(HttpStatusCode HttpStatus, string Content)> ReportarFailureExternalTask(ExternalTask task, Exception exception, Variables variables = null)
+		public async Task<(HttpStatusCode HttpStatus, string Content)> ReportFailureExternalTask(ExternalTask task, Exception exception, Variables variables = null)
 		{
 			try
 			{
@@ -132,7 +132,7 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Services
 					retryWhen: response => !response.IsSuccessStatusCode
 				);
 
-				return await Validar(response);
+				return await Validate(response);
 			}
 			catch (Exception ex)
 			{
@@ -153,7 +153,7 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Services
 			}
 		}
 
-		private static async Task<(HttpStatusCode HttpStatus, string Content)> Validar(HttpResponseMessage response)
+		private static async Task<(HttpStatusCode HttpStatus, string Content)> Validate(HttpResponseMessage response)
 		{
 			var responseString = await response.Content.ReadAsStringAsync();
 			if (!response.IsSuccessStatusCode)

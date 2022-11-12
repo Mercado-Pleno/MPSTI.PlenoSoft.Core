@@ -1,15 +1,14 @@
 ﻿using MPSTI.PlenoSoft.Core.Camunda.Extensions;
 using Newtonsoft.Json;
-using System.Text.Json.Serialization;
 
 namespace MPSTI.PlenoSoft.Core.Camunda.Contracts
 {
 	public class Variable
 	{
-		[JsonProperty("type"), JsonPropertyName("type")]
+		[JsonProperty("type")]
 		public string Type { get; set; }
 
-		[JsonProperty("value"), JsonPropertyName("value")]
+		[JsonProperty("value")]
 		public object Value { get; set; }
 
 		public Variable() { }

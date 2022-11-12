@@ -1,25 +1,23 @@
-﻿using MPSTI.PlenoSoft.Core.Camunda.Contracts;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
-using System.Text.Json.Serialization;
 
 namespace MPSTI.PlenoSoft.Core.Camunda.Contracts.ExternalTasks
 {
 	public class ExternalTask
 	{
-		[JsonProperty("id"), JsonPropertyName("id")]
+		[JsonProperty("id")]
 		public Guid Id { get; set; }
 
-		[JsonProperty("workerId"), JsonPropertyName("workerId")]
+		[JsonProperty("workerId")]
 		public string WorkerId { get; set; }
 
-		[JsonProperty("topicName"), JsonPropertyName("topicName")]
+		[JsonProperty("topicName")]
 		public string TopicName { get; set; }
 
-		[JsonProperty("variables"), JsonPropertyName("variables")]
+		[JsonProperty("variables")]
 		public Variables Variables { get; set; }
 
-		[JsonProperty("businessKey"), JsonPropertyName("businessKey")]
+		[JsonProperty("businessKey")]
 		public string BusinessKey { get; set; }
 	}
 }

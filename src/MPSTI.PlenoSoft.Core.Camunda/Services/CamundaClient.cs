@@ -1,8 +1,6 @@
-﻿using MPSTI.PlenoSoft.Core.Camunda.Configurations;
-using MPSTI.PlenoSoft.Core.Camunda.Contracts;
+﻿using MPSTI.PlenoSoft.Core.Camunda.Contracts;
 using MPSTI.PlenoSoft.Core.Camunda.Contracts.ExternalTasks;
 using MPSTI.PlenoSoft.Core.Camunda.Contracts.Messages;
-using MPSTI.PlenoSoft.Core.Camunda.Extensions;
 using MPSTI.PlenoSoft.Core.Camunda.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,153 +10,66 @@ using System.Threading.Tasks;
 
 namespace MPSTI.PlenoSoft.Core.Camunda.Services
 {
-	public class CamundaClient : ICamundaClient
+	public class CamundaClient : CamundaBaseClient, ICamundaClient
 	{
-		private readonly HttpClient _httpClient;
-		private readonly ExternalTaskFetchRequest _fetchExternalTaskRequest;
+		public CamundaClient(IHttpClientFactory httpClientFactory, ExternalTaskFetchRequest externalTaskFetchRequest)
+			: base(httpClientFactory, externalTaskFetchRequest) { }
 
-		public CamundaClient(IHttpClientFactory httpClientFactory, ExternalTaskConfig externalTaskConfig)
+		public async Task<HttpResponseMessage> ProcessInstanceStart(ProcessInstance processInstance)
 		{
-			_httpClient = httpClientFactory.CreateClient("Camunda");
-			_fetchExternalTaskRequest = new ExternalTaskFetchRequest
+			return await Protected($"process-definition/key/{processInstance.ProcessDefinitionName}/start", async resource =>
 			{
-				MaxTasks = externalTaskConfig.MaxTasks,
-				WorkerId = externalTaskConfig.WorkerId,
-				Topics = externalTaskConfig.Topics,
-			};
+				return await ExecuteAndValidate(resource, processInstance);
+			});
 		}
 
-		public async Task<(HttpStatusCode HttpStatus, string Content)> SendMessage(Message message)
+		public async Task<HttpResponseMessage> GlobalMessageSend(Message message)
 		{
-			try
+			return await Protected($"message", async resource =>
 			{
-				var response = await Retry.ExecuteAsync(
-					action: () => _httpClient.PostAsJsonAsync($"message", message),
-					retryWhen: response => !response.IsSuccessStatusCode
-				);
-
-				return await Validate(response);
-			}
-			catch (Exception exception)
-			{
-				throw new CamundaException($"Houve um problema ao {nameof(SendMessage)} no {nameof(CamundaClient)} com a url: [{_httpClient.BaseAddress}]", exception);
-			}
+				return await ExecuteAndValidate(resource, message);
+			});
 		}
 
-		public async Task<(HttpStatusCode HttpStatus, string Content)> StartProcess(ProcessInstance processInstance)
+		public async Task<IList<ExternalTask>> ExternalTaskFetchAndLock()
 		{
-			try
+			return await Protected($"external-task/fetchAndLock", async resource =>
 			{
-				var response = await Retry.ExecuteAsync(
-					action: () => _httpClient.PostAsJsonAsync($"process-definition/key/{processInstance.ProcessDefinitionName}/start", processInstance),
-					retryWhen: response => !response.IsSuccessStatusCode
-				);
-
-				return await Validate(response);
-			}
-			catch (Exception exception)
-			{
-				throw new CamundaException($"Houve um problema ao IniciarProcesso no Proxy do Camunda com a url: [{_httpClient.BaseAddress}]", exception);
-			}
+				var response = await Execute(resource, _fetchExternalTaskRequest);
+				return await response.Content.ReadAsAsync<List<ExternalTask>>();
+			});
 		}
 
-		public async Task<IList<ExternalTask>> FetchExternalTask()
+		public async Task<HttpResponseMessage> ExternalTaskComplete(ExternalTask task, Variables variables = null)
 		{
-			try
-			{
-				var response = await Retry.ExecuteAsync(
-					action: () => _httpClient.PostAsJsonAsync($"external-task/fetchAndLock", _fetchExternalTaskRequest),
-					retryWhen: response => !response.IsSuccessStatusCode,
-					retryCount: 1
-				);
-
-				return await response.Content.ReadAsAsync<IList<ExternalTask>>();
-			}
-			catch (Exception exception)
-			{
-				throw new CamundaException($"Houve um problema ao BuscarExternalTasks no Proxy do Camunda com a url: [{_httpClient.BaseAddress}]", exception);
-			}
-		}
-
-		public async Task<(HttpStatusCode HttpStatus, string Content)> CompleteExternalTask(ExternalTask task, Variables variables = null)
-		{
-			try
+			return await Protected($"external-task/{task.Id}/complete", async resource =>
 			{
 				var request = new ExternalTaskComplete(task, variables);
-
-				var response = await Retry.ExecuteAsync(
-					action: () => _httpClient.PostAsJsonAsync($"external-task/{task.Id}/complete", request),
-					retryWhen: response => !response.IsSuccessStatusCode
-				);
+				var response = await Execute(resource, request);
 
 				if (!response.IsSuccessStatusCode && response.StatusCode != HttpStatusCode.NotFound)
 					throw new HttpRequestException(await response.Content.ReadAsStringAsync(), null, response.StatusCode);
 
 				return await Validate(response);
-			}
-			catch (Exception exception)
-			{
-				throw new CamundaException($"Houve um problema ao CompletarExternalTask no Proxy do Camunda com a url: [{_httpClient.BaseAddress}]", exception);
-			}
+			});
 		}
 
-		public async Task<(HttpStatusCode HttpStatus, string Content)> ReportBpmnErrorExternalTask(ExternalTask task, Exception exception, Variables variables = null)
+		public async Task<HttpResponseMessage> ExternalTaskReportBpmnError(ExternalTask task, Exception exceptionError, Variables variables = null)
 		{
-			try
+			return await Protected($"external-task/{task.Id}/bpmnError", async resource =>
 			{
-				var request = new ExternalTaskError(task, exception, variables);
-
-				var response = await Retry.ExecuteAsync(
-					action: () => _httpClient.PostAsJsonAsync($"external-task/{task.Id}/bpmnError", request),
-					retryWhen: response => !response.IsSuccessStatusCode
-				);
-
-				return await Validate(response);
-			}
-			catch (Exception ex)
-			{
-				throw new CamundaException($"Houve um problema ao ReportarErroExternalTask no Proxy do Camunda com a url: [{_httpClient.BaseAddress}]", ex);
-			}
+				var request = new ExternalTaskError(task, exceptionError, variables);
+				return await ExecuteAndValidate(resource, request);
+			});
 		}
 
-		public async Task<(HttpStatusCode HttpStatus, string Content)> ReportFailureExternalTask(ExternalTask task, Exception exception, Variables variables = null)
+		public async Task<HttpResponseMessage> ExternalTaskReportFailure(ExternalTask task, Exception exceptionError, Variables variables = null)
 		{
-			try
+			return await Protected($"external-task/{task.Id}/failure", async resource =>
 			{
-				var request = new ExternalTaskFailure(task, exception, variables);
-
-				var response = await Retry.ExecuteAsync(
-					action: () => _httpClient.PostAsJsonAsync($"external-task/{task.Id}/failure", request),
-					retryWhen: response => !response.IsSuccessStatusCode
-				);
-
-				return await Validate(response);
-			}
-			catch (Exception ex)
-			{
-				throw new CamundaException($"Houve um problema ao ReportarErroExternalTask no Proxy do Camunda com a url: [{_httpClient.BaseAddress}]", ex);
-			}
-		}
-
-		public async Task<bool> HealthCheck()
-		{
-			try
-			{
-				var response = await _httpClient.GetAsync($"engine");
-				return response.IsSuccessStatusCode;
-			}
-			catch (Exception exception)
-			{
-				throw new CamundaException($"Houve um problema ao fazer HealthCheck no Proxy do Camunda com a url: [{_httpClient.BaseAddress}]", exception);
-			}
-		}
-
-		private static async Task<(HttpStatusCode HttpStatus, string Content)> Validate(HttpResponseMessage response)
-		{
-			var responseString = await response.Content.ReadAsStringAsync();
-			if (!response.IsSuccessStatusCode)
-				throw new HttpRequestException(responseString, null, response.StatusCode);
-			return (response.StatusCode, responseString);
+				var request = new ExternalTaskFailure(task, exceptionError, variables);
+				return await ExecuteAndValidate(resource, request);
+			});
 		}
 	}
 }

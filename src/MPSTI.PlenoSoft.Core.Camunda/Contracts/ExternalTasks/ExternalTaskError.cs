@@ -1,23 +1,21 @@
-﻿using MPSTI.PlenoSoft.Core.Camunda.Contracts;
-using MPSTI.PlenoSoft.Core.Camunda.Extensions;
+﻿using MPSTI.PlenoSoft.Core.Camunda.Extensions;
 using Newtonsoft.Json;
 using System;
-using System.Text.Json.Serialization;
 
 namespace MPSTI.PlenoSoft.Core.Camunda.Contracts.ExternalTasks
 {
 	public class ExternalTaskError
 	{
-		[JsonProperty("workerId"), JsonPropertyName("workerId")]
+		[JsonProperty("workerId")]
 		public string WorkerId { get; set; }
 
-		[JsonProperty("errorCode"), JsonPropertyName("errorCode")]
+		[JsonProperty("errorCode")]
 		public string ErrorCode { get; set; }
 
-		[JsonProperty("errorMessage"), JsonPropertyName("errorMessage")]
+		[JsonProperty("errorMessage")]
 		public string ErrorMessage { get; set; }
 
-		[JsonProperty("variables"), JsonPropertyName("variables")]
+		[JsonProperty("variables")]
 		public Variables Variables { get; set; }
 
 		public ExternalTaskError(ExternalTask task, string message, Variables variables = null)

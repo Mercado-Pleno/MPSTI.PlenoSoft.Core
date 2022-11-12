@@ -7,14 +7,14 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Extensions
 {
 	public static class Retry
 	{
-		public static async Task<T> ExecuteAsync<T>(Func<Task<T>> action, Func<T, bool> retryWhen, int retryCount = 3, Action<int> onRetry = null, int secondsSeed = 2)
+		public static async Task<T> ExecuteAsync<T>(Func<Task<T>> action, Func<T, bool> retryWhen, int retryCount, int secondsSeed = 3, Action<int> onRetry = null)
 		{
-			return await CreateRetryPolicy(secondsSeed, retryCount, retryWhen, onRetry)
+			return await CreateRetryPolicy(retryCount, secondsSeed, retryWhen, onRetry)
 				.ExecuteAsync(action)
 				.ConfigureAwait(false);
 		}
 
-		public static AsyncRetryPolicy<T> CreateRetryPolicy<T>(int secondsSeed, int retryCount, Func<T, bool> retryWhen, Action<int> onRetry)
+		public static AsyncRetryPolicy<T> CreateRetryPolicy<T>(int retryCount, int secondsSeed, Func<T, bool> retryWhen, Action<int> onRetry)
 		{
 			return Policy
 				.HandleResult(retryWhen)

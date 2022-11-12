@@ -1,24 +1,22 @@
-﻿using MPSTI.PlenoSoft.Core.Camunda.Contracts;
-using Newtonsoft.Json;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace MPSTI.PlenoSoft.Core.Camunda.Contracts.Messages
 {
 	public class Message
 	{
-		[JsonProperty("messageName"), JsonPropertyName("messageName")]
+		[JsonProperty("messageName")]
 		public string MessageName { get; set; }
 
-		[JsonProperty("businessKey"), JsonPropertyName("businessKey")]
+		[JsonProperty("businessKey")]
 		public string BusinessKey { get; set; }
 
-		[JsonProperty("processInstanceId"), JsonPropertyName("processInstanceId")]
+		[JsonProperty("processInstanceId")]
 		public string ProcessInstanceId { get; set; }
 
-		[JsonProperty("processVariables"), JsonPropertyName("processVariables")]
+		[JsonProperty("processVariables")]
 		public Variables ProcessVariables { get; set; }
 
-		[JsonProperty("resultEnabled"), JsonPropertyName("resultEnabled")]
+		[JsonProperty("resultEnabled")]
 		public bool ResultEnabled { get; set; }
 	}
 }

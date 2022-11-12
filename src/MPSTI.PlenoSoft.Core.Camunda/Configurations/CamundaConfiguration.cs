@@ -13,7 +13,7 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Configurations
             var camundaBaseAddress = camundaBaseUrl + (Path.EndsInDirectorySeparator(camundaBaseUrl) ? "" : "/");
 
             services.AddHttpClient("Camunda", httpClient => httpClient.BaseAddress = new Uri(camundaBaseAddress));
-            services.AddSingleton(externalTaskConfig);
+            services.AddSingleton(externalTaskConfig.ToExternalTaskFetchRequest());
             services.AddScoped<ICamundaClient, CamundaClient>();
 
             return services;

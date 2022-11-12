@@ -1,6 +1,4 @@
-﻿using MPSTI.PlenoSoft.Core.Camunda.Contracts;
-using Newtonsoft.Json;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace MPSTI.PlenoSoft.Core.Camunda.Contracts.Messages
 {
@@ -8,13 +6,13 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Contracts.Messages
 	{
 		public string ProcessDefinitionName { get; }
 
-		[JsonProperty("variables"), JsonPropertyName("variables")]
+		[JsonProperty("variables")]
 		public Variables Variables { get; }
 
-		[JsonProperty("withVariablesInReturn"), JsonPropertyName("withVariablesInReturn")]
+		[JsonProperty("withVariablesInReturn")]
 		public bool WithVariablesInReturn { get; }
 
-		[JsonProperty("businessKey"), JsonPropertyName("businessKey")]
+		[JsonProperty("businessKey")]
 		public string BusinessKey { get; }
 
 		public ProcessInstance(string processDefinitionName, object businessKey, bool withVariablesInReturn = true)

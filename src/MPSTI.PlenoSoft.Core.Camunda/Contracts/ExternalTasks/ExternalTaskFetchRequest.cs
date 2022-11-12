@@ -1,18 +1,17 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace MPSTI.PlenoSoft.Core.Camunda.Contracts.ExternalTasks
 {
 	public class ExternalTaskFetchRequest
 	{
-		[JsonProperty("workerId"), JsonPropertyName("workerId")]
+		[JsonProperty("workerId")]
 		public string WorkerId { get; set; }
 
-		[JsonProperty("maxTasks"), JsonPropertyName("maxTasks")]
+		[JsonProperty("maxTasks")]
 		public int MaxTasks { get; set; }
 
-		[JsonProperty("topics"), JsonPropertyName("topics")]
+		[JsonProperty("topics")]
 		public List<ExternalTaskTopic> Topics { get; set; }
 	}
 }

@@ -10,9 +10,9 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Triggers.Timers
 {
 	public class CamundaFetchExternalTask : CamundaWorker
 	{
-		private const string Timer1 = "%Camunda_TimerTrigger_Dia%";
-		private const string Timer2 = "%Camunda_TimerTrigger_Noi%";
-		private const string Timer3 = "%Camunda_TimerTrigger_Mad%";
+		private const string Timer1 = "%Camunda_TimerTrigger1%";
+		private const string Timer2 = "%Camunda_TimerTrigger2%";
+		private const string Timer3 = "%Camunda_TimerTrigger3%";
 		private ILogger _logger;
 
 		public CamundaFetchExternalTask(ICamundaClient camundaClient) : base(camundaClient) { }

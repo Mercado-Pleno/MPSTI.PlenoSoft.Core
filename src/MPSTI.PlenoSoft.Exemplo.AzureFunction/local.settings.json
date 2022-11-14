@@ -8,7 +8,7 @@
 
 		"Azure_ServiceBus": "Endpoint=sb://mercadopleno.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=ApQaOW84zVuiP0HwyMhzDw7YqrT+Sz5YVV3CLyUltHY=",
 
-		"Camunda_Url": "https://localhost/engine-rest",
+		"Camunda_Url": "http://localhost/engine-rest",
 
 		"Camunda_TimerTrigger_Dia": "*/10 * 08-18 * * *",
 		"Camunda_TimerTrigger_Noi": "*/30 * 19-23 * * *",

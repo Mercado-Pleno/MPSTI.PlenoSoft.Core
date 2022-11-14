@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Triggers.Timers
 {
-	public class FetchExternalTask : CamundaWorker
+	public class CamundaFetchExternalTask : CamundaWorker
 	{
 		private const string Timer1 = "%Camunda_TimerTrigger_Dia%";
 		private const string Timer2 = "%Camunda_TimerTrigger_Noi%";
 		private const string Timer3 = "%Camunda_TimerTrigger_Mad%";
 
-		public FetchExternalTask(ICamundaClient camundaClient) : base(camundaClient) { }
+		public CamundaFetchExternalTask(ICamundaClient camundaClient) : base(camundaClient) { }
 
 
 		[FunctionName("FetchExternalTask_Timer1")]

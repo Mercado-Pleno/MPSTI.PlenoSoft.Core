@@ -1,0 +1,21 @@
+{
+	"IsEncrypted": false,
+	"Values": {
+		"AzureWebJobsStorage": "UseDevelopmentStorage=true",
+		"AzureWebJobsDashboard": "UseDevelopmentStorage=true",
+		"FUNCTIONS_WORKER_RUNTIME": "dotnet",
+		"APPINSIGHTS_INSTRUMENTATIONKEY": "e1142cc4-323d-4f5c-a6ae-2aa89c7eecd0",
+
+		"Azure_ServiceBus": "Endpoint=sb://mercadopleno.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=ApQaOW84zVuiP0HwyMhzDw7YqrT+Sz5YVV3CLyUltHY=",
+
+		"Camunda_Url": "https://localhost/engine-rest",
+
+		"Camunda_TimerTrigger_Dia": "*/10 * 08-18 * * *",
+		"Camunda_TimerTrigger_Noi": "*/30 * 19-23 * * *",
+		"Camunda_TimerTrigger_Mad": "*/60 * 00-07 * * *"
+	},
+	"Host": {
+		"CORS": "*",
+		"LocalHttpPort": 7072
+	}
+}

@@ -8,7 +8,7 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Configurations
 {
     public static class CamundaConfiguration
     {
-        public static IServiceCollection RegisterCamunda(this IServiceCollection services, ExternalTaskConfig externalTaskConfig, string camundaBaseUrl)
+        public static IServiceCollection RegisterCamunda(this IServiceCollection services, string camundaBaseUrl, ExternalTaskConfig externalTaskConfig)
         {
             var camundaBaseAddress = camundaBaseUrl + (Path.EndsInDirectorySeparator(camundaBaseUrl) ? "" : "/");
 

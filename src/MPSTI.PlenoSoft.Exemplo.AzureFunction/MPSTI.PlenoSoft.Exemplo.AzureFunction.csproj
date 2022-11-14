@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6</TargetFramework>
+		<AzureFunctionsVersion>v4</AzureFunctionsVersion>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<WarningsAsErrors />
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
+		<PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.1.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="host.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="local.settings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Azure.ServiceBus\MPSTI.PlenoSoft.Core.Azure.ServiceBus.csproj" />
+		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Camunda\MPSTI.PlenoSoft.Core.Camunda.csproj" />
+	</ItemGroup>
+
+</Project>

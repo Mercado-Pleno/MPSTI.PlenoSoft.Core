@@ -9,9 +9,10 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Configurations
 	public class ExternalTaskConfig
 	{
 		private static readonly List<ExternalTaskTopic> _topics = new();
-		public int MaxTasks { get; set; }
-		public string WorkerId { get; set; }
-		public virtual List<ExternalTaskTopic> Topics => _topics;
+
+		public int MaxTasks { get; set; } = 100;
+
+		public string WorkerId { get; set; } = "Camunda.Functions";
 
 		public static async Task<int> ConfigureCamundaTopics(TimeSpan defaultLockDuration, params string[] topicNames)
 		{
@@ -23,6 +24,6 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Configurations
 		}
 
 		public ExternalTaskFetchRequest ToExternalTaskFetchRequest()
-			=> new ExternalTaskFetchRequest { MaxTasks = MaxTasks, WorkerId = WorkerId, Topics = Topics };
+			=> new ExternalTaskFetchRequest { MaxTasks = MaxTasks, WorkerId = WorkerId, Topics = _topics };
 	}
 }

@@ -5,6 +5,8 @@ using Microsoft.Extensions.Logging;
 using MPSTI.PlenoSoft.Core.Azure.ServiceBus.Configurations;
 using MPSTI.PlenoSoft.Core.Camunda.Configurations;
 using MPSTI.PlenoSoft.Exemplo.AzureFunction.Application;
+using MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos;
+using MPSTI.PlenoSoft.Exemplo.AzureFunction.Repository;
 
 [assembly: FunctionsStartup(typeof(Startup))]
 
@@ -27,8 +29,11 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Application
 		{
 			services.AddHttpClient();
 
+			services.RegisterCosmosDb(configuration.GetValue<string>("Azure_CosmosDb"));
 			services.RegisterServiceBus(configuration.GetValue<string>("Azure_ServiceBus"));
 			services.RegisterCamunda(configuration.GetValue<string>("Camunda_Url"), new());
+
+			services.AddScoped<IAlunoRepository, AlunoRepository>();
 		}
 	}
 }

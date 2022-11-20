@@ -4,7 +4,7 @@ using MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos;
 
 namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Repository
 {
-	public class FamiliaRepository : Repository<Familia>, IFamiliaRepository
+	public class FamiliaRepository : CosmosRepository<Familia>, IFamiliaRepository
 	{
 		public override string DatabaseName => "MercadoPleno";
 		public override string ContainerName => "Familia";

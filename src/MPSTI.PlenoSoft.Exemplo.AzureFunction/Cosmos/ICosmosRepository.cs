@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
 {
-	public interface IRepository<TCosmosEntity> where TCosmosEntity : ICosmosEntity
+	public interface ICosmosRepository<TCosmosEntity> where TCosmosEntity : ICosmosEntity
 	{
 		Task<TCosmosEntity> CreateItem(TCosmosEntity entity);
 		Task<TCosmosEntity> UpdateItem(TCosmosEntity entity);

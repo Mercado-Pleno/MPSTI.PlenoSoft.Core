@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
 {
-	public static class CosmosDbExtensions
+	public static class CosmosExtensions
 	{
 		public static QueryDefinition WithParameters(this QueryDefinition queryDefinition, IDictionary<string, object> parameters)
 		{
@@ -29,19 +29,19 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
 		}
 	}
 
-	public static class CosmosDbItemRequestOptionsExtensions
+	public static class CosmosItemRequestOptionsExtensions
 	{
 		public static ItemRequestOptions WithETag<TCosmosEntity>(this ItemRequestOptions itemRequestOptions, TCosmosEntity entity)
-			=> WithETag(itemRequestOptions, entity as ICosmosConcurrency);
+			=> WithETag(itemRequestOptions, entity as ICosmosEntityConcurrent);
 
-		public static ItemRequestOptions WithETag(this ItemRequestOptions itemRequestOptions, ICosmosConcurrency entity)
+		public static ItemRequestOptions WithETag(this ItemRequestOptions itemRequestOptions, ICosmosEntityConcurrent entity)
 		{
 			itemRequestOptions.IfMatchEtag = entity?.ETag;
 			return itemRequestOptions;
 		}
 	}
 
-	public static class CosmosDbQueryRequestOptionsExtensions
+	public static class CosmosQueryRequestOptionsExtensions
 	{
 		public static QueryRequestOptions WithMaxItemCount(this QueryRequestOptions queryRequestOptions, int? maxItemCount = 10, bool force = false)
 		{

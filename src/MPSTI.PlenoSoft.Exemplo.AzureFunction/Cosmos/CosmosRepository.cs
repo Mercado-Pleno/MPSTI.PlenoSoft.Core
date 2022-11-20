@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
 {
-	public abstract class Repository<TCosmosEntity> : IRepository<TCosmosEntity> where TCosmosEntity : ICosmosEntity, new()
+	public abstract class CosmosRepository<TCosmosEntity> : ICosmosRepository<TCosmosEntity> where TCosmosEntity : ICosmosEntity, new()
 	{
 		protected const string DefaultQuery = "Select * From C ";
 		protected readonly Container Container;
@@ -16,7 +16,7 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
 		public abstract string DatabaseName { get; }
 		public abstract string ContainerName { get; }
 
-		public Repository(CosmosClient cosmosClient) => Container = cosmosClient.GetContainer(DatabaseName, ContainerName);
+		public CosmosRepository(CosmosClient cosmosClient) => Container = cosmosClient.GetContainer(DatabaseName, ContainerName);
 
 		protected async Task<Container> CreateDatabaseAndContainer(CosmosClient cosmosClient)
 		{

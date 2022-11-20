@@ -48,7 +48,7 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
 		}
 
 		public async Task<TCosmosEntity> GetByItem(TCosmosEntity entity)
-			=> await GetByIdWithPK(entity.Id, entity.PartitionKeyValue);
+			=> await GetByIdWithPK(entity?.Id, entity?.PartitionKeyValue);
 
 		public async Task<TCosmosEntity> GetByIdWithPK(string id, string partitionKeyValue = null)
 		{

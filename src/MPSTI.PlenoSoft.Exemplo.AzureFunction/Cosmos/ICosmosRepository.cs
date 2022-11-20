@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 
 namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
 {
+	public delegate void BatchAction<TEntity>(string partitionKeyValue, IEnumerable<TEntity> items, TransactionalBatch transactionalBatch) where TEntity : ICosmosEntity;
+
+	public delegate void BatchAction(string partitionKeyValue, TransactionalBatch transactionalBatch);
+
 	public interface ICosmosRepository<TCosmosEntity> where TCosmosEntity : ICosmosEntity
 	{
 		Task<TCosmosEntity> CreateItem(TCosmosEntity entity);
@@ -17,6 +21,7 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
 		Task<IEnumerable<TCosmosEntity>> GetAll(QueryRequestOptions queryRequestOptions = null);
 		Task<IEnumerable<TCosmosEntity>> Query(string query, IDictionary<string, object> parameters = null, QueryRequestOptions queryRequestOptions = null);
 		Task<IEnumerable<TCosmosEntity>> Query(QueryDefinition queryDefinition, QueryRequestOptions queryRequestOptions = null, string continuationToken = null);
-		Task<TransactionalBatchResponse> ExecuteBatch(string partitionKeyValue, Action<TransactionalBatch> batchAction);
+		Task<TransactionalBatchResponse> ExecuteBatch(string partitionKeyValue, BatchAction batchAction);
+		Task<Dictionary<string, TransactionalBatchResponse>> ExecuteBatch<TEntity>(IEnumerable<TEntity> lista, BatchAction<TEntity> batchAction) where TEntity : ICosmosEntity;
 	}
 }

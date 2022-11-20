@@ -97,13 +97,24 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
 			return await feedIterator.GetResult();
 		}
 
-		public async Task<TransactionalBatchResponse> ExecuteBatch(string partitionKeyValue, Action<TransactionalBatch> batchAction)
+		public async Task<TransactionalBatchResponse> ExecuteBatch(string partitionKeyValue, BatchAction batchAction)
 		{
 			var transactionalBatch = Container.CreateTransactionalBatch(new PartitionKey(partitionKeyValue));
 
-			batchAction?.Invoke(transactionalBatch);
+			batchAction?.Invoke(partitionKeyValue, transactionalBatch);
 
 			return await transactionalBatch.ExecuteAsync();
+		}
+
+		public async Task<Dictionary<string, TransactionalBatchResponse>> ExecuteBatch<TEntity>(IEnumerable<TEntity> lista, BatchAction<TEntity> batchAction) where TEntity : ICosmosEntity
+		{
+			var results = new Dictionary<string, TransactionalBatchResponse>();
+			var groups = lista.GroupBy(g => g.PartitionKeyValue);
+
+			foreach (var group in groups)
+				results[group.Key] = await ExecuteBatch(group.Key, (partitionKeyValue, action) => batchAction(partitionKeyValue, group, action));
+
+			return results;
 		}
 	}
 }

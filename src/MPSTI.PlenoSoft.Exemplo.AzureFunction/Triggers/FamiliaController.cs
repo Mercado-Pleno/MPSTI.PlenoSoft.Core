@@ -44,7 +44,7 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Triggers
 				await _familiaRepository.UpdateItem(luDepois);
 
 				var familiaFernandes = await _familiaRepository.GetAllByPK("Fernandes");
-				var familiaNogueira = await _familiaRepository.GetByPKOnly("Nogueira");
+				var familiaNogueira = (await _familiaRepository.GetAllByPK("Nogueira")).SingleOrDefault();
 
 				lista.ForEach(f => f.Doc = string.Join("", f.Doc.Reverse()));
 				var result = await _familiaRepository.ExecuteBatch("Fernandes", batch => batch

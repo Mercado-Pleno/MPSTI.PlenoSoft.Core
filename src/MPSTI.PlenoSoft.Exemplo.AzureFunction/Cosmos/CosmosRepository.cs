@@ -26,6 +26,7 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
 
 		public async Task<TCosmosEntity> CreateItem(TCosmosEntity entity)
 		{
+			if (entity == null) return default;
 			var partitionKey = new PartitionKey(entity.PartitionKeyValue);
 			var result = await Container.CreateItemAsync<TCosmosEntity>(entity, partitionKey);
 			return result.Resource;
@@ -33,6 +34,7 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
 
 		public async Task<TCosmosEntity> UpdateItem(TCosmosEntity entity)
 		{
+			if (entity == null) return default;
 			var partitionKey = new PartitionKey(entity.PartitionKeyValue);
 			var itemRequestOptions = new ItemRequestOptions().WithETag(entity);
 			var result = await Container.UpsertItemAsync(entity, partitionKey, itemRequestOptions);
@@ -41,6 +43,7 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
 
 		public async Task<TCosmosEntity> DeleteItem(TCosmosEntity entity)
 		{
+			if (entity == null) return default;
 			var partitionKey = new PartitionKey(entity.PartitionKeyValue);
 			var itemRequestOptions = new ItemRequestOptions().WithETag(entity);
 			var result = await Container.DeleteItemAsync<TCosmosEntity>(entity.Id, partitionKey, itemRequestOptions);
@@ -48,13 +51,14 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
 		}
 
 		public async Task<TCosmosEntity> GetByItem(TCosmosEntity entity)
-			=> await GetByIdWithPK(entity?.Id, entity?.PartitionKeyValue);
+			=> (entity == null) ? default : await GetByIdAndPK(entity.Id, entity.PartitionKeyValue);
 
-		public async Task<TCosmosEntity> GetByIdWithPK(string id, string partitionKeyValue = null)
+		public async Task<TCosmosEntity> GetByIdAndPK(string id, string partitionKeyValue)
 		{
+			if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(partitionKeyValue)) return default;
 			try
 			{
-				var partitionKey = new PartitionKey(partitionKeyValue ?? id);
+				var partitionKey = new PartitionKey(partitionKeyValue);
 				var result = await Container.ReadItemAsync<TCosmosEntity>(id, partitionKey);
 				return result.Resource;
 			}
@@ -69,13 +73,6 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
 			var parameters = new Dictionary<string, object> { { "@id", id } };
 			var results = await Query($"{DefaultQuery} Where C.id = @id", parameters);
 			return results.SingleOrDefault();
-		}
-
-		public async Task<TCosmosEntity> GetByPKOnly(string partitionKeyValue)
-		{
-			var queryRequestOptions = new QueryRequestOptions().WithPartitionKey(partitionKeyValue);
-			var result = await Query(new QueryDefinition(DefaultQuery), queryRequestOptions);
-			return result.SingleOrDefault();
 		}
 
 		public async Task<IEnumerable<TCosmosEntity>> GetAllByPK(string partitionKeyValue)

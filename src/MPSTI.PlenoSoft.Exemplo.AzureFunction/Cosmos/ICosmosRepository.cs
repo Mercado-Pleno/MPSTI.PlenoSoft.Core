@@ -11,9 +11,8 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
 		Task<TCosmosEntity> UpdateItem(TCosmosEntity entity);
 		Task<TCosmosEntity> DeleteItem(TCosmosEntity entity);
 		Task<TCosmosEntity> GetByItem(TCosmosEntity entity);
-		Task<TCosmosEntity> GetByIdWithPK(string id, string partitionKeyValue = null);
+		Task<TCosmosEntity> GetByIdAndPK(string id, string partitionKeyValue = null);
 		Task<TCosmosEntity> GetByIdOnly(string id);
-		Task<TCosmosEntity> GetByPKOnly(string partitionKeyValue);
 		Task<IEnumerable<TCosmosEntity>> GetAllByPK(string partitionKeyValue);
 		Task<IEnumerable<TCosmosEntity>> GetAll(QueryRequestOptions queryRequestOptions = null);
 		Task<IEnumerable<TCosmosEntity>> Query(string query, IDictionary<string, object> parameters = null, QueryRequestOptions queryRequestOptions = null);

@@ -6,8 +6,6 @@ using MPSTI.PlenoSoft.Core.Azure.ServiceBus.Interfaces;
 using MPSTI.PlenoSoft.Core.Camunda.Contracts.ExternalTasks;
 using MPSTI.PlenoSoft.Core.Camunda.Interfaces;
 using MPSTI.PlenoSoft.Core.Camunda.Services;
-using MPSTI.PlenoSoft.Exemplo.AzureFunction.Contracts;
-using MPSTI.PlenoSoft.Exemplo.AzureFunction.Repository;
 using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
@@ -20,14 +18,10 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Triggers.Timers
 		private const string Timer2 = "%Camunda_Timer2%";
 		private const string Timer3 = "%Camunda_Timer3%";
 		private readonly IServiceBusWrapperClient _serviceBusWrapperClient;
-		private readonly IAlunoRepository _alunoRepository;
 		private ILogger _logger;
 
-		public CamundaFetchExternalTask(ICamundaClient camundaClient, IServiceBusWrapperClient serviceBusWrapperClient, IAlunoRepository alunoRepository) : base(camundaClient)
-		{
-			_serviceBusWrapperClient = serviceBusWrapperClient;
-			_alunoRepository = alunoRepository;
-		}
+		public CamundaFetchExternalTask(ICamundaClient camundaClient, IServiceBusWrapperClient serviceBusWrapperClient)
+			: base(camundaClient) => _serviceBusWrapperClient = serviceBusWrapperClient;
 
 
 		[FunctionName("FetchExternalTask_Timer1")]
@@ -49,7 +43,6 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Triggers.Timers
 		{
 			_logger = logger;
 			await ExternalTaskFetchAndLock($"FetchExternalTaskOnTimer::{timerSchedule}");
-			await _alunoRepository.CreateOrUpdate(new Aluno { Id = Guid.NewGuid(), Name = "Bruno", Description = "Fernandes", cpf = "123" });
 		}
 
 		protected override async Task EnqueueExternalTask(ExternalTask externalTask)

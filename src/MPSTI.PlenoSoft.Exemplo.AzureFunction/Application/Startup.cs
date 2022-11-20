@@ -33,7 +33,7 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Application
 			services.RegisterServiceBus(configuration.GetValue<string>("Azure_ServiceBus"));
 			services.RegisterCamunda(configuration.GetValue<string>("Camunda_Url"), new());
 
-			services.AddScoped<IAlunoRepository, AlunoRepository>();
+			services.AddScoped<IFamiliaRepository, FamiliaRepository>();
 		}
 	}
 }

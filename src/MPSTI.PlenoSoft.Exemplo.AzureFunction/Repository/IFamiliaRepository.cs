@@ -3,5 +3,5 @@ using MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos;
 
 namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Repository
 {
-	public interface IAlunoRepository : IRepository<Aluno> { }
+	public interface IFamiliaRepository : IRepository<Familia> { }
 }

@@ -1,11 +1,13 @@
 ﻿using Microsoft.Azure.Cosmos;
+using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Extensions;
+using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
+namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Abstractions
 {
 	public abstract class CosmosRepository<TCosmosEntity> : ICosmosRepository<TCosmosEntity> where TCosmosEntity : ICosmosEntity, new()
 	{
@@ -28,7 +30,7 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
 		{
 			if (entity == null) return default;
 			var partitionKey = new PartitionKey(entity.PartitionKeyValue);
-			var result = await Container.CreateItemAsync<TCosmosEntity>(entity, partitionKey);
+			var result = await Container.CreateItemAsync(entity, partitionKey);
 			return result.Resource;
 		}
 
@@ -51,7 +53,7 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
 		}
 
 		public async Task<TCosmosEntity> GetByItem(TCosmosEntity entity)
-			=> (entity == null) ? default : await GetByIdAndPK(entity.Id, entity.PartitionKeyValue);
+			=> entity == null ? default : await GetByIdAndPK(entity.Id, entity.PartitionKeyValue);
 
 		public async Task<TCosmosEntity> GetByIdAndPK(string id, string partitionKeyValue)
 		{

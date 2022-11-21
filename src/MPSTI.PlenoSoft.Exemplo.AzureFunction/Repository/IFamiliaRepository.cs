@@ -1,5 +1,5 @@
-﻿using MPSTI.PlenoSoft.Exemplo.AzureFunction.Contracts;
-using MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos;
+﻿using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Interfaces;
+using MPSTI.PlenoSoft.Exemplo.AzureFunction.Contracts;
 
 namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Repository
 {

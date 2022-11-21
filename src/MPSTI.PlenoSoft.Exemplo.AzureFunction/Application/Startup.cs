@@ -1,11 +1,10 @@
 ﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Configurations;
 using MPSTI.PlenoSoft.Core.Azure.ServiceBus.Configurations;
 using MPSTI.PlenoSoft.Core.Camunda.Configurations;
 using MPSTI.PlenoSoft.Exemplo.AzureFunction.Application;
-using MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos;
 using MPSTI.PlenoSoft.Exemplo.AzureFunction.Repository;
 
 [assembly: FunctionsStartup(typeof(Startup))]

@@ -1,4 +1,4 @@
-﻿using MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos;
+﻿using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Contracts;
 using System;
 
 namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Contracts

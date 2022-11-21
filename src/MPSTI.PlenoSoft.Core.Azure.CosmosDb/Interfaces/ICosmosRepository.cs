@@ -1,9 +1,8 @@
 ﻿using Microsoft.Azure.Cosmos;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
+namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Interfaces
 {
 	public delegate void BatchAction<TEntity>(string partitionKeyValue, IEnumerable<TEntity> items, TransactionalBatch transactionalBatch) where TEntity : ICosmosEntity;
 

@@ -1,14 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Interfaces;
+using Newtonsoft.Json;
 
-namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
+namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Contracts
 {
-	public interface ICosmosEntity
-	{
-		string Id { get; }
-		string PartitionKeyPath { get; }
-		string PartitionKeyValue { get; }
-	}
-
 	public abstract class CosmosEntity<TId> : ICosmosEntity
 	{
 		#region // "ICosmosEntity"

@@ -1,9 +1,9 @@
 ﻿using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Cosmos
+namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Configurations
 {
-	public static class CosmosConfig
+	public static class CosmosConfiguration
 	{
 		public static IServiceCollection RegisterCosmosDb(this IServiceCollection services, string connectionStringCosmosDb)
 		{

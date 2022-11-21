@@ -19,7 +19,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<PackageIcon>package-function.svg</PackageIcon>
+		<PackageIcon>package-function.png</PackageIcon>
 		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</RepositoryUrl>
 		<Title>MPSTI.PlenoSoft.Core.Azure.Functions @ Mercado-Pleno</Title>
@@ -36,7 +36,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\asset\package-function.svg">
+		<None Include="..\asset\package-function.png">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>

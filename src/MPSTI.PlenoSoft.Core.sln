@@ -44,6 +44,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Exemplo.Azu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPSTI.PlenoSoft.Core.Azure.CosmosDb", "MPSTI.PlenoSoft.Core.Azure.CosmosDb\MPSTI.PlenoSoft.Core.Azure.CosmosDb.csproj", "{08B3829C-5B7E-4E5E-A540-99DE7F2E7A9F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPSTI.PlenoSoft.Core.MongoDb", "MPSTI.PlenoSoft.Core.MongoDb\MPSTI.PlenoSoft.Core.MongoDb.csproj", "{195F82B9-5C67-4D86-8904-D94098B4DF3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -110,6 +112,10 @@ Global
 		{08B3829C-5B7E-4E5E-A540-99DE7F2E7A9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08B3829C-5B7E-4E5E-A540-99DE7F2E7A9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08B3829C-5B7E-4E5E-A540-99DE7F2E7A9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{195F82B9-5C67-4D86-8904-D94098B4DF3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{195F82B9-5C67-4D86-8904-D94098B4DF3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{195F82B9-5C67-4D86-8904-D94098B4DF3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{195F82B9-5C67-4D86-8904-D94098B4DF3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

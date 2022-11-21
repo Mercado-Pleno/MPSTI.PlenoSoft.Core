@@ -25,6 +25,7 @@
 		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Azure.CosmosDb\MPSTI.PlenoSoft.Core.Azure.CosmosDb.csproj" />
 		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Azure.ServiceBus\MPSTI.PlenoSoft.Core.Azure.ServiceBus.csproj" />
 		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Camunda\MPSTI.PlenoSoft.Core.Camunda.csproj" />
+		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.MongoDb\MPSTI.PlenoSoft.Core.MongoDb.csproj" />
 	</ItemGroup>
 
 </Project>

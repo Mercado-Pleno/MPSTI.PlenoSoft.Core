@@ -14,6 +14,5 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Contracts
 		public string Doc { get; set; }
 
 		public Familia() => Updated = DateTime.UtcNow;
-
 	}
 }

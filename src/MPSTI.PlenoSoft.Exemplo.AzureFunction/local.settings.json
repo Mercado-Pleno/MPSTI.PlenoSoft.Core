@@ -6,8 +6,9 @@
 		"FUNCTIONS_WORKER_RUNTIME": "dotnet",
 		"APPINSIGHTS_INSTRUMENTATIONKEY": "e1142cc4-323d-4f5c-a6ae-2aa89c7eecd0",
 
-		"Azure_ServiceBus": "Endpoint=sb://mercadopleno.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=",
-		"Azure_CosmosDb": "AccountEndpoint=https://mercadopleno.documents.azure.com:443/;AccountKey=",
+		"Azure_ServiceBus": "Endpoint=sb://mercadopleno.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey={SharedAccessKey}",
+		"Azure_CosmosDb": "AccountEndpoint=https://mercadopleno.documents.azure.com:443/;AccountKey={AccountKey}",
+		"ConnectionString_MongoDb": "mongodb+srv://{Username}:{Password}@cluster0.c3bot.mongodb.net/?retryWrites=true&w=majority",
 
 		"Camunda_Url": "http://localhost/engine-rest",
 

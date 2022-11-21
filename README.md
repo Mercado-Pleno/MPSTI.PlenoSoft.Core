@@ -15,6 +15,7 @@ Endereços dos pacotes NuGet (.Net6):
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.CrossProject.Web
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Extensions
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Flux
+- https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.MongoDb
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Office.EPPlus
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Selenium
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.xUnit

@@ -13,6 +13,9 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Contracts.Messages
 		[JsonProperty("processInstanceId")]
 		public string ProcessInstanceId { get; set; }
 
+		[JsonProperty("correlationKeys")]
+		public Variables CorrelationKeys { get; set; }
+
 		[JsonProperty("processVariables")]
 		public Variables ProcessVariables { get; set; }
 

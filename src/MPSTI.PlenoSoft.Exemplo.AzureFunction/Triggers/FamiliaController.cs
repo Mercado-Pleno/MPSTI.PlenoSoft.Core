@@ -15,10 +15,12 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Triggers
 	public class FamiliaController
 	{
 		private readonly IFamiliaRepository _familiaRepository;
+		private readonly IPessoaRepository _pessoaRepository;
 
-		public FamiliaController(IFamiliaRepository familiaRepository)
+		public FamiliaController(IFamiliaRepository familiaRepository, IPessoaRepository pessoaRepository)
 		{
 			_familiaRepository = familiaRepository;
+			_pessoaRepository = pessoaRepository;
 		}
 
 		[FunctionName("FamiliaControllerCreate")]
@@ -30,6 +32,9 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Triggers
 				var bruno = new Familia { Id = Guid.Parse("6fdf1933-7628-40de-aa04-c7a546606c4c"), FirstName = "Bruno", LastName = "Fernandes", Doc = "456" };
 				var filho = new Familia { Id = Guid.Parse("849325fc-5656-4aad-983b-d5802ecd4d14"), FirstName = "Filho", LastName = "Fernandes", Doc = "789" };
 				var maria = new Familia { Id = Guid.Parse("1f00b4bf-0000-0400-0000-63799e3e0000"), FirstName = "Maria", LastName = "Nogueira", Doc = "852" };
+				var maria2 = new Pessoa { Id = Guid.Parse("1f00b4bf-0000-0400-0000-63799e3e0000"), FirstName = "Maria", LastName = "Nogueira", Doc = "852" };
+				
+				await _pessoaRepository.UpdateItem(maria2);
 
 				await _familiaRepository.UpdateAsync(luani);
 				await _familiaRepository.UpdateAsync(bruno);

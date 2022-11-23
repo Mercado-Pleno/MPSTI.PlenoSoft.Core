@@ -33,7 +33,7 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Triggers
 				var filho = new Familia { Id = Guid.Parse("849325fc-5656-4aad-983b-d5802ecd4d14"), FirstName = "Filho", LastName = "Fernandes", Doc = "789" };
 				var maria = new Familia { Id = Guid.Parse("1f00b4bf-0000-0400-0000-63799e3e0000"), FirstName = "Maria", LastName = "Nogueira", Doc = "852" };
 				var maria2 = new Pessoa { Id = Guid.Parse("1f00b4bf-0000-0400-0000-63799e3e0000"), FirstName = "Maria", LastName = "Nogueira", Doc = "852" };
-				
+
 				await _pessoaRepository.UpdateItem(maria2);
 
 				await _familiaRepository.UpdateAsync(luani);
@@ -76,6 +76,8 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Triggers
 					foreach (var item in lista.Where(x => x.LastName == partitionKeyValue))
 						batch.UpsertItem<Familia>(item);
 				});
+
+				var lista2 = await _familiaRepository.GetAsync(new[] { "fa872c5a-665d-4f71-bff4-56f26fa31fb0", "6fdf1933-7628-40de-aa04-c7a546606c4c" });
 
 				return new OkObjectResult(lista);
 			}

@@ -17,6 +17,7 @@ namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Interfaces
 		Task<TCosmosEntity> GetAsync(TCosmosEntity entity);
 		Task<TCosmosEntity> GetAsync(string id, string partitionKeyValue);
 		Task<TCosmosEntity> GetAsync(string id);
+		Task<IEnumerable<TCosmosEntity>> GetAsync(IEnumerable<string> ids, string partitionKeyValue = null);
 		Task<IEnumerable<TCosmosEntity>> GetAllAsync(string partitionKeyValue);
 		Task<IEnumerable<TCosmosEntity>> GetAllAsync(QueryRequestOptions queryRequestOptions = null);
 		Task<IEnumerable<TCosmosEntity>> QueryAsync(string query, IDictionary<string, object> parameters = null, QueryRequestOptions queryRequestOptions = null);

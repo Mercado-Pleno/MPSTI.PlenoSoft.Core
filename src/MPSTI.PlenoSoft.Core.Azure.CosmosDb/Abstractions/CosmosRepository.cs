@@ -86,6 +86,13 @@ namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Abstractions
 			return results.SingleOrDefault();
 		}
 
+		public async Task<IEnumerable<TCosmosEntity>> GetAsync(IEnumerable<string> ids, string partitionKeyValue = null)
+		{
+			var parameters = new Dictionary<string, object> { { "@ids", ids } };
+			var queryRequestOptions = new QueryRequestOptions().WithPartitionKey(partitionKeyValue);
+			return await QueryAsync($"{DefaultQuery} Where ARRAY_CONTAINS(@ids, C.id)", parameters, queryRequestOptions);
+		}
+		
 		public async Task<IEnumerable<TCosmosEntity>> GetAllAsync(string partitionKeyValue)
 		{
 			var queryRequestOptions = new QueryRequestOptions().WithPartitionKey(partitionKeyValue);

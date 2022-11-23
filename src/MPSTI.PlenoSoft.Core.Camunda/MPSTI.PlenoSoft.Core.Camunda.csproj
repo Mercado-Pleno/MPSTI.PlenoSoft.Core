@@ -24,16 +24,17 @@
 		<Title>MPSTI.PlenoSoft.Core.Camunda @ Mercado-Pleno</Title>
 		<Description>MPSTI.PlenoSoft.Core.Camunda</Description>
 		<PackageTags>Camunda Mercado Pleno Soluções Tecnologia Informação</PackageTags>
-		<AssemblyVersion>1.0.0.20</AssemblyVersion>
-		<FileVersion>1.0.0.20</FileVersion>
-		<Version>1.0.0.20</Version>
+		<AssemblyVersion>1.0.0.21</AssemblyVersion>
+		<FileVersion>1.0.0.21</FileVersion>
+		<Version>1.0.0.21</Version>
 		<PackageReleaseNotes>
 			<![CDATA[(Atual)
-2022/11/12 - 1.0.0.20 -> Padronizando os nomes dos métodos do camunda para o ingles;
-2022/11/07 - 1.0.0.19 - Refatoração dos namespaces e separação do pacote de Azure Service Bus;
-2022/11/07 - 1.0.0.18 - Ícones o Pacote do Selenium e migração do repositório WatiN;
-2022/11/07 - 1.0.0.17 - Migração de repositório do Camunda;
-2022/11/05 - 1.0.0.5 - Versão Inicial usando o GitHub Actions;
+2022-11-23 - 1.0.0.21 - Implementando a estrutura completa do envio de mensagens para o camunda, dentre elas, o CorrelationKeys;
+2022-11-12 - 1.0.0.20 - Padronizando os nomes dos métodos do camunda para o ingles;
+2022-11-07 - 1.0.0.19 - Refatoração dos namespaces e separação do pacote de Azure Service Bus;
+2022-11-07 - 1.0.0.18 - Ícones o Pacote do Selenium e migração do repositório WatiN;
+2022-11-07 - 1.0.0.17 - Migração de repositório do Camunda;
+2022-11-05 - 1.0.0.5 - Versão Inicial usando o GitHub Actions;
 ]]>
 		</PackageReleaseNotes>
 	</PropertyGroup>

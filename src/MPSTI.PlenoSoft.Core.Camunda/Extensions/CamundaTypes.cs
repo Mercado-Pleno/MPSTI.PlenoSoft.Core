@@ -3,65 +3,82 @@ using System.Collections.Generic;
 
 namespace MPSTI.PlenoSoft.Core.Camunda.Extensions
 {
+	/// <summary>
+	/// https://docs.camunda.io/docs/components/concepts/variables/
+	/// https://docs.camunda.org/manual/7.17/reference/rest/overview/variables/
+	/// https://docs.camunda.org/manual/7.17/user-guide/process-engine/variables/#supported-variable-values
+	/// </summary>
 	public static class CamundaTypes
 	{
 		public const string DateTimeFormatWithTimeZone = "yyyy-MM-dd'T'HH:mm:sszzz";
 		public const string DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
 
-		public const string Int16 = "int";
-		public const string Int32 = "int";
-		public const string Int64 = "long";
-		public const string Number = "double";
 		public const string Boolean = "Boolean";
-		public const string Json = "Json";
-		public const string Object = "Object";
+		public const string Bytes = "Bytes";
+		public const string Short = "Short";
+		public const string Integer = "Integer";
+		public const string Long = "Long";
+		public const string Number = "Number";
+		public const string Double = "Double";
+		public const string Date = "Date";
 		public const string String = "String";
-		public const string cGuid = "String";
-		public const string DateTime = "String";
+		public const string Null = "Null";
+		public const string File = "File";
+		public const string Object = "Object";
+		public const string Json = "Json";
+		public const string Xml = "Xml";
+		public const string Array = "Array";
+
+		public const string cInt16 = Short;
+		public const string cInt32 = Integer;
+		public const string cInt64 = Long;
+		public const string cDecimal = Double;
+		public const string cDouble = Double;
+		public const string cFloat = Double;
+		public const string cBoolean = Boolean;
+		public const string cString = String;
+		public const string cGuid = String;
+		public const string cEnum = String;
+		public const string cTime = String;
+		public const string cDateTime = String;
+		public const string cDate = Date;
+		public const string cObject = Object;
 
 		private static readonly Dictionary<Type, string> _dicTypes = new()
 		{
-			{ typeof(short),   Int16 },
-			{ typeof(short?),  Int16 },
-			{ typeof(ushort),  Int16 },
-			{ typeof(ushort?), Int16 },
-
-			{ typeof(int),   Int32 },
-			{ typeof(int?),  Int32 },
-			{ typeof(uint),  Int32 },
-			{ typeof(uint?), Int32 },
-
-			{ typeof(long),   Int64 },
-			{ typeof(long?),  Int64 },
-			{ typeof(ulong),  Int64 },
-			{ typeof(ulong?), Int64 },
-
-			{ typeof(decimal),   Number },
-			{ typeof(decimal?), Number },
-			{ typeof(double),   Number },
-			{ typeof(double?),  Number },
-			{ typeof(float),    Number },
-			{ typeof(float?),   Number },
-
-			{ typeof(bool),   Boolean },
-			{ typeof(bool?),  Boolean },
-
-			{ typeof(char),   String },
-			{ typeof(char?),  String },
-			{ typeof(string), String },
-
-			{ typeof(Guid),   cGuid },
-			{ typeof(Guid?),  cGuid },
-
-			{ typeof(DateTime),  DateTime },
-			{ typeof(DateTime?), DateTime },
-			{ typeof(DateOnly),  DateTime },
-			{ typeof(DateOnly?), DateTime },
-
-			{ typeof(DateTimeOffset),  DateTime },
-			{ typeof(DateTimeOffset?), DateTime },
-
-			{ typeof(object), Object },
+			{ typeof(short),           cInt16 },
+			{ typeof(short?),          cInt16 },
+			{ typeof(ushort),          cInt16 },
+			{ typeof(ushort?),         cInt16 },
+			{ typeof(int),             cInt32 },
+			{ typeof(int?),            cInt32 },
+			{ typeof(uint),            cInt32 },
+			{ typeof(uint?),           cInt32 },
+			{ typeof(long),            cInt64 },
+			{ typeof(long?),           cInt64 },
+			{ typeof(ulong),           cInt64 },
+			{ typeof(ulong?),          cInt64 },
+			{ typeof(decimal),         cDecimal },
+			{ typeof(decimal?),        cDecimal },
+			{ typeof(double),          cDouble },
+			{ typeof(double?),         cDouble },
+			{ typeof(float),           cFloat },
+			{ typeof(float?),          cFloat },
+			{ typeof(bool),            cBoolean },
+			{ typeof(bool?),           cBoolean },
+			{ typeof(char),            cString },
+			{ typeof(char?),           cString },
+			{ typeof(string),          cString },
+			{ typeof(Guid),            cGuid },
+			{ typeof(Guid?),           cGuid },
+			{ typeof(Enum),            cEnum },
+			{ typeof(DateTime),        cDateTime },
+			{ typeof(DateTime?),       cDateTime },
+			{ typeof(DateOnly),        cDate },
+			{ typeof(DateOnly?),       cDate },
+			{ typeof(DateTimeOffset),  cTime },
+			{ typeof(DateTimeOffset?), cTime },
+			{ typeof(object),          cObject },
 		};
 
 		public static string GetCamundaType<T>(T value)
@@ -72,7 +89,7 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Extensions
 			var type = GetType(value);
 
 			if (type.IsEnum)
-				return String;
+				return cEnum;
 
 			if (_dicTypes.TryGetValue(type, out string typeString))
 				return typeString;
@@ -126,8 +143,8 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Extensions
 
 			value = value.Trim();
 
-			return value.StartsWith("{") && value.EndsWith("}")
-				|| value.StartsWith("[") && value.EndsWith("]");
+			return (value.StartsWith("{") && value.EndsWith("}"))
+				|| (value.StartsWith("[") && value.EndsWith("]"));
 		}
 
 		public static string DateTimeToStringTZ(DateTime dateTime)

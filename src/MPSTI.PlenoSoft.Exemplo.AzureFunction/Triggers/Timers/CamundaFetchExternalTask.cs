@@ -3,6 +3,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.ServiceBus;
 using Microsoft.Extensions.Logging;
 using MPSTI.PlenoSoft.Core.Azure.ServiceBus.Interfaces;
+using MPSTI.PlenoSoft.Core.Camunda.Configurations;
 using MPSTI.PlenoSoft.Core.Camunda.Contracts.ExternalTasks;
 using MPSTI.PlenoSoft.Core.Camunda.Interfaces;
 using MPSTI.PlenoSoft.Core.Camunda.Services;
@@ -55,7 +56,7 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Triggers.Timers
 				await _serviceBusWrapperClient.EnviarMensagem(
 					entityType: EntityType.Queue,
 					entityPath: externalTask.TopicName,
-					mensagem: JsonConvert.SerializeObject(externalTask)
+					mensagem: JsonConvert.SerializeObject(externalTask, CamundaConfiguration.JsonSerializerSettings)
 				);
 			}
 			catch (MessagingEntityNotFoundException) when (tentativa <= 1)
@@ -64,7 +65,6 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Triggers.Timers
 				await Enfileirar(externalTask, tentativa + 1);
 			}
 		}
-
 
 		protected override void LogInformation(string message, params object[] args)
 			=> _logger.LogInformation(message, args);

@@ -1,4 +1,5 @@
-﻿using MPSTI.PlenoSoft.Core.Camunda.Contracts.ExternalTasks;
+﻿using MPSTI.PlenoSoft.Core.Camunda.Configurations;
+using MPSTI.PlenoSoft.Core.Camunda.Contracts.ExternalTasks;
 using MPSTI.PlenoSoft.Core.Camunda.Extensions;
 using Newtonsoft.Json;
 using System;
@@ -8,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace MPSTI.PlenoSoft.Core.Camunda.Services
 {
+	/// <summary>
+	/// https://docs.camunda.io/docs/apis-clients/operate-api/
+	/// </summary>
 	public abstract class CamundaBaseClient
 	{
 		protected readonly HttpClient _httpClient;
@@ -48,7 +52,7 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Services
 
 		protected async Task<HttpResponseMessage> Execute<TBody>(string resource, TBody bodyContent, int retryCount = 2)
 		{
-			var content = new StringContent(JsonConvert.SerializeObject(bodyContent), Encoding.UTF8, "application/json");
+			var content = new StringContent(JsonConvert.SerializeObject(bodyContent, CamundaConfiguration.JsonSerializerSettings), Encoding.UTF8, "application/json");
 			return await Retry.ExecuteAsync(
 				action: () => _httpClient.PostAsync(resource, content),
 				retryWhen: response => !response.IsSuccessStatusCode,

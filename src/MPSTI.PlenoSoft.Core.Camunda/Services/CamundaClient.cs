@@ -1,7 +1,9 @@
-﻿using MPSTI.PlenoSoft.Core.Camunda.Contracts;
+﻿using MPSTI.PlenoSoft.Core.Camunda.Configurations;
+using MPSTI.PlenoSoft.Core.Camunda.Contracts;
 using MPSTI.PlenoSoft.Core.Camunda.Contracts.ExternalTasks;
 using MPSTI.PlenoSoft.Core.Camunda.Contracts.Messages;
 using MPSTI.PlenoSoft.Core.Camunda.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -36,7 +38,8 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Services
 			return await Protected($"external-task/fetchAndLock", async resource =>
 			{
 				var response = await Execute(resource, _fetchExternalTaskRequest);
-				return await response.Content.ReadAsAsync<List<ExternalTask>>();
+				var jsonString = await response.Content.ReadAsStringAsync();
+				return JsonConvert.DeserializeObject<List<ExternalTask>>(jsonString, CamundaConfiguration.JsonSerializerSettings);
 			});
 		}
 

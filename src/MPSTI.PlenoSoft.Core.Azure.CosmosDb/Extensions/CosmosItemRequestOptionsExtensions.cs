@@ -1,8 +1,10 @@
 ﻿using Microsoft.Azure.Cosmos;
 using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Interfaces;
+using System.Diagnostics;
 
 namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Extensions
 {
+	[DebuggerNonUserCode]
 	public static class CosmosItemRequestOptionsExtensions
 	{
 		public static TItemRequestOptions WithETag<TItemRequestOptions, TCosmosEntity>(this TItemRequestOptions itemRequestOptions, TCosmosEntity entity) where TItemRequestOptions : ItemRequestOptions

@@ -10,11 +10,12 @@ namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Interfaces
 
 	public interface ICosmosRepository<TCosmosEntity> where TCosmosEntity : ICosmosEntity
 	{
-		Task<TCosmosEntity> InsertAsync(TCosmosEntity entity);
-		Task<TCosmosEntity> UpdateAsync(TCosmosEntity entity);
-		Task<TCosmosEntity> DeleteAsync(TCosmosEntity entity);
+		Task<TCosmosEntity> InsertAsync(TCosmosEntity cosmosEntity);
+		Task<TCosmosEntity> UpdateAsync(TCosmosEntity cosmosEntity);
+		Task<TCosmosEntity> DeleteAsync(TCosmosEntity cosmosEntity);
 		Task<TCosmosEntity> PatchAsync<TEntity>(TEntity entity, string path, string id, string partitionKeyValue);
-		Task<TCosmosEntity> GetAsync(TCosmosEntity entity);
+		Task<ICosmosEntity> GetByPKAsIdAsync(string partitionKeyValue);
+		Task<TCosmosEntity> GetAsync(TCosmosEntity cosmosEntity);
 		Task<TCosmosEntity> GetAsync(string id, string partitionKeyValue);
 		Task<TCosmosEntity> GetAsync(string id);
 		Task<IEnumerable<TCosmosEntity>> GetAsync(IEnumerable<string> ids, string partitionKeyValue = null);

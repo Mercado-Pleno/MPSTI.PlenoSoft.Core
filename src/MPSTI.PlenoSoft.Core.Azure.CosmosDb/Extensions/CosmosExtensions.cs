@@ -1,9 +1,11 @@
 ﻿using Microsoft.Azure.Cosmos;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Extensions
 {
+	[DebuggerNonUserCode]
 	public static class CosmosExtensions
 	{
 		public static QueryDefinition WithParameters(this QueryDefinition queryDefinition, IDictionary<string, object> parameters)

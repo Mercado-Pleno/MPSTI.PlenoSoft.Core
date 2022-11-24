@@ -7,15 +7,11 @@ namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Contracts
 	{
 		#region // "ICosmosEntity"
 		string ICosmosEntity.Id => Id?.ToString();
-		string ICosmosEntity.PartitionKeyPath => PartitionKeyPath;
 		string ICosmosEntity.PartitionKeyValue => PartitionKeyValue;
 		#endregion // "ICosmosEntity"
 
 		[JsonProperty("id")]
 		public virtual TId Id { get; set; }
-
-		[JsonIgnore]
-		protected abstract string PartitionKeyPath { get; }
 
 		[JsonIgnore]
 		protected abstract string PartitionKeyValue { get; }

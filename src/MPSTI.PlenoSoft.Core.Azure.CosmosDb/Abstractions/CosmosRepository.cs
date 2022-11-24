@@ -1,6 +1,7 @@
 ﻿using Microsoft.Azure.Cosmos;
 using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Extensions;
 using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -8,16 +9,20 @@ using System.Threading.Tasks;
 
 namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Abstractions
 {
-	public abstract class CosmosRepository<TCosmosEntity> : ICosmosRepository<TCosmosEntity> where TCosmosEntity : ICosmosEntity, new()
+	public abstract class CosmosRepository<TCosmosEntity> : ICosmosRepository<TCosmosEntity> where TCosmosEntity : ICosmosEntity//, new()
 	{
-		protected const string DefaultQuery = "Select * From C ";
+		public const string DefaultQuery = "Select * From C ";
 		protected readonly Container Container;
 
-		public virtual string PartitionKeyPath => new TCosmosEntity().PartitionKeyPath;
 		public abstract string DatabaseName { get; }
 		public abstract string ContainerName { get; }
+		public abstract string PartitionKeyPath { get; }
 
-		protected CosmosRepository(CosmosClient cosmosClient) => Container = cosmosClient.GetContainer(DatabaseName, ContainerName);
+		protected CosmosRepository(CosmosClient cosmosClient)
+		{
+			if (cosmosClient is null) throw new ArgumentNullException(nameof(cosmosClient));
+			Container = cosmosClient.GetContainer(DatabaseName, ContainerName);
+		}
 
 		protected async Task<Container> CreateDatabaseAndContainer(CosmosClient cosmosClient)
 		{
@@ -25,35 +30,35 @@ namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Abstractions
 			return (await database.CreateContainerIfNotExistsAsync(ContainerName, PartitionKeyPath)).Container;
 		}
 
-		public async Task<TCosmosEntity> InsertAsync(TCosmosEntity entity)
+		public async Task<TCosmosEntity> InsertAsync(TCosmosEntity cosmosEntity)
 		{
-			if (entity == null) return default;
-			var partitionKey = new PartitionKey(entity.PartitionKeyValue);
-			var result = await Container.CreateItemAsync(entity, partitionKey);
+			if (cosmosEntity == null) return default;
+			var partitionKey = new PartitionKey(cosmosEntity.PartitionKeyValue);
+			var result = await Container.CreateItemAsync(cosmosEntity, partitionKey);
 			return result.Resource;
 		}
 
-		public async Task<TCosmosEntity> UpdateAsync(TCosmosEntity entity)
+		public async Task<TCosmosEntity> UpdateAsync(TCosmosEntity cosmosEntity)
 		{
-			if (entity == null) return default;
-			var partitionKey = new PartitionKey(entity.PartitionKeyValue);
-			var itemRequestOptions = new ItemRequestOptions().WithETag(entity);
-			var result = await Container.UpsertItemAsync(entity, partitionKey, itemRequestOptions);
+			if (cosmosEntity == null) return default;
+			var partitionKey = new PartitionKey(cosmosEntity.PartitionKeyValue);
+			var itemRequestOptions = new ItemRequestOptions().WithETag(cosmosEntity);
+			var result = await Container.UpsertItemAsync(cosmosEntity, partitionKey, itemRequestOptions);
 			return result.Resource;
 		}
 
-		public async Task<TCosmosEntity> DeleteAsync(TCosmosEntity entity)
+		public async Task<TCosmosEntity> DeleteAsync(TCosmosEntity cosmosEntity)
 		{
-			if (entity == null) return default;
-			var partitionKey = new PartitionKey(entity.PartitionKeyValue);
-			var itemRequestOptions = new ItemRequestOptions().WithETag(entity);
-			var result = await Container.DeleteItemAsync<TCosmosEntity>(entity.Id, partitionKey, itemRequestOptions);
+			if (cosmosEntity == null) return default;
+			var partitionKey = new PartitionKey(cosmosEntity.PartitionKeyValue);
+			var itemRequestOptions = new ItemRequestOptions().WithETag(cosmosEntity);
+			var result = await Container.DeleteItemAsync<TCosmosEntity>(cosmosEntity.Id, partitionKey, itemRequestOptions);
 			return result.Resource;
 		}
 
 		public async Task<TCosmosEntity> PatchAsync<TEntity>(TEntity entity, string path, string id, string partitionKeyValue)
 		{
-			if (entity == null) return default;
+			if ((entity == null) || string.IsNullOrWhiteSpace(path) || string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(partitionKeyValue)) return default;
 			var partitionKey = new PartitionKey(partitionKeyValue);
 			var patchOperations = new[] { PatchOperation.Replace(path, entity) };
 			var patchItemRequestOptions = new PatchItemRequestOptions().WithETag(entity);
@@ -61,8 +66,11 @@ namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Abstractions
 			return result.Resource;
 		}
 
-		public async Task<TCosmosEntity> GetAsync(TCosmosEntity entity)
-			=> entity == null ? default : await GetAsync(entity.Id, entity.PartitionKeyValue);
+		public async Task<ICosmosEntity> GetByPKAsIdAsync(string partitionKeyValue)
+			=> string.IsNullOrWhiteSpace(partitionKeyValue) ? default : await GetAsync(partitionKeyValue, partitionKeyValue);
+
+		public async Task<TCosmosEntity> GetAsync(TCosmosEntity cosmosEntity)
+			=> cosmosEntity == null ? default : await GetAsync(cosmosEntity.Id, cosmosEntity.PartitionKeyValue);
 
 		public async Task<TCosmosEntity> GetAsync(string id, string partitionKeyValue)
 		{
@@ -81,6 +89,7 @@ namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Abstractions
 
 		public async Task<TCosmosEntity> GetAsync(string id)
 		{
+			if (string.IsNullOrWhiteSpace(id)) return default;
 			var parameters = new Dictionary<string, object> { { "@id", id } };
 			var results = await QueryAsync($"{DefaultQuery} Where C.id = @id", parameters);
 			return results.SingleOrDefault();
@@ -88,13 +97,15 @@ namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Abstractions
 
 		public async Task<IEnumerable<TCosmosEntity>> GetAsync(IEnumerable<string> ids, string partitionKeyValue = null)
 		{
+			if (ids?.Any() != true) return Array.Empty<TCosmosEntity>();
 			var parameters = new Dictionary<string, object> { { "@ids", ids } };
 			var queryRequestOptions = new QueryRequestOptions().WithPartitionKey(partitionKeyValue);
 			return await QueryAsync($"{DefaultQuery} Where ARRAY_CONTAINS(@ids, C.id)", parameters, queryRequestOptions);
 		}
-		
+
 		public async Task<IEnumerable<TCosmosEntity>> GetAllAsync(string partitionKeyValue)
 		{
+			if (string.IsNullOrWhiteSpace(partitionKeyValue)) return Array.Empty<TCosmosEntity>();
 			var queryRequestOptions = new QueryRequestOptions().WithPartitionKey(partitionKeyValue);
 			return await QueryAsync(new QueryDefinition(DefaultQuery), queryRequestOptions);
 		}

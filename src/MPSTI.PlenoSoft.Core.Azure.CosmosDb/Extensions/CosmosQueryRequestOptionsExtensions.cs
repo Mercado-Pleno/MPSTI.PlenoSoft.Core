@@ -1,7 +1,9 @@
 ﻿using Microsoft.Azure.Cosmos;
+using System.Diagnostics;
 
 namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Extensions
 {
+	[DebuggerNonUserCode]
 	public static class CosmosQueryRequestOptionsExtensions
 	{
 		public static QueryRequestOptions WithMaxItemCount(this QueryRequestOptions queryRequestOptions, int? maxItemCount = 10, bool force = false)

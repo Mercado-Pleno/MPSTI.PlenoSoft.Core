@@ -5,7 +5,6 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Contracts
 {
 	public class Familia : CosmosEntityConcurrent<Guid>
 	{
-		protected override string PartitionKeyPath => "/LastName";
 		protected override string PartitionKeyValue => LastName;
 
 		public string FirstName { get; set; }

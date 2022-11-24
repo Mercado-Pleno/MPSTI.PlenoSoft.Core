@@ -64,13 +64,13 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Triggers
 				lista.ToList().ForEach(item => item.Doc = string.Join("", item.Doc.Reverse()));
 				await _familiaRepository.UpdateAsync(luani);
 
-				var result = await _familiaRepository.ExecuteBatch(lista, (partitionKeyValue, items, batch) =>
+				var result = await _familiaRepository.ExecuteBatchAsync(lista, (partitionKeyValue, items, batch) =>
 				{
 					foreach (var item in items)
 						batch.UpsertItem<Familia>(item);
 				});
 
-				var result2 = await _familiaRepository.ExecuteBatch("Fernandes", (partitionKeyValue, batch) =>
+				var result2 = await _familiaRepository.ExecuteBatchAsync("Fernandes", (partitionKeyValue, batch) =>
 				{
 					batch.UpsertItem<Familia>(luani);
 					foreach (var item in lista.Where(x => x.LastName == partitionKeyValue))

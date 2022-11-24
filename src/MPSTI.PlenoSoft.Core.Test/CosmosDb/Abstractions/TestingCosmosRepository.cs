@@ -427,7 +427,7 @@ namespace MPSTI.PlenoSoft.Core.Test.CosmosDb.Abstractions
 		{
 			var list = new List<ICosmosEntity> { _cosmosEntity };
 
-			var result = await _cosmosRepository.ExecuteBatch(list, (partitionKeyValue, items, batch) =>
+			var result = await _cosmosRepository.ExecuteBatchAsync(list, (partitionKeyValue, items, batch) =>
 			{
 				foreach (var item in items)
 					batch.UpsertItem(item);
@@ -443,7 +443,7 @@ namespace MPSTI.PlenoSoft.Core.Test.CosmosDb.Abstractions
 		{
 			var list = new List<ICosmosEntity> { _cosmosEntity };
 
-			var result = await _cosmosRepository.ExecuteBatch("123", (partitionKeyValue, batch) =>
+			var result = await _cosmosRepository.ExecuteBatchAsync("123", (partitionKeyValue, batch) =>
 			{
 				batch.UpsertItem(_cosmosEntity);
 				foreach (var item in list.Where(x => x.PartitionKeyValue == partitionKeyValue))

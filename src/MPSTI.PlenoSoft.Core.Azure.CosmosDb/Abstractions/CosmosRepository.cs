@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Abstractions
 {
-	public abstract class CosmosRepository<TCosmosEntity> : ICosmosRepository<TCosmosEntity> where TCosmosEntity : ICosmosEntity//, new()
+	public abstract class CosmosRepository<TCosmosEntity> : ICosmosRepository<TCosmosEntity> where TCosmosEntity : ICosmosEntity
 	{
 		public const string DefaultQuery = "Select * From C ";
 		protected readonly Container Container;
@@ -66,7 +66,7 @@ namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Abstractions
 			return result.Resource;
 		}
 
-		public async Task<ICosmosEntity> GetByPKAsIdAsync(string partitionKeyValue)
+		public async Task<TCosmosEntity> GetByPKAsIdAsync(string partitionKeyValue)
 			=> string.IsNullOrWhiteSpace(partitionKeyValue) ? default : await GetAsync(partitionKeyValue, partitionKeyValue);
 
 		public async Task<TCosmosEntity> GetAsync(TCosmosEntity cosmosEntity)
@@ -126,7 +126,7 @@ namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Abstractions
 			return await feedIterator.GetResult();
 		}
 
-		public async Task<TransactionalBatchResponse> ExecuteBatch(string partitionKeyValue, BatchAction batchAction)
+		public async Task<TransactionalBatchResponse> ExecuteBatchAsync(string partitionKeyValue, BatchAction batchAction)
 		{
 			var transactionalBatch = Container.CreateTransactionalBatch(new PartitionKey(partitionKeyValue));
 
@@ -135,13 +135,13 @@ namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Abstractions
 			return await transactionalBatch.ExecuteAsync();
 		}
 
-		public async Task<Dictionary<string, TransactionalBatchResponse>> ExecuteBatch<TEntity>(IEnumerable<TEntity> lista, BatchAction<TEntity> batchAction) where TEntity : ICosmosEntity
+		public async Task<Dictionary<string, TransactionalBatchResponse>> ExecuteBatchAsync<TEntity>(IEnumerable<TEntity> lista, BatchAction<TEntity> batchAction) where TEntity : ICosmosEntity
 		{
 			var results = new Dictionary<string, TransactionalBatchResponse>();
 			var groups = lista.GroupBy(g => g.PartitionKeyValue);
 
 			foreach (var group in groups)
-				results[group.Key] = await ExecuteBatch(group.Key, (partitionKeyValue, action) => batchAction(partitionKeyValue, group, action));
+				results[group.Key] = await ExecuteBatchAsync(group.Key, (partitionKeyValue, action) => batchAction(partitionKeyValue, group, action));
 
 			return results;
 		}

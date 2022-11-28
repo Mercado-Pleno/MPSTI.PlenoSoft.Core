@@ -1,13 +1,13 @@
 ﻿using Microsoft.Azure.Cosmos;
-using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository.Extensions;
-using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository.Interfaces;
+using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Extensions;
+using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository.Abstractions
+namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Abstractions
 {
 	public abstract class CosmosRepository<TCosmosEntity> : ICosmosRepository<TCosmosEntity> where TCosmosEntity : ICosmosEntity
 	{
@@ -58,7 +58,7 @@ namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository.Abstractions
 
 		public async Task<TCosmosEntity> PatchAsync<TEntity>(TEntity entity, string path, string id, string partitionKeyValue)
 		{
-			if (entity == null || string.IsNullOrWhiteSpace(path) || string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(partitionKeyValue)) return default;
+			if ((entity == null) || string.IsNullOrWhiteSpace(path) || string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(partitionKeyValue)) return default;
 			var partitionKey = new PartitionKey(partitionKeyValue);
 			var patchOperations = new[] { PatchOperation.Replace(path, entity) };
 			var patchItemRequestOptions = new PatchItemRequestOptions().WithETag(entity);

@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
 
-namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository.Configurations
+namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Configurations
 {
 	[ExcludeFromCodeCoverage]
 	public static class CosmosConfiguration

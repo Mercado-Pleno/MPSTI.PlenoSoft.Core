@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository.Interfaces
+namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Interfaces
 {
 	public delegate void BatchAction<in TEntity>(string partitionKeyValue, IEnumerable<TEntity> items, TransactionalBatch transactionalBatch) where TEntity : ICosmosEntity;
 

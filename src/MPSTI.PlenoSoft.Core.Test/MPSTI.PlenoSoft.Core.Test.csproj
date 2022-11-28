@@ -34,7 +34,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository\MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository.csproj" />
+		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Azure.CosmosDb\MPSTI.PlenoSoft.Core.Azure.CosmosDb.csproj" />
 		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Flux\MPSTI.PlenoSoft.Core.Flux.csproj" />
 		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Selenium\MPSTI.PlenoSoft.Core.Selenium.csproj" />
 		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.xUnit\MPSTI.PlenoSoft.Core.xUnit.csproj" />

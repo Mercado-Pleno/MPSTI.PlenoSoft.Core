@@ -1,4 +1,4 @@
-﻿namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository.Interfaces
+﻿namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Interfaces
 {
 	public interface ICosmosEntityConcurrent
 	{

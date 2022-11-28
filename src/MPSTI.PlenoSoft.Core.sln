@@ -42,7 +42,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Azure.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Exemplo.AzureFunction", "MPSTI.PlenoSoft.Exemplo.AzureFunction\MPSTI.PlenoSoft.Exemplo.AzureFunction.csproj", "{40FD8BED-1E79-41D5-A15F-71628167DEED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository", "MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository\MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository.csproj", "{08B3829C-5B7E-4E5E-A540-99DE7F2E7A9F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPSTI.PlenoSoft.Core.Azure.CosmosDb", "MPSTI.PlenoSoft.Core.Azure.CosmosDb\MPSTI.PlenoSoft.Core.Azure.CosmosDb.csproj", "{08B3829C-5B7E-4E5E-A540-99DE7F2E7A9F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPSTI.PlenoSoft.Core.MongoDb", "MPSTI.PlenoSoft.Core.MongoDb\MPSTI.PlenoSoft.Core.MongoDb.csproj", "{195F82B9-5C67-4D86-8904-D94098B4DF3C}"
 EndProject

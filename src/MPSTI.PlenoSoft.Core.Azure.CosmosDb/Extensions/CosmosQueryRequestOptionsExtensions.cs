@@ -1,7 +1,7 @@
 ﻿using Microsoft.Azure.Cosmos;
 using System.Diagnostics;
 
-namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository.Extensions
+namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Extensions
 {
 	[DebuggerNonUserCode]
 	public static class CosmosQueryRequestOptionsExtensions

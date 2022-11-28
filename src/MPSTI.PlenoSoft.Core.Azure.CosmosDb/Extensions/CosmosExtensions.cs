@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository.Extensions
+namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Extensions
 {
 	[DebuggerNonUserCode]
 	public static class CosmosExtensions

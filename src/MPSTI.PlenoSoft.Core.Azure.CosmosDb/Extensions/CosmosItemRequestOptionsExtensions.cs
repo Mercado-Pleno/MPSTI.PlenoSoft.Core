@@ -1,8 +1,8 @@
 ﻿using Microsoft.Azure.Cosmos;
-using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository.Interfaces;
+using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Interfaces;
 using System.Diagnostics;
 
-namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository.Extensions
+namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Extensions
 {
 	[DebuggerNonUserCode]
 	public static class CosmosItemRequestOptionsExtensions

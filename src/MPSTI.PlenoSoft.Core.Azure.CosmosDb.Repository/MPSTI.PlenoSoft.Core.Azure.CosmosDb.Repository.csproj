@@ -22,13 +22,14 @@
 		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</RepositoryUrl>
 		<Title>MPSTI.PlenoSoft.Core.Azure.CosmosDb @ Mercado-Pleno</Title>
-		<Description>MPSTI.PlenoSoft.Core.Azure.CosmosDb</Description>
-		<PackageTags>Azure Cosmos Db NoSql Repository Mercado Pleno Soluções Tecnologia Informação</PackageTags>
-		<AssemblyVersion>1.0.0.2</AssemblyVersion>
-		<FileVersion>1.0.0.2</FileVersion>
-		<Version>1.0.0.2</Version>
+		<Description>MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository</Description>
+		<PackageTags>Azure Cosmos Db Repository NoSql Repository Mercado Pleno Soluções Tecnologia Informação</PackageTags>
+		<AssemblyVersion>1.0.0.3</AssemblyVersion>
+		<FileVersion>1.0.0.3</FileVersion>
+		<Version>1.0.0.3</Version>
 		<PackageReleaseNotes>
 			<![CDATA[(Atual)
+2022-11-28 - 1.0.0.3 - Altera o nome do Package, adicionando o sufixo '.Repository';
 2022-11-23 - 1.0.0.2 - Implementa a busca de documentos através de uma array de ids;
 2022-11-20 - 1.0.0.1 - Versão Inicial usando o GitHub Actions;
 ]]>

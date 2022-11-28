@@ -1,9 +1,9 @@
 ﻿using Microsoft.Azure.Cosmos;
 using Moq;
-using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Abstractions;
-using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Contracts;
-using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Extensions;
-using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Interfaces;
+using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository.Abstractions;
+using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository.Contracts;
+using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository.Extensions;
+using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository.Interfaces;
 using System.Linq;
 using System.Net;
 using System.Threading;

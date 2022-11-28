@@ -1,7 +1,7 @@
-﻿using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Interfaces;
+﻿using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository.Interfaces;
 using Newtonsoft.Json;
 
-namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Contracts
+namespace MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository.Contracts
 {
 	public abstract class CosmosEntity<TId> : ICosmosEntity
 	{

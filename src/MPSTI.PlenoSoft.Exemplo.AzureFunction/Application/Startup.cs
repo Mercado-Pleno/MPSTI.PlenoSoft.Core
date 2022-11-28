@@ -1,7 +1,7 @@
 ﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Configurations;
+using MPSTI.PlenoSoft.Core.Azure.CosmosDb.Repository.Configurations;
 using MPSTI.PlenoSoft.Core.Azure.ServiceBus.Configurations;
 using MPSTI.PlenoSoft.Core.Camunda.Configurations;
 using MPSTI.PlenoSoft.Core.MongoDb.Configurations;

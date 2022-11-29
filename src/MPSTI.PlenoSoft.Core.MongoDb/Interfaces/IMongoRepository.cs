@@ -8,13 +8,14 @@ namespace MPSTI.PlenoSoft.Core.MongoDb.Interfaces
 {
 	public interface IMongoRepository<TMongoEntity> where TMongoEntity : IMongoEntity
 	{
-		Task<TMongoEntity> CreateItem(TMongoEntity entity);
-		Task<ReplaceOneResult> UpdateItem(TMongoEntity entity);
-		Task<DeleteResult> DeleteItem(TMongoEntity entity);
-		Task<DeleteResult> DeleteItem(string id);
-		Task<TMongoEntity> GetByItem(TMongoEntity entity);
-		Task<TMongoEntity> GetById(string id);
+		Task<TMongoEntity> InsertAsync(TMongoEntity entity);
+		Task<ReplaceOneResult> UpdateAsync(TMongoEntity entity);
+		Task<DeleteResult> DeleteAsync(TMongoEntity entity);
+		Task<DeleteResult> DeleteAsync(string id);
+		Task<TMongoEntity> GetAsync(TMongoEntity entity);
+		Task<TMongoEntity> GetAsync(string id);
+		Task<bool> ExistsAsync(string id);
 		Task<IEnumerable<TMongoEntity>> GetAll();
-		Task<IEnumerable<TMongoEntity>> Query(Expression<Func<TMongoEntity, bool>> filter);
+		Task<IAsyncCursor<TMongoEntity>> Query(Expression<Func<TMongoEntity, bool>> filter);
 	}
 }

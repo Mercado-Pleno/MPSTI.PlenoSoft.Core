@@ -3,13 +3,9 @@ using Newtonsoft.Json;
 
 namespace MPSTI.PlenoSoft.Core.MongoDb.Contracts
 {
-	public abstract class MongoEntity<TId> : IMongoEntity
+	public abstract class MongoEntity : IMongoEntity
 	{
-		#region // "IMongoEntity"
-		string IMongoEntity.Id => Id?.ToString();
-		#endregion // "IMongoEntity"
-
 		[JsonProperty("id")]
-		public virtual TId Id { get; set; }
+		public virtual string Id { get; set; }
 	}
 }

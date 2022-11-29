@@ -10,25 +10,41 @@ Confira a lista de todos os pacotes deste repositório no [nuget.org](https://ww
 [![Publish Nuget .Net6](https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core/actions/workflows/publish-nuget-net6.yml/badge.svg)](https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core/actions/workflows/publish-nuget-net6.yml)
 Endereços dos pacotes NuGet (.Net6):
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Azure.CosmosDb
+  - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.Azure.CosmosDb?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.Azure.CosmosDb?style=plastic)](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Azure.CosmosDb)
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Azure.ServiceBus
+  - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.Azure.ServiceBus?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.Azure.ServiceBus?style=plastic)](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Azure.ServiceBus)
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Caches
+  - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.Caches?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.Caches?style=plastic)](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Caches)
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Camunda
+  - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.Camunda?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.Camunda?style=plastic)](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Camunda)
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Collections
+  - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.Collections?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.Collections?style=plastic)](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Collections)
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.CrossProject
+  - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.CrossProject?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.CrossProject?style=plastic)](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.CrossProject)
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.CrossProject.Web
+  - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.CrossProject.Web?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.CrossProject.Web?style=plastic)](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.CrossProject.Web)
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Extensions
+  - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.Extensions?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.Extensions?style=plastic)](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Extensions)
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Flux
+  - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.Flux?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.Flux?style=plastic)](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Flux)
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.MongoDb
+  - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.MongoDb?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.MongoDb?style=plastic)](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.MongoDb)
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Office.EPPlus
+  - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.Office.EPPlus?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.Office.EPPlus?style=plastic)](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Office.EPPlus)
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Selenium
+  - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.Selenium?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.Selenium?style=plastic)](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Selenium)
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.xUnit
+  - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.xUnit?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.xUnit?style=plastic)](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.xUnit)
 
 <br/>
 
 [![Publish Nuget .Net4](https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core/actions/workflows/publish-nuget-net4.yml/badge.svg)](https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core/actions/workflows/publish-nuget-net4.yml)
 Endereços dos pacotes NuGet (.Net Framework 4.8):
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Office.OpenXML
+  - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.Office.OpenXML?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.Office.OpenXML?style=plastic)](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Office.OpenXML)
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Selenium.Net4
+  - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.Selenium.Net4?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.Selenium.Net4?style=plastic)](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Selenium.Net4)
 - https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.WatiN.Net4
+  - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.WatiN.Net4?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.WatiN.Net4?style=plastic)](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.WatiN.Net4)
 
 

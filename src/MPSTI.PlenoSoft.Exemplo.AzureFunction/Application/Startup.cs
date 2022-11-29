@@ -29,7 +29,6 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Application
 		{
 			services.AddHttpClient();
 
-			GuidAsStringRepresentationConvention.Register();
 			services.RegisterMongoDb(configuration.GetValue<string>("ConnectionString_MongoDb"));
 			services.RegisterCosmosDb(configuration.GetValue<string>("Azure_CosmosDb"));
 			services.RegisterServiceBus(configuration.GetValue<string>("Azure_ServiceBus"));

@@ -1,9 +1,10 @@
-﻿using MPSTI.PlenoSoft.Core.MongoDb.Contracts;
+﻿using MongoDB.Bson;
+using MPSTI.PlenoSoft.Core.MongoDb.Contracts;
 using System;
 
 namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Contracts
 {
-	public class Pessoa : MongoEntity<string>
+	public class Pessoa : MongoEntity<ObjectId>
 	{
 		public string FirstName { get; set; }
 		public string LastName { get; set; }

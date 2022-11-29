@@ -22,13 +22,14 @@
 		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</RepositoryUrl>
 		<Title>MPSTI.PlenoSoft.Core.MongoDb @ Mercado-Pleno</Title>
-		<Description>MPSTI.PlenoSoft.Core.MongoDb</Description>
-		<PackageTags>Mongo Db NoSql Mercado Pleno Soluções Tecnologia Informação</PackageTags>
-		<AssemblyVersion>1.0.0.1</AssemblyVersion>
-		<FileVersion>1.0.0.1</FileVersion>
-		<Version>1.0.0.1</Version>
+		<Description>MPSTI.PlenoSoft.Core.MongoDb Repository</Description>
+		<PackageTags>Mongo Db NoSql Repository Mercado Pleno Soluções Tecnologia Informação</PackageTags>
+		<AssemblyVersion>1.0.0.2</AssemblyVersion>
+		<FileVersion>1.0.0.2</FileVersion>
+		<Version>1.0.0.2</Version>
 		<PackageReleaseNotes>
 			<![CDATA[(Atual)
+2022/11/29 - 1.0.0.2 - Implementa o Repositório do Mongo Db para utilizar parâmetros Genéricos para definir o tipo do Id;
 2022/11/21 - 1.0.0.1 - Versão Inicial do Mongo Db usando o GitHub Actions;
 ]]>
 		</PackageReleaseNotes>

@@ -8,7 +8,6 @@ using MongoDB.Bson;
 using MPSTI.PlenoSoft.Exemplo.AzureFunction.Contracts;
 using MPSTI.PlenoSoft.Exemplo.AzureFunction.Repository;
 using System;
-using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -30,7 +29,7 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Triggers
 		{
 			try
 			{
-				var id = "1f00b4bf-0000-0400-0000-63799e3e0000";
+				var id = new ObjectId("638589945d1b116f10ca9a78");
 
 				var pessoa = await _pessoaRepository.GetAsync(id);
 				if (pessoa == null)

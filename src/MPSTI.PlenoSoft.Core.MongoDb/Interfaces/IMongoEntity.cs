@@ -1,7 +1,7 @@
 ﻿namespace MPSTI.PlenoSoft.Core.MongoDb.Interfaces
 {
-	public interface IMongoEntity
+	public interface IMongoEntity<out TId>
 	{
-		string Id { get; }
+		TId Id { get; }
 	}
 }

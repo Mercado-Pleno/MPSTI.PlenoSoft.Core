@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace MPSTI.PlenoSoft.Core.MongoDb.Abstractions
 {
-	public abstract class MongoRepository<TMongoEntity> : IMongoRepository<TMongoEntity> where TMongoEntity : IMongoEntity
+	public abstract class MongoRepository<TMongoEntity, TId> : IMongoRepository<TMongoEntity, TId> where TMongoEntity : IMongoEntity<TId>
+		where TId : class
 	{
 		protected readonly IMongoCollection<TMongoEntity> Collection;
 
@@ -36,27 +37,35 @@ namespace MPSTI.PlenoSoft.Core.MongoDb.Abstractions
 		public async Task<DeleteResult> DeleteAsync(TMongoEntity entity)
 			=> entity == null ? default : await DeleteAsync(entity.Id);
 
-		public async Task<DeleteResult> DeleteAsync(string id)
+		public async Task<DeleteResult> DeleteAsync(TId id)
 		{
-			if (string.IsNullOrWhiteSpace(id)) return default;
+			if (IsDefault(id)) return default;
 			return await Collection.DeleteOneAsync(e => e.Id == id);
 		}
 
 		public async Task<TMongoEntity> GetAsync(TMongoEntity entity)
 			=> entity == null ? default : await GetAsync(entity.Id);
 
-		public async Task<TMongoEntity> GetAsync(string id)
+		public async Task<TMongoEntity> GetAsync(TId id)
 		{
-			if (string.IsNullOrWhiteSpace(id)) return default;
+			if (IsDefault(id)) return default;
 			var entities = await Query(e => e.Id == id);
 			return await entities.SingleOrDefaultAsync();
 		}
 
-		public async Task<bool> ExistsAsync(string id) => !string.IsNullOrWhiteSpace(id) && await (await Query(e => e.Id == id)).AnyAsync();
+		public async Task<bool> ExistsAsync(TId id) => !IsDefault(id) && await (await Query(e => e.Id == id)).AnyAsync();
 
 		public async Task<IEnumerable<TMongoEntity>> GetAll() => await (await Query(e => true)).ToListAsync();
 
 		public async Task<IAsyncCursor<TMongoEntity>> Query(Expression<Func<TMongoEntity, bool>> filter)
 			=> await Collection.FindAsync(filter);
+
+		private bool IsDefault(TId id)
+		{
+			return (id == default(TId)) 
+				|| ReferenceEquals(id as object, null)
+				|| ((id is string stringValue) && string.IsNullOrWhiteSpace(stringValue))
+			;
+		}
 	}
 }

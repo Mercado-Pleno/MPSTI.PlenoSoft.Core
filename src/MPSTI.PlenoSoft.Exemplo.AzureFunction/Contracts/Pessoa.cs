@@ -3,7 +3,7 @@ using System;
 
 namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Contracts
 {
-	public class Pessoa : MongoEntity
+	public class Pessoa : MongoEntity<string>
 	{
 		public string FirstName { get; set; }
 		public string LastName { get; set; }

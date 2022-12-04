@@ -9,6 +9,7 @@ using MPSTI.PlenoSoft.Exemplo.AzureFunction.Contracts;
 using MPSTI.PlenoSoft.Exemplo.AzureFunction.Repository;
 using System;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Triggers
@@ -25,7 +26,8 @@ namespace MPSTI.PlenoSoft.Exemplo.AzureFunction.Triggers
 		}
 
 		[FunctionName("FamiliaControllerCreatePessoa")]
-		public async Task<IActionResult> CreatePessoa([HttpTrigger(AuthorizationLevel.Function, "get", Route = "CreatePessoa")] HttpRequest req, ILogger log)
+		[ProducesResponseType(typeof(Pessoa), (int)HttpStatusCode.OK)]
+		public async Task<IActionResult> CreatePessoa([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "CreatePessoa/{pessoaId}")] HttpRequest req, long pessoaId)
 		{
 			try
 			{

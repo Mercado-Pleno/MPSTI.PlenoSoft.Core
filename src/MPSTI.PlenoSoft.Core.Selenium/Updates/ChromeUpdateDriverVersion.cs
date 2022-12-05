@@ -1,6 +1,8 @@
-﻿namespace MPSTI.PlenoSoft.Core.Selenium.Updates
+﻿using MPSTI.PlenoSoft.Core.Selenium.Factories;
+
+namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 {
-    public class ChromeUpdateDriverVersion : BrowserUpdateDriverVersion
+	public class ChromeUpdateDriverVersion : BrowserUpdateDriverVersion
     {
         protected override string BrowserName => "Google Chrome";
         protected override string BrowserDefaultPath => @"Google\Chrome\Application\chrome.exe";

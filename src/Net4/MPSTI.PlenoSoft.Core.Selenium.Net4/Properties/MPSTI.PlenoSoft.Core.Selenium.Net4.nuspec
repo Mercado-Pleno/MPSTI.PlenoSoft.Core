@@ -12,9 +12,10 @@
 		<summary>O Selenium.Extension é um conjunto de ferramentas que facilita o uso do Selenium muito simples de utilizar. </summary>
 		<tags>Selenium WebDriver Test Teste Interface front frontEnd Pleno Soft</tags>
 		<icon>images\package-selenium.png</icon>
-		<version>1.0.0.23</version>
+		<version>1.0.0.24</version>
 		<releaseNotes>
 			<![CDATA[(Atual)
+2022/12/05 - 1.0.0.24 - Corrige método para pegar o GetText ou Get Value;
 2022/12/04 - 1.0.0.23 - Atualização dos pacotes do Selenium;
 2022/12/04 - 1.0.0.22 - Inclusão do método GetByIdOrName;
 2022/12/04 - 1.0.0.21 - Inclusão do método SetSelect e SetInput no SeleniumRwd;

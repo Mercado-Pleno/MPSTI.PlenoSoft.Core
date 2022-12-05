@@ -1,9 +1,9 @@
-using MPSTI.PlenoSoft.Core.Selenium;
+using MPSTI.PlenoSoft.Core.Selenium.Factories;
 using MPSTI.PlenoSoft.Core.Selenium.Updates;
 
 namespace MPSTI.PlenoSoft.Core.Test.Selenium
 {
-    public class TestingSelenium
+	public class TestingSelenium
     {
         private readonly string[] locations = new[] { @"C:\Program Files", @"C:\Program Files (x86)" };
 

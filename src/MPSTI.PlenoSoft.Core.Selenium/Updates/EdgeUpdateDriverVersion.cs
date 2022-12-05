@@ -1,6 +1,8 @@
-﻿namespace MPSTI.PlenoSoft.Core.Selenium.Updates
+﻿using MPSTI.PlenoSoft.Core.Selenium.Factories;
+
+namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 {
-    public class EdgeUpdateDriverVersion : BrowserUpdateDriverVersion
+	public class EdgeUpdateDriverVersion : BrowserUpdateDriverVersion
     {
         protected override string BrowserName => "Microsoft Edge";
         protected override string BrowserDefaultPath => @"Microsoft\Edge\Application\msedge.exe";

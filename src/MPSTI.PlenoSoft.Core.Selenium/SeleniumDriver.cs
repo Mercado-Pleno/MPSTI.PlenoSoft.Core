@@ -8,7 +8,7 @@ using System.Threading;
 
 namespace MPSTI.PlenoSoft.Core.Selenium
 {
-	public class SeleniumWd
+	public class SeleniumDriver
 	{
 		public IWebDriver WebDriver { get; }
 
@@ -16,15 +16,15 @@ namespace MPSTI.PlenoSoft.Core.Selenium
 
 		public bool IsEmptyPageSource => string.IsNullOrWhiteSpace(Source) || (Source == "<html><head></head><body></body></html>");
 
-		public SeleniumWd(IWebDriver webDriver) => WebDriver = webDriver;
+		public SeleniumDriver(IWebDriver webDriver) => WebDriver = webDriver;
 
-		public SeleniumWd Alert(Action<IAlert> action)
+		public SeleniumDriver Alert(Action<IAlert> action)
 		{
 			action?.Invoke(WebDriver.SwitchTo().Alert());
 			return this;
 		}
 
-		public SeleniumWd Wait(TimeSpan waitTime)
+		public SeleniumDriver Wait(TimeSpan waitTime)
 		{
 			Thread.Sleep(waitTime);
 			return this;
@@ -36,11 +36,11 @@ namespace MPSTI.PlenoSoft.Core.Selenium
 
 		public IWebElement GetBody(int skip = 0) => WebDriver.GetBody(skip);
 
-		public IWebElement GetButton(string text, int skip = 0) => WebDriver.GetButton(text, skip);
+		public IWebElement GetButtonByText(string text, int skip = 0) => WebDriver.GetButtonByText(text, skip);
 
-		public SelectElement GetSelect(string text, int skip = 0) => WebDriver.GetSelect(text, skip);
+		public SelectElement GetSelectByIdOrName(string idOrName, int skip = 0) => WebDriver.GetSelectByIdOrName(idOrName, skip);
 
-		public IWebElement GetByIdOrName(string idOrName, int skip = 0, Func<IWebElement, bool> filter = null)
+		public IWebElement GetElementByIdOrName(string idOrName, int skip = 0, Func<IWebElement, bool> filter = null)
 			=> WebDriver.GetElementByIdOrName(idOrName, skip, filter);
 
 		public IEnumerable<IWebElement> GetElementsByTagName(string idOrName, int skip = 0, Func<IWebElement, bool> filter = null)
@@ -56,9 +56,9 @@ namespace MPSTI.PlenoSoft.Core.Selenium
 
 		public bool ContainsAnyText(bool caseSensitive, params string[] texts) => WebDriver.ContainsAnyText(caseSensitive, texts);
 
-		public bool TextIsEquals(string idOrName, string value) => WebDriver.TextIsEquals(idOrName, value);
+		public bool IsEquals(string idOrName, string value) => WebDriver.IsEquals(idOrName, value);
 
-		public SeleniumWd GoTo(string address)
+		public SeleniumDriver GoTo(string address)
 		{
 			WebDriver.GoTo(address);
 			return this;
@@ -68,13 +68,13 @@ namespace MPSTI.PlenoSoft.Core.Selenium
 
 		public object RunScript(string script) => WebDriver.RunScript(script);
 
-		public SeleniumWd SetPosition(int windowIndex, int windowCount, int offSet = 0)
+		public SeleniumDriver SetPosition(int windowIndex, int windowCount, int offSet = 0)
 		{
 			WebDriver.SetPosition(windowIndex, windowCount, offSet);
 			return this;
 		}
 
-		public SeleniumWd PrintScreen(FileInfo fileInfo)
+		public SeleniumDriver PrintScreen(FileInfo fileInfo)
 		{
 			WebDriver.PrintScreen(fileInfo);
 			return this;

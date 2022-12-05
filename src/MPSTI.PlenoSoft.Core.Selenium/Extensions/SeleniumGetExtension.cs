@@ -11,13 +11,13 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Extensions
 		public static IWebElement GetBody(this ISearchContext searchContext, int skip = 0)
 			=> searchContext.GetElementsByTagName("body", skip).FirstOrDefault();
 
-		public static IWebElement GetButton(this ISearchContext searchContext, string text, int skip = 0)
+		public static IWebElement GetButtonByText(this ISearchContext searchContext, string text, int skip = 0)
 		{
 			var lowerText = text?.Trim()?.ToLower();
 			return searchContext.GetElementsByTagName("button", skip, b => b.Text.ToLower().Contains(lowerText)).FirstOrDefault();
 		}
 
-		public static SelectElement GetSelect(this ISearchContext searchContext, string idOrName, int skip = 0) 
+		public static SelectElement GetSelectByIdOrName(this ISearchContext searchContext, string idOrName, int skip = 0) 
 			=> searchContext.GetElementByIdOrName(idOrName, skip).GetSelect();
 
 		public static SelectElement GetSelect(this IWebElement webElement) => new SelectElement(webElement);
@@ -39,6 +39,21 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Extensions
 
 		public static IEnumerable<IWebElement> GetElementsByTagName(this ISearchContext searchContext, string tagName, int skip = 0, Func<IWebElement, bool> filter = null)
 			=> searchContext.FindElements(By.TagName(tagName)).Skip(skip).Where(filter ?? (x => true));
+
+
+		public static string GetValueOrText(this IWebElement webElement)
+		{
+			var result = webElement.GetValue();
+
+			if (string.IsNullOrWhiteSpace(result))
+				result = webElement.GetText();
+
+			return result;
+		}
+
+		public static string GetText(this IWebElement webElement) => webElement.Text;
+
+		public static string GetValue(this IWebElement webElement) => webElement.GetAttribute("value");
 
 		public static bool IsAlive(this IWebElement webElement)
 		{

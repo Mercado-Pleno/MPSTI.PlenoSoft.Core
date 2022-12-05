@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Remote;
 using System;
 using System.Drawing;
 using System.IO;
@@ -71,6 +70,11 @@ deleteAllCookies();";
 			}
 		}
 
+		/// <summary>
+		/// https://medium.com/@carol.ciola/selenium-webdriver-com-c-artigo-1-de-4-captura-de-screenshot-9f917a43cf6f
+		/// </summary>
+		/// <param name="webDriver"></param>
+		/// <param name="fileInfo"></param>
 		public static void PrintScreen(this IWebDriver webDriver, FileInfo fileInfo)
 		{
 			var camera = webDriver as ITakesScreenshot;

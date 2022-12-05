@@ -82,11 +82,11 @@
     <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Extensions\SeleniumWaitExtension.cs">
       <Link>Extensions\SeleniumWaitExtension.cs</Link>
     </Compile>
-    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\SeleniumFactory.cs">
-      <Link>SeleniumFactory.cs</Link>
+    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Factories\SeleniumFactory.cs">
+      <Link>Factories\SeleniumFactory.cs</Link>
     </Compile>
-    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\SeleniumWd.cs">
-      <Link>SeleniumWd.cs</Link>
+    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\SeleniumDriver.cs">
+      <Link>SeleniumDriver.cs</Link>
     </Compile>
     <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Updates\BrowserUpdateDriverVersion.cs">
       <Link>Updates\BrowserUpdateDriverVersion.cs</Link>

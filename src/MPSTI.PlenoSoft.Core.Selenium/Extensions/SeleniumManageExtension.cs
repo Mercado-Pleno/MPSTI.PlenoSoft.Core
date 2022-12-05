@@ -70,16 +70,16 @@ deleteAllCookies();";
 			}
 		}
 
-		/// <summary>
-		/// https://medium.com/@carol.ciola/selenium-webdriver-com-c-artigo-1-de-4-captura-de-screenshot-9f917a43cf6f
-		/// </summary>
-		/// <param name="webDriver"></param>
-		/// <param name="fileInfo"></param>
 		public static void PrintScreen(this IWebDriver webDriver, FileInfo fileInfo)
 		{
-			var camera = webDriver as ITakesScreenshot;
-			var foto = camera.GetScreenshot();
-			foto.SaveAsFile(fileInfo.FullName, ScreenshotImageFormat.Png);
+			var screenshot = webDriver.PrintScreen();
+			screenshot.SaveAsFile(fileInfo.FullName, ScreenshotImageFormat.Png);
+		}
+
+		public static Screenshot PrintScreen(this IWebDriver webDriver)
+		{
+			var takesScreenshot = webDriver as ITakesScreenshot;
+			return takesScreenshot.GetScreenshot();
 		}
 
 		public static void CloseAndDispose(this IWebDriver webDriver)

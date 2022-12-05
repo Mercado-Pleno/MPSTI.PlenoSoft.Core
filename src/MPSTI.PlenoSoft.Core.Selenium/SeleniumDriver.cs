@@ -80,6 +80,8 @@ namespace MPSTI.PlenoSoft.Core.Selenium
 			return this;
 		}
 
+		public Screenshot PrintScreen() => WebDriver.PrintScreen();
+
 		public void CloseAndDispose() => WebDriver.CloseAndDispose();
 	}
 }

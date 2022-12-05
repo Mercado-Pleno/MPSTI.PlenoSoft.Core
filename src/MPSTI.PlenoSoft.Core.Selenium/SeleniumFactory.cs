@@ -4,7 +4,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Remote;
 using System;
 using System.IO;
 
@@ -16,7 +15,7 @@ namespace MPSTI.PlenoSoft.Core.Selenium
 	{
 		public static BrowserType BrowserType { get; set; } = BrowserType.Chrome;
 
-		public static RemoteWebDriver BrowserWebDriver(BrowserType? browserType = null, string webDriverLocation = null, int? portaTCP = null)
+		public static IWebDriver BrowserWebDriver(BrowserType? browserType = null, string webDriverLocation = null, int? portaTCP = null)
 		{
 			switch (browserType ?? BrowserType)
 			{
@@ -35,7 +34,7 @@ namespace MPSTI.PlenoSoft.Core.Selenium
 		/// http://learn-automation.com/install-selenium-webdriver-with-c/
 		/// https://medium.com/@carol.ciola/selenium-webdriver-com-c-artigo-1-de-4-captura-de-screenshot-9f917a43cf6f
 		/// </summary>
-		public static RemoteWebDriver ChromeWebDriver(string webDriverLocation = null, int? portaTCP = null)
+		public static IWebDriver ChromeWebDriver(string webDriverLocation = null, int? portaTCP = null)
 		{
 			var fileLocation = IoExtension.FindFile(webDriverLocation ?? BrowserUpdateDriverVersion.DriverDefaultPath, "ChromeDriver*.exe", SearchOption.TopDirectoryOnly);
 			var driverService = ChromeDriverService.CreateDefaultService(fileLocation.Directory.FullName, fileLocation.Name);
@@ -48,7 +47,7 @@ namespace MPSTI.PlenoSoft.Core.Selenium
 			return new ChromeDriver(driverService, driverOptions, TimeSpan.FromSeconds(30));
 		}
 
-		public static RemoteWebDriver FirefoxWebDriver(string webDriverLocation, int? portaTCP)
+		public static IWebDriver FirefoxWebDriver(string webDriverLocation, int? portaTCP)
 		{
 			var fileLocation = IoExtension.FindFile(webDriverLocation ?? BrowserUpdateDriverVersion.DriverDefaultPath, "geckodriver*.exe", SearchOption.TopDirectoryOnly);
 			var driverService = FirefoxDriverService.CreateDefaultService(fileLocation.Directory.FullName, fileLocation.Name);
@@ -59,7 +58,7 @@ namespace MPSTI.PlenoSoft.Core.Selenium
 			return new FirefoxDriver(driverService, driverOptions, TimeSpan.FromSeconds(30));
 		}
 
-		public static RemoteWebDriver EdgeWebDriver(string webDriverLocation, int? portaTCP)
+		public static IWebDriver EdgeWebDriver(string webDriverLocation, int? portaTCP)
 		{
 			var fileLocation = IoExtension.FindFile(webDriverLocation ?? BrowserUpdateDriverVersion.DriverDefaultPath, "*EdgeDriver*.exe", SearchOption.TopDirectoryOnly);
 			var driverService = EdgeDriverService.CreateDefaultService(fileLocation.Directory.FullName, fileLocation.Name);
@@ -69,6 +68,6 @@ namespace MPSTI.PlenoSoft.Core.Selenium
 			return new EdgeDriver(driverService, driverOptions, TimeSpan.FromSeconds(30));
 		}
 
-		public static SeleniumRwd Create(this RemoteWebDriver remoteWebDriver) => new SeleniumRwd(remoteWebDriver);
+		public static SeleniumWd Create(this IWebDriver webDriver) => new SeleniumWd(webDriver);
 	}
 }

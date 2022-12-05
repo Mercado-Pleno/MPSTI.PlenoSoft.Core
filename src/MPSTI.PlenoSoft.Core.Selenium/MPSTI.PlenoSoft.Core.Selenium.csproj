@@ -24,14 +24,15 @@
 		<Title>Selenium.Extension @ Mercado-Pleno</Title>
 		<Description>O Selenium.Extension é um conjunto de ferramentas que facilita o uso do Selenium muito simples de utilizar.</Description>
 		<PackageTags>Pleno Selenium Extension Test Automate Mercado Pleno Soluções Tecnologia Informação</PackageTags>
-		<AssemblyVersion>1.0.0.22</AssemblyVersion>
-		<FileVersion>1.0.0.22</FileVersion>
-		<Version>1.0.0.22</Version>
+		<AssemblyVersion>1.0.0.23</AssemblyVersion>
+		<FileVersion>1.0.0.23</FileVersion>
+		<Version>1.0.0.23</Version>
 		<PackageReleaseNotes>
 			<![CDATA[(Atual)
+2022/12/04 - 1.0.0.23 - Atualização dos pacotes do Selenium;
 2022/12/04 - 1.0.0.22 - Inclusão do método GetByIdOrName;
-2022/12/04 - 1.0.0.21 - Inclusão do método SetSelect e SetInput no SeleniumRwd;
-2022/12/04 - 1.0.0.20 - Inclusão do método GetElementsByTagName no SeleniumRwd;
+2022/12/04 - 1.0.0.21 - Inclusão do método SetSelect e SetInput no SeleniumWd;
+2022/12/04 - 1.0.0.20 - Inclusão do método GetElementsByTagName no SeleniumWd;
 2022/12/04 - 1.0.0.19 - Refatoração dos métodos para manter uma só implementação e disponibiliza a possibilidade de procurar o driver em mais de um diretório;
 2022/11/08 - 1.0.0.18 - Ícones o Pacote do Selenium e migração do repositório WatiN;
 2022/11/07 - 1.0.0.17 - Migração de repositório do Selenium;
@@ -56,11 +57,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HtmlAgilityPack" Version="1.11.33" />
-		<PackageReference Include="Selenium.Support" Version="3.141.0" />
-		<PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
-		<PackageReference Include="Selenium.WebDriverBackedSelenium" Version="3.141.0" />
-		<PackageReference Include="System.IO.Compression.ZipFile" Version="4.3.0" />
+		<PackageReference Include="Selenium.Support" Version="4.7.0" />
+		<PackageReference Include="Selenium.WebDriver" Version="4.7.0" />
 	</ItemGroup>
 
 </Project>

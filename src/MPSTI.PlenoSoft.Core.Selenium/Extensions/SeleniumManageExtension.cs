@@ -27,9 +27,8 @@ deleteAllCookies();";
 
 		public static void SetFocus(this IWebElement webElement)
 		{
-			var element = webElement as RemoteWebElement;
-			var id = element?.GetAttribute("id");
-			element?.WrappedDriver?.RunScript($"document.getElementById('{id}').focus();");
+			var id = webElement?.GetAttribute("id");
+			(webElement as IWrapsDriver)?.WrappedDriver?.RunScript($"document.getElementById('{id}').focus();");
 		}
 
 		public static object Scroll(this IWebDriver webDriver, int x, int y)
@@ -81,16 +80,9 @@ deleteAllCookies();";
 
 		public static void CloseAndDispose(this IWebDriver webDriver)
 		{
-			try
-			{
-				webDriver.Close();
-				webDriver.Quit();
-				webDriver.Dispose();
-			}
-			catch (Exception)
-			{
-				GC.SuppressFinalize(webDriver);
-			}
+			webDriver.Close();
+			webDriver.Quit();
+			webDriver.Dispose();
 		}
 	}
 }

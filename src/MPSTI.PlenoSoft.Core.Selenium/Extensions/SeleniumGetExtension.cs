@@ -3,7 +3,6 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 
 namespace MPSTI.PlenoSoft.Core.Selenium.Extensions
 {
@@ -45,5 +44,14 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Extensions
 		{
 			try { return !string.IsNullOrWhiteSpace(webElement?.TagName); } catch { return false; }
 		}
+
+		public static bool FindByIdOrName(this IWebElement webElement, string idOrName)
+			=> webElement.FindById(idOrName) || webElement.FindByName(idOrName);
+
+		public static bool FindById(this IWebElement webElement, string id)
+			=> webElement.GetAttribute("id") == id;
+
+		public static bool FindByName(this IWebElement webElement, string name)
+			=> webElement.GetAttribute("name") == name;
 	}
 }

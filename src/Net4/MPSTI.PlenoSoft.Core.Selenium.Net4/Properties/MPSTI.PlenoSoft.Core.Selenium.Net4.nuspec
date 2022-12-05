@@ -12,10 +12,11 @@
 		<summary>O Selenium.Extension é um conjunto de ferramentas que facilita o uso do Selenium muito simples de utilizar. </summary>
 		<tags>Selenium WebDriver Test Teste Interface front frontEnd Pleno Soft</tags>
 		<icon>images\package-selenium.png</icon>
-		<version>1.0.0.25</version>
+		<version>1.0.0.26</version>
 		<releaseNotes>
 			<![CDATA[(Atual)
-2022/12/05 - 1.0.0.25 - melhorias no método PrintScreen;
+2022/12/05 - 1.0.0.26 - Atualização dos pacotes do Selenium no pacote MPSTI.PlenoSoft.Core.Selenium.Net4;
+2022/12/05 - 1.0.0.25 - Melhorias no método PrintScreen;
 2022/12/05 - 1.0.0.24 - Corrige método para pegar o GetText ou Get Value;
 2022/12/04 - 1.0.0.23 - Atualização dos pacotes do Selenium;
 2022/12/04 - 1.0.0.22 - Inclusão do método GetByIdOrName;
@@ -37,11 +38,11 @@
 		</releaseNotes>
 		<description>O Selenium.Extension é um conjunto de ferramentas que facilita o uso do Selenium muito simples de utilizar.</description>
 		<dependencies>
-			<dependency id="HtmlAgilityPack" version="1.11.33"/>
+			<dependency id="HtmlAgilityPack" version="1.11.46"/>
 			<dependency id="Selenium.RC" version="3.1.0"/>
-			<dependency id="Selenium.Support" version="3.141.0"/>
-			<dependency id="Selenium.WebDriver" version="3.141.0"/>
-			<dependency id="Selenium.WebDriverBackedSelenium" version="3.141.0"/>
+			<dependency id="Selenium.Support" version="4.7.0"/>
+			<dependency id="Selenium.WebDriver" version="4.7.0"/>
+			<dependency id="Selenium.WebDriverBackedSelenium" version="4.1.0"/>
 			<dependency id="System.IO.Compression.ZipFile" version="4.3.0"/>
 		</dependencies>
 		<frameworkAssemblies>

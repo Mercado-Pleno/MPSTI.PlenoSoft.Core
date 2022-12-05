@@ -12,10 +12,11 @@
 		<summary>O Selenium.Extension é um conjunto de ferramentas que facilita o uso do Selenium muito simples de utilizar. </summary>
 		<tags>Selenium WebDriver Test Teste Interface front frontEnd Pleno Soft</tags>
 		<icon>images\package-selenium.png</icon>
-		<version>1.0.0.18</version>
+		<version>1.0.0.19</version>
 		<releaseNotes>
 			<![CDATA[(Atual)
-2022/11/07 - 1.0.0.18 - Ícones o Pacote do Selenium e migração do repositório WatiN;
+2022/12/04 - 1.0.0.19 - Refatoração dos métodos para manter uma só implementação e disponibiliza a possibilidade de procurar o driver em mais de um diretório;
+2022/11/08 - 1.0.0.18 - Ícones o Pacote do Selenium e migração do repositório WatiN;
 2022/11/07 - 1.0.0.17 - Migração de repositório do Selenium;
 2022/11/05 - 1.0.0.9 - Habilitando o GitHub Actions;
 2022/11/04 - 1.0.0.8 - Automatizando a geração de pacotes para o Net6 e o Net48;

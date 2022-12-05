@@ -1,5 +1,4 @@
 using MPSTI.PlenoSoft.Core.Selenium;
-using MPSTI.PlenoSoft.Core.Selenium.Extensions;
 using MPSTI.PlenoSoft.Core.Selenium.Updates;
 
 namespace MPSTI.PlenoSoft.Core.Test.Selenium

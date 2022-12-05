@@ -1,7 +1,9 @@
 ﻿using MPSTI.PlenoSoft.Core.Selenium.Extensions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 
@@ -37,7 +39,13 @@ namespace MPSTI.PlenoSoft.Core.Selenium
 
 		public IWebElement GetButton(string text, int skip = 0) => RemoteWebDriver.GetButton(text, skip);
 
-		public IWebElement GetByIdOrName(string idOrName, int skip = 0) => RemoteWebDriver.GetElementByIdOrName(idOrName, skip);
+		public SelectElement GetSelect(string text, int skip = 0) => RemoteWebDriver.GetSelect(text, skip);
+
+		public IWebElement GetByIdOrName(string idOrName, int skip = 0, Func<IWebElement, bool> filter = null)
+			=> RemoteWebDriver.GetElementByIdOrName(idOrName, skip, filter);
+
+		public IEnumerable<IWebElement> GetElementsByTagName(string idOrName, int skip = 0)
+			=> RemoteWebDriver.GetElementsByTagName(idOrName, skip);
 
 		public bool WaitUntilContainsAllText(CancellationToken cancellationToken, bool caseSensitive, params string[] texts)
 			=> RemoteWebDriver.WaitUntilContainsAllText(cancellationToken, caseSensitive, texts);

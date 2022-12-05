@@ -24,11 +24,12 @@
 		<Title>Selenium.Extension @ Mercado-Pleno</Title>
 		<Description>O Selenium.Extension é um conjunto de ferramentas que facilita o uso do Selenium muito simples de utilizar.</Description>
 		<PackageTags>Pleno Selenium Extension Test Automate Mercado Pleno Soluções Tecnologia Informação</PackageTags>
-		<AssemblyVersion>1.0.0.19</AssemblyVersion>
-		<FileVersion>1.0.0.19</FileVersion>
-		<Version>1.0.0.19</Version>
+		<AssemblyVersion>1.0.0.20</AssemblyVersion>
+		<FileVersion>1.0.0.20</FileVersion>
+		<Version>1.0.0.20</Version>
 		<PackageReleaseNotes>
 			<![CDATA[(Atual)
+2022/12/04 - 1.0.0.20 - Inclusão do método GetElementsByTagName no SeleniumRwd;
 2022/12/04 - 1.0.0.19 - Refatoração dos métodos para manter uma só implementação e disponibiliza a possibilidade de procurar o driver em mais de um diretório;
 2022/11/08 - 1.0.0.18 - Ícones o Pacote do Selenium e migração do repositório WatiN;
 2022/11/07 - 1.0.0.17 - Migração de repositório do Selenium;

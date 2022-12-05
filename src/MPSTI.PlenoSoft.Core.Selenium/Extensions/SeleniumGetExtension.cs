@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace MPSTI.PlenoSoft.Core.Selenium.Extensions
 {
@@ -17,7 +18,8 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Extensions
 			return searchContext.GetElementsByTagName("button", skip).FirstOrDefault(b => b.Text.ToLower().Contains(lowerText));
 		}
 
-		public static SelectElement GetSelect(this ISearchContext searchContext, string idOrName) => searchContext.GetElementByIdOrName(idOrName).GetSelect();
+		public static SelectElement GetSelect(this ISearchContext searchContext, string idOrName, int skip = 0) 
+			=> searchContext.GetElementByIdOrName(idOrName, skip).GetSelect();
 
 		public static SelectElement GetSelect(this IWebElement webElement) => new SelectElement(webElement);
 

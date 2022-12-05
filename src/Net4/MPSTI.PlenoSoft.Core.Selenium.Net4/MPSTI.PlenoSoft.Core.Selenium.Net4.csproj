@@ -7,8 +7,8 @@
     <ProjectGuid>{15901997-BA9D-4395-A71D-6EB58B06DCD6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MPSTI.PlenoSoft.Core.Selenium.dll</RootNamespace>
-    <AssemblyName>MPSTI.PlenoSoft.Core.Selenium.Net4.dll</AssemblyName>
+    <RootNamespace>MPSTI.PlenoSoft.Core.Selenium</RootNamespace>
+    <AssemblyName>MPSTI.PlenoSoft.Core.Selenium.Net4</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

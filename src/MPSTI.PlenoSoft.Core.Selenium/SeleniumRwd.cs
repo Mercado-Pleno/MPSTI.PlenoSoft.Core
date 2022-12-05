@@ -44,8 +44,8 @@ namespace MPSTI.PlenoSoft.Core.Selenium
 		public IWebElement GetByIdOrName(string idOrName, int skip = 0, Func<IWebElement, bool> filter = null)
 			=> RemoteWebDriver.GetElementByIdOrName(idOrName, skip, filter);
 
-		public IEnumerable<IWebElement> GetElementsByTagName(string idOrName, int skip = 0)
-			=> RemoteWebDriver.GetElementsByTagName(idOrName, skip);
+		public IEnumerable<IWebElement> GetElementsByTagName(string idOrName, int skip = 0, Func<IWebElement, bool> filter = null)
+			=> RemoteWebDriver.GetElementsByTagName(idOrName, skip, filter);
 
 		public bool WaitUntilContainsAllText(CancellationToken cancellationToken, bool caseSensitive, params string[] texts)
 			=> RemoteWebDriver.WaitUntilContainsAllText(cancellationToken, caseSensitive, texts);
@@ -59,15 +59,27 @@ namespace MPSTI.PlenoSoft.Core.Selenium
 
 		public bool TextIsEquals(string idOrName, string value) => RemoteWebDriver.TextIsEquals(idOrName, value);
 
-		public void GoTo(string address) => RemoteWebDriver.GoTo(address);
+		public SeleniumRwd GoTo(string address)
+		{
+			RemoteWebDriver.GoTo(address);
+			return this;
+		}
 
 		public object Scroll(int x, int y) => RemoteWebDriver.Scroll(x, y);
 
 		public object RunScript(string script) => RemoteWebDriver.RunScript(script);
-		
-		public void SetPosition(int windowIndex, int windowCount, int offSet = 0) => RemoteWebDriver.SetPosition(windowIndex, windowCount, offSet);
 
-		public void PrintScreen(FileInfo fileInfo) => RemoteWebDriver.PrintScreen(fileInfo);
+		public SeleniumRwd SetPosition(int windowIndex, int windowCount, int offSet = 0)
+		{
+			RemoteWebDriver.SetPosition(windowIndex, windowCount, offSet);
+			return this;
+		}
+
+		public SeleniumRwd PrintScreen(FileInfo fileInfo)
+		{
+			RemoteWebDriver.PrintScreen(fileInfo);
+			return this;
+		}
 
 		public void CloseAndDispose() => RemoteWebDriver.CloseAndDispose();
 	}

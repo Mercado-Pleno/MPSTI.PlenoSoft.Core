@@ -32,18 +32,19 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Extensions
 			return webElement;
 		}
 
-		public static void SetInput(this ISearchContext searchContext, string idOrName, string text) => searchContext.GetElementByIdOrName(idOrName).SetInput(text);
+		public static IWebElement SetInput(this ISearchContext searchContext, string idOrName, string text) => searchContext.GetElementByIdOrName(idOrName).SetInput(text);
 
-		public static void SetInput(this IWebElement webElement, string text)
+		public static IWebElement SetInput(this IWebElement webElement, string text)
 		{
 			var formatedText = text.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", Keys.Shift + Keys.Enter + Keys.Shift);
 			webElement.Clear();
 			webElement.TypeKeys(formatedText);
+			return webElement;
 		}
 
-		public static void SetSelect(this IWebElement webElement, string text) => webElement.GetSelect().SetSelect(text);
+		public static IWebElement SetSelect(this IWebElement webElement, string text) => webElement.GetSelect().SetSelect(text).WrappedElement;
 
-		public static void SetSelect(this SelectElement selectElement, string text)
+		public static SelectElement SetSelect(this SelectElement selectElement, string text)
 		{
 			if (text.Any())
 			{
@@ -68,6 +69,8 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Extensions
 					Thread.Sleep(SeleniumConfig.WaitBeforeGetTextOnSelectedOption);
 				}
 			}
+
+			return selectElement;
 		}
 
 		public static IWebElement Enter(IWebElement webElement) => webElement.TypeKeys(Keys.Enter);

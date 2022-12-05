@@ -15,7 +15,7 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Extensions
 		public static IWebElement GetButton(this ISearchContext searchContext, string text, int skip = 0)
 		{
 			var lowerText = text?.Trim()?.ToLower();
-			return searchContext.GetElementsByTagName("button", skip).FirstOrDefault(b => b.Text.ToLower().Contains(lowerText));
+			return searchContext.GetElementsByTagName("button", skip, b => b.Text.ToLower().Contains(lowerText)).FirstOrDefault();
 		}
 
 		public static SelectElement GetSelect(this ISearchContext searchContext, string idOrName, int skip = 0) 
@@ -38,8 +38,8 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Extensions
 			;
 		}
 
-		public static IEnumerable<IWebElement> GetElementsByTagName(this ISearchContext searchContext, string tagName, int skip = 0)
-			=> searchContext.FindElements(By.TagName(tagName)).Skip(skip);
+		public static IEnumerable<IWebElement> GetElementsByTagName(this ISearchContext searchContext, string tagName, int skip = 0, Func<IWebElement, bool> filter = null)
+			=> searchContext.FindElements(By.TagName(tagName)).Skip(skip).Where(filter ?? (x => true));
 
 		public static bool IsAlive(this IWebElement webElement)
 		{

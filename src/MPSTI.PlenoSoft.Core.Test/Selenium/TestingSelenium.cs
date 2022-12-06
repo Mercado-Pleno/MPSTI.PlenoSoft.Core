@@ -5,12 +5,10 @@ namespace MPSTI.PlenoSoft.Core.Test.Selenium
 {
 	public class TestingSelenium
     {
-        private readonly string[] locations = new[] { @"C:\Program Files", @"C:\Program Files (x86)" };
-
         [FactDebuggerOnly]
         public void QuandoFazUpdate_ChromeUpdateDriverVersion()
         {
-            var updateInfo = ChromeUpdateDriverVersion.Update(locations);
+            var updateInfo = ChromeUpdateDriverVersion.Update();
 
 			Assert.NotNull(updateInfo);
 			Assert.True(updateInfo.Updated);
@@ -24,7 +22,7 @@ namespace MPSTI.PlenoSoft.Core.Test.Selenium
 		[FactDebuggerOnly]
         public void QuandoFazUpdate_EdgeUpdateDriverVersion()
         {
-            var updateInfo = EdgeUpdateDriverVersion.Update(locations);
+            var updateInfo = EdgeUpdateDriverVersion.Update();
 
             Assert.NotNull(updateInfo);
             Assert.True(updateInfo.Updated);
@@ -33,9 +31,23 @@ namespace MPSTI.PlenoSoft.Core.Test.Selenium
             Assert.NotNull(updateInfo.BrowserVersion);
             Assert.NotNull(updateInfo.DriverVersion);
             Assert.NotNull(updateInfo.Message);
-        }    
-        
-        [FactDebuggerOnly]
+        }
+
+		[FactDebuggerOnly]
+		public void QuandoFazUpdateFirefoxUpdateDriverVersion()
+		{
+			var updateInfo = FirefoxUpdateDriverVersion.Update();
+
+			Assert.NotNull(updateInfo);
+			Assert.True(updateInfo.Updated);
+			Assert.NotNull(updateInfo.BrowserName);
+			Assert.NotNull(updateInfo.BrowserPath);
+			Assert.NotNull(updateInfo.BrowserVersion);
+			Assert.NotNull(updateInfo.DriverVersion);
+			Assert.NotNull(updateInfo.Message);
+		}
+		
+		[FactDebuggerOnly]
         public void QuandoChamaChromeWebDriver_SeleniumFactory()
         {
             var webDriver = SeleniumFactory.ChromeWebDriver(null, null);

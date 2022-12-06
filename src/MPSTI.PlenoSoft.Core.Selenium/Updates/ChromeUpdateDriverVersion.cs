@@ -1,4 +1,5 @@
 ﻿using MPSTI.PlenoSoft.Core.Selenium.Factories;
+using System.Linq;
 
 namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 {
@@ -12,12 +13,12 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
         protected override string XmlKeyDriverVersion => "chromedriver_win32";
         protected override string XmlPath => "/a:ListBucketResult/a:Contents";
         protected override string XmlKey => "Key";
-        protected override string GetBaseURL(string versao) => BaseUrlDownload;
+        protected override string GetBaseUrl(string versao) => BaseUrlDownload;
 
         public static UpdateInfo Update(params string[] browserFileLocations)
         {
             SeleniumFactory.BrowserType = BrowserType.Chrome;
-            return new ChromeUpdateDriverVersion().Start(browserFileLocations);
+            return new ChromeUpdateDriverVersion().Start(browserFileLocations.Union(DefaultLocations));
         }
     }
 }

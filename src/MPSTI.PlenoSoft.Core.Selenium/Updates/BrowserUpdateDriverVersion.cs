@@ -8,7 +8,8 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 {
 	public abstract class BrowserUpdateDriverVersion
 	{
-		public static string DriverDefaultPath { get; } = @"..\packages\WebDriver\";
+		public static string[] DefaultLocations { get; } = new[] { @"C:\Program Files", @"C:\Program Files (x86)" };
+		public static string DriverDefaultPath { get; } = @".\WebDriver\";
 
 		protected abstract string BrowserName { get; }
 		protected abstract string BrowserDefaultPath { get; }
@@ -18,16 +19,17 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 		protected abstract string XmlKeyDriverVersion { get; }
 		protected abstract string XmlPath { get; }
 		protected abstract string XmlKey { get; }
-		protected abstract string GetBaseURL(string versao);
+		protected abstract string GetBaseUrl(string versao);
 
 		protected BrowserUpdateDriverVersion() { }
 
 		protected UpdateInfo Start(IEnumerable<string> browserFileLocations)
 		{
-			return browserFileLocations.Select(x => Start(x)).FirstOrDefault(x => x.Updated);
+			return browserFileLocations.Select(x => StartUpdate(x)).FirstOrDefault(x => x.Updated)
+				?? new UpdateInfo(false, "", BrowserName);
 		}
 
-		private UpdateInfo Start(string browserFileLocation)
+		private UpdateInfo StartUpdate(string browserFileLocation)
 		{
 			var browserFile = GetBrowserFile(browserFileLocation);
 			if (browserFile.Exists())
@@ -41,7 +43,7 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 					var version = ChooseBetterDriverVersion(versions);
 					DownloadWebDriver(DriverDefaultPath, BaseUrlDownload, version, DriverFileName, driverFile);
 
-					return Start(browserFileLocation);
+					return StartUpdate(browserFileLocation);
 				}
 				else
 					return new UpdateInfo(true, browserFileLocation, BrowserName, browserVersion, driverVersion);
@@ -84,13 +86,14 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 			return versions.FirstOrDefault(v => v.StartsWith(version));
 		}
 
-		private string[] SearchDriverVersions(IEnumerable<string> versionArray)
+		protected virtual string[] SearchDriverVersions(IEnumerable<string> versionArray)
 		{
 			try
 			{
 				var take = versionArray.Count();
 				var versao = string.Join(".", versionArray.Take(take));
-				var xmlUtil = XmlUtil.CreateFromUrl(GetBaseURL(versao));
+				var url = GetBaseUrl(versao);
+				var xmlUtil = XmlUtil.CreateFromUrl(url);
 				var keys = xmlUtil.Nodes(XmlPath, XmlKey);
 				var files = keys.Where(k => k.InnerXml.Contains(XmlKeyDriverVersion)).ToArray();
 

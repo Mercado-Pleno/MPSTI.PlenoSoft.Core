@@ -1,4 +1,5 @@
 ﻿using MPSTI.PlenoSoft.Core.Selenium.Factories;
+using System.Linq;
 
 namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 {
@@ -8,16 +9,16 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
         protected override string BrowserDefaultPath => @"Microsoft\Edge\Application\msedge.exe";
         protected override string BrowserFileName => "*edge*.exe";
         protected override string DriverFileName => "*edgedriver*.exe";
-        protected override string XmlKeyDriverVersion => "edgedriver_win32";
         protected override string BaseUrlDownload => "https://msedgewebdriverstorage.blob.core.windows.net/edgewebdriver";
+        protected override string XmlKeyDriverVersion => "edgedriver_win32";
         protected override string XmlPath => "EnumerationResults/Blobs/Blob";
         protected override string XmlKey => "Name";
-        protected override string GetBaseURL(string versao) => BaseUrlDownload + $"?comp=list&maxresults=500&prefix={versao}";
+        protected override string GetBaseUrl(string versao) => BaseUrlDownload + $"?comp=list&maxresults=500&prefix={versao}";
 
         public static UpdateInfo Update(params string[] browserFileLocations)
         {
             SeleniumFactory.BrowserType = BrowserType.Edge;
-            return new EdgeUpdateDriverVersion().Start(browserFileLocations);
+            return new EdgeUpdateDriverVersion().Start(browserFileLocations.Union(DefaultLocations));
         }
     }
 }

@@ -41,19 +41,24 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Extensions
 			=> searchContext.FindElements(By.TagName(tagName)).Skip(skip).Where(filter ?? (x => true));
 
 
-		public static string GetValueOrText(this IWebElement webElement)
+		public static string GetValueOrTextOrContent(this IWebElement webElement)
 		{
 			var result = webElement.GetValue();
 
 			if (string.IsNullOrWhiteSpace(result))
-				result = webElement.GetText();
+				result = webElement.Text;
+		
+			if (string.IsNullOrWhiteSpace(result))
+				result = webElement.GetContent();
 
 			return result;
 		}
 
-		public static string GetText(this IWebElement webElement) => webElement.Text;
-
 		public static string GetValue(this IWebElement webElement) => webElement.GetAttribute("value");
+
+		public static string GetContent(this IWebElement webElement) => webElement.GetAttribute("innerText");
+
+		public static string GetInnerHtml(this IWebElement webElement) => webElement.GetAttribute("innerHTML");
 
 		public static bool IsAlive(this IWebElement webElement)
 		{

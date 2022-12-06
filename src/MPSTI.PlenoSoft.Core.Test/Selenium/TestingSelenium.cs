@@ -1,14 +1,16 @@
+using MPSTI.PlenoSoft.Core.Selenium.Extensions;
 using MPSTI.PlenoSoft.Core.Selenium.Factories;
 using MPSTI.PlenoSoft.Core.Selenium.Updates;
+using System.Linq;
 
 namespace MPSTI.PlenoSoft.Core.Test.Selenium
 {
 	public class TestingSelenium
-    {
-        [FactDebuggerOnly]
-        public void QuandoFazUpdate_ChromeUpdateDriverVersion()
-        {
-            var updateInfo = ChromeUpdateDriverVersion.Update();
+	{
+		[FactDebuggerOnly]
+		public void QuandoFazUpdate_ChromeUpdateDriverVersion()
+		{
+			var updateInfo = ChromeUpdateDriverVersion.Update();
 
 			Assert.NotNull(updateInfo);
 			Assert.True(updateInfo.Updated);
@@ -20,18 +22,18 @@ namespace MPSTI.PlenoSoft.Core.Test.Selenium
 		}
 
 		[FactDebuggerOnly]
-        public void QuandoFazUpdate_EdgeUpdateDriverVersion()
-        {
-            var updateInfo = EdgeUpdateDriverVersion.Update();
+		public void QuandoFazUpdate_EdgeUpdateDriverVersion()
+		{
+			var updateInfo = EdgeUpdateDriverVersion.Update();
 
-            Assert.NotNull(updateInfo);
-            Assert.True(updateInfo.Updated);
-            Assert.NotNull(updateInfo.BrowserName);
-            Assert.NotNull(updateInfo.BrowserPath);
-            Assert.NotNull(updateInfo.BrowserVersion);
-            Assert.NotNull(updateInfo.DriverVersion);
-            Assert.NotNull(updateInfo.Message);
-        }
+			Assert.NotNull(updateInfo);
+			Assert.True(updateInfo.Updated);
+			Assert.NotNull(updateInfo.BrowserName);
+			Assert.NotNull(updateInfo.BrowserPath);
+			Assert.NotNull(updateInfo.BrowserVersion);
+			Assert.NotNull(updateInfo.DriverVersion);
+			Assert.NotNull(updateInfo.Message);
+		}
 
 		[FactDebuggerOnly]
 		public void QuandoFazUpdateFirefoxUpdateDriverVersion()
@@ -46,14 +48,27 @@ namespace MPSTI.PlenoSoft.Core.Test.Selenium
 			Assert.NotNull(updateInfo.DriverVersion);
 			Assert.NotNull(updateInfo.Message);
 		}
-		
-		[FactDebuggerOnly]
-        public void QuandoChamaChromeWebDriver_SeleniumFactory()
-        {
-            var webDriver = SeleniumFactory.ChromeWebDriver(null, null);
 
-            Assert.NotNull(webDriver);
-            webDriver.Create().CloseAndDispose();
+		[FactDebuggerOnly]
+		public void QuandoChamaChromeWebDriver_SeleniumFactory()
+		{
+			var webDriver = SeleniumFactory.ChromeWebDriver(null, null);
+
+			Assert.NotNull(webDriver);
+			webDriver.Create().CloseAndDispose();
 		}
-    }
+
+
+		[FactDebuggerOnly]
+		public void QuandoChamaChromeWebDriver_Google()
+		{
+			_ = ChromeUpdateDriverVersion.Update();
+			var webDriver = SeleniumFactory.BrowserWebDriver(null, null);
+			var selenium = webDriver.Create();
+			selenium.GoTo("https://www.google.com.br/");
+			var element = selenium.GetElementsByTagName("div").FirstOrDefault();
+			var txt = element.GetValueOrTextOrContent();
+			Assert.NotNull(txt);
+		}
+	}
 }

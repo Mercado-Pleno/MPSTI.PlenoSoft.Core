@@ -10,7 +10,7 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Extensions
 
 		public static bool ContainsAllText(this IWebElement webElement, bool caseSensitive, params string[] texts)
 		{
-			var webElementText = caseSensitive ? webElement.GetValueOrText() : webElement.GetValueOrText()?.ToUpper();
+			var webElementText = caseSensitive ? webElement.GetValueOrTextOrContent() : webElement.GetValueOrTextOrContent()?.ToUpper();
 			return texts.Length > 0 && texts.Select(t => caseSensitive ? t : t.ToUpper()).All(t => webElementText?.Contains(t) == true);
 		}
 
@@ -19,7 +19,7 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Extensions
 
 		public static bool ContainsAnyText(this IWebElement webElement, bool caseSensitive, params string[] texts)
 		{
-			var webElementText = caseSensitive ? webElement.GetValueOrText() : webElement.GetValueOrText()?.ToUpper();
+			var webElementText = caseSensitive ? webElement.GetValueOrTextOrContent() : webElement.GetValueOrTextOrContent()?.ToUpper();
 			return texts.Length == 0 || texts.Select(t => caseSensitive ? t : t.ToUpper()).Any(t => webElementText?.Contains(t) == true);
 		}
 
@@ -27,6 +27,6 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Extensions
 			=> webDriver.GetElementByIdOrName(idOrName)?.IsEquals(value) ?? false;
 
 		public static bool IsEquals(this IWebElement webElement, string value)
-			=> webElement?.GetValueOrText() == value;
+			=> webElement?.GetValueOrTextOrContent() == value;
 	}
 }

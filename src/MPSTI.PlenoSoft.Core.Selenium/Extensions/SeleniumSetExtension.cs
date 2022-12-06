@@ -9,9 +9,10 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Extensions
 	public static class SeleniumSetExtension
 	{
 		public static IWebElement Set(this ISearchContext searchContext, string idOrName, bool click)
-		{
-			var webElement = searchContext.GetElementByIdOrName(idOrName);
+			=> searchContext?.GetElementByIdOrName(idOrName)?.Set(click);
 
+		private static IWebElement Set(this IWebElement webElement, bool click)
+		{
 			if (click)
 				webElement?.Click();
 			else
@@ -21,28 +22,27 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Extensions
 		}
 
 		public static IWebElement Set(this ISearchContext searchContext, string idOrName, string text)
-		{
-			var webElement = searchContext.GetElementByIdOrName(idOrName);
+			=> searchContext?.GetElementByIdOrName(idOrName)?.Set(text);
 
-			if (webElement.TagName == "select")
-				webElement.SetSelect(text);
-			else
-				webElement.SetInput(text);
+		private static IWebElement Set(this IWebElement webElement, string text)
+			=> (webElement?.TagName == "select") ? webElement?.SetSelect(text) : webElement?.SetInput(text);
 
-			return webElement;
-		}
-
-		public static IWebElement SetInput(this ISearchContext searchContext, string idOrName, string text) => searchContext.GetElementByIdOrName(idOrName).SetInput(text);
+		public static IWebElement SetInput(this ISearchContext searchContext, string idOrName, string text)
+			=> searchContext?.GetElementByIdOrName(idOrName)?.SetInput(text);
 
 		public static IWebElement SetInput(this IWebElement webElement, string text)
 		{
-			var formatedText = text.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", Keys.Shift + Keys.Enter + Keys.Shift);
+			var formatedText = text?.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", Keys.Shift + Keys.Enter + Keys.Shift);
 			webElement.Clear();
 			webElement.TypeKeys(formatedText);
 			return webElement;
 		}
 
-		public static IWebElement SetSelect(this IWebElement webElement, string text) => webElement.GetSelect().SetSelect(text).WrappedElement;
+		public static IWebElement SetSelect(this ISearchContext searchContext, string idOrName, string text)
+			=> searchContext?.GetElementByIdOrName(idOrName)?.SetSelect(text);
+
+		public static IWebElement SetSelect(this IWebElement webElement, string text)
+			=> webElement.GetSelect().SetSelect(text).WrappedElement;
 
 		public static SelectElement SetSelect(this SelectElement selectElement, string text)
 		{

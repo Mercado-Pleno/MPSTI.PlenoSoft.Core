@@ -1,8 +1,6 @@
-﻿using MPSTI.PlenoSoft.Core.Selenium.Extensions;
-
-namespace MPSTI.PlenoSoft.Core.Selenium.Updates
+﻿namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 {
-	public class UpdateInfo
+    public class UpdateVersionInfo
 	{
 		public bool Updated { get; }
 		public string BrowserPath { get; }
@@ -15,10 +13,11 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 Please, Download and Install {BrowserName}!";
 
 		private string UpdatedMessage => $@"Updated!
-{BrowserName}BrowserVersion: {BrowserVersion}
-{BrowserName}DriverVersion : {DriverVersion}.";
+{BrowserName} Version:
+Browser: {BrowserVersion}
+Driver : {DriverVersion}.";
 
-		public UpdateInfo(bool updated, string browserPath, string browserName, string browserVersion = null, string driverVersion = null)
+		public UpdateVersionInfo(bool updated, string browserPath, string browserName, string browserVersion = null, string driverVersion = null)
 		{
 			Updated = updated;
 			BrowserPath = browserPath;

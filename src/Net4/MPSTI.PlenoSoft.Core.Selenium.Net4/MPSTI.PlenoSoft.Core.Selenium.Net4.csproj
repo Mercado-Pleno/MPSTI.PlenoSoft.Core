@@ -61,8 +61,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Extensions\IoExtension.cs">
-      <Link>Extensions\IoExtension.cs</Link>
+    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Drivers\SeleniumDriver.cs">
+      <Link>Drivers\SeleniumDriver.cs</Link>
     </Compile>
     <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Extensions\SeleniumConfig.cs">
       <Link>Extensions\SeleniumConfig.cs</Link>
@@ -85,20 +85,23 @@
     <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Factories\SeleniumFactory.cs">
       <Link>Factories\SeleniumFactory.cs</Link>
     </Compile>
-    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\SeleniumDriver.cs">
-      <Link>SeleniumDriver.cs</Link>
+    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Updates\ChromeDriverUpdateVersion.cs">
+      <Link>Updates\ChromeDriverUpdateVersion.cs</Link>
     </Compile>
-    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Updates\BrowserUpdateDriverVersion.cs">
-      <Link>Updates\BrowserUpdateDriverVersion.cs</Link>
+    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Updates\DriverUpdateVersion.cs">
+      <Link>Updates\DriverUpdateVersion.cs</Link>
     </Compile>
-    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Updates\ChromeUpdateDriverVersion.cs">
-      <Link>Updates\ChromeUpdateDriverVersion.cs</Link>
+    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Updates\EdgeDriverUpdateVersion.cs">
+      <Link>Updates\EdgeDriverUpdateVersion.cs</Link>
     </Compile>
-    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Updates\EdgeUpdateDriverVersion.cs">
-      <Link>Updates\EdgeUpdateDriverVersion.cs</Link>
+    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Updates\FirefoxDriverUpdateVersion.cs">
+      <Link>Updates\FirefoxDriverUpdateVersion.cs</Link>
     </Compile>
-    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Updates\UpdateInfo.cs">
-      <Link>Updates\UpdateInfo.cs</Link>
+    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Updates\IoExtension.cs">
+      <Link>Updates\IoExtension.cs</Link>
+    </Compile>
+    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Updates\UpdateVersionInfo.cs">
+      <Link>Updates\UpdateVersionInfo.cs</Link>
     </Compile>
     <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Updates\XmlUtil.cs">
       <Link>Updates\XmlUtil.cs</Link>

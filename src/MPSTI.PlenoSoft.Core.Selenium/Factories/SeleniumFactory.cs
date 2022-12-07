@@ -1,4 +1,4 @@
-﻿using MPSTI.PlenoSoft.Core.Selenium.Extensions;
+﻿using MPSTI.PlenoSoft.Core.Selenium.Drivers;
 using MPSTI.PlenoSoft.Core.Selenium.Updates;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -9,30 +9,28 @@ using System.IO;
 
 namespace MPSTI.PlenoSoft.Core.Selenium.Factories
 {
-	public enum BrowserType { Chrome, Edge, FireFox, }
+    public enum BrowserType { Chrome, Edge, FireFox, }
 
 	public static class SeleniumFactory
 	{
-		public static BrowserType BrowserType { get; set; } = BrowserType.Chrome;
-
-		public static IWebDriver BrowserWebDriver(BrowserType? browserType = null, string webDriverLocation = null, int? portaTCP = null)
+		public static IWebDriver GetDriver(BrowserType? browserType = null, string webDriverLocation = null, int? portaTCP = null)
 		{
-			switch (browserType ?? BrowserType)
+			switch (browserType ?? DriverUpdateVersion.BrowserType)
 			{
 				case BrowserType.Chrome:
-					return ChromeWebDriver(webDriverLocation, portaTCP);
+					return GetChromeDriver(webDriverLocation, portaTCP);
 				case BrowserType.Edge:
-					return EdgeWebDriver(webDriverLocation, portaTCP);
+					return GetEdgeDriver(webDriverLocation, portaTCP);
 				case BrowserType.FireFox:
-					return FirefoxWebDriver(webDriverLocation, portaTCP);
+					return GetFirefoxDriver(webDriverLocation, portaTCP);
 				default:
-					return ChromeWebDriver(webDriverLocation, portaTCP);
+					return GetChromeDriver(webDriverLocation, portaTCP);
 			}
 		}
 
-		public static IWebDriver ChromeWebDriver(string webDriverLocation = null, int? portaTCP = null)
+		public static IWebDriver GetChromeDriver(string webDriverLocation = null, int? portaTCP = null)
 		{
-			var fileLocation = (webDriverLocation ?? BrowserUpdateDriverVersion.DriverDefaultPath).FindFile("ChromeDriver*.exe", SearchOption.TopDirectoryOnly);
+			var fileLocation = (webDriverLocation ?? DriverUpdateVersion.DriverDefaultPath).FindFile("ChromeDriver*.exe", SearchOption.TopDirectoryOnly);
 			var driverService = ChromeDriverService.CreateDefaultService(fileLocation.Directory.FullName, fileLocation.Name);
 			if (portaTCP.HasValue)
 			{
@@ -43,9 +41,9 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Factories
 			return new ChromeDriver(driverService, driverOptions, TimeSpan.FromSeconds(30));
 		}
 
-		public static IWebDriver FirefoxWebDriver(string webDriverLocation, int? portaTCP)
+		public static IWebDriver GetFirefoxDriver(string webDriverLocation = null, int? portaTCP = null)
 		{
-			var fileLocation = (webDriverLocation ?? BrowserUpdateDriverVersion.DriverDefaultPath).FindFile("geckodriver*.exe", SearchOption.TopDirectoryOnly);
+			var fileLocation = (webDriverLocation ?? DriverUpdateVersion.DriverDefaultPath).FindFile("geckodriver*.exe", SearchOption.TopDirectoryOnly);
 			var driverService = FirefoxDriverService.CreateDefaultService(fileLocation.Directory.FullName, fileLocation.Name);
 			driverService.FirefoxBinaryPath = @"C:\Program Files\Mozilla Firefox\firefox.exe";
 			if (portaTCP.HasValue)
@@ -54,9 +52,9 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Factories
 			return new FirefoxDriver(driverService, driverOptions, TimeSpan.FromSeconds(30));
 		}
 
-		public static IWebDriver EdgeWebDriver(string webDriverLocation, int? portaTCP)
+		public static IWebDriver GetEdgeDriver(string webDriverLocation = null, int? portaTCP = null)
 		{
-			var fileLocation = (webDriverLocation ?? BrowserUpdateDriverVersion.DriverDefaultPath).FindFile("*EdgeDriver*.exe", SearchOption.TopDirectoryOnly);
+			var fileLocation = (webDriverLocation ?? DriverUpdateVersion.DriverDefaultPath).FindFile("*EdgeDriver*.exe", SearchOption.TopDirectoryOnly);
 			var driverService = EdgeDriverService.CreateDefaultService(fileLocation.Directory.FullName, fileLocation.Name);
 			if (portaTCP.HasValue)
 				driverService.Port = portaTCP.Value;

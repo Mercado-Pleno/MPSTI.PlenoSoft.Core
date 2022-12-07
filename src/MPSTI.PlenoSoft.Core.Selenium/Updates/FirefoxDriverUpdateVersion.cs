@@ -3,7 +3,10 @@ using System.Linq;
 
 namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 {
-	public class FirefoxUpdateDriverVersion : BrowserUpdateDriverVersion
+	/// <summary>
+	/// https://firefox-source-docs.mozilla.org/testing/geckodriver/Support.html
+	/// </summary>
+	public class FirefoxDriverUpdateVersion : DriverUpdateVersion
     {
         protected override string BrowserName => "Mozilla Firefox";
         protected override string BrowserDefaultPath => @"Mozilla Firefox\firefox.exe";
@@ -15,10 +18,12 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
         protected override string XmlKey => "";
         protected override string GetBaseUrl(string versao) => BaseUrlDownload + $"?q={versao}&expanded=false";
 
-        public static UpdateInfo Update(params string[] browserFileLocations)
+		public FirefoxDriverUpdateVersion() : base(BrowserType.FireFox) { }
+
+		public static UpdateVersionInfo Update(params string[] browserFileLocations)
         {
-            SeleniumFactory.BrowserType = BrowserType.FireFox;
-            return new FirefoxUpdateDriverVersion().Start(browserFileLocations.Union(DefaultLocations));
-        }
-    }
+			var driverUpdateVersion = new FirefoxDriverUpdateVersion();
+			return driverUpdateVersion.Start(browserFileLocations.Union(DefaultLocations));
+		}
+	}
 }

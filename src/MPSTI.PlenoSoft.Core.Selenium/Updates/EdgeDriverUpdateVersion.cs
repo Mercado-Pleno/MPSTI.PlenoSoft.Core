@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 {
-	public class EdgeUpdateDriverVersion : BrowserUpdateDriverVersion
+	public class EdgeDriverUpdateVersion : DriverUpdateVersion
     {
         protected override string BrowserName => "Microsoft Edge";
         protected override string BrowserDefaultPath => @"Microsoft\Edge\Application\msedge.exe";
@@ -15,10 +15,12 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
         protected override string XmlKey => "Name";
         protected override string GetBaseUrl(string versao) => BaseUrlDownload + $"?comp=list&maxresults=500&prefix={versao}";
 
-        public static UpdateInfo Update(params string[] browserFileLocations)
+		public EdgeDriverUpdateVersion() : base(BrowserType.Edge) { }
+		
+        public static UpdateVersionInfo Update(params string[] browserFileLocations)
         {
-            SeleniumFactory.BrowserType = BrowserType.Edge;
-            return new EdgeUpdateDriverVersion().Start(browserFileLocations.Union(DefaultLocations));
-        }
-    }
+			var driverUpdateVersion = new EdgeDriverUpdateVersion();
+			return driverUpdateVersion.Start(browserFileLocations.Union(DefaultLocations));
+		}
+	}
 }

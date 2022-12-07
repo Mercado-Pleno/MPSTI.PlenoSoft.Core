@@ -1,4 +1,4 @@
-﻿using MPSTI.PlenoSoft.Core.Selenium.Extensions;
+﻿using MPSTI.PlenoSoft.Core.Selenium.Factories;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,8 +6,9 @@ using System.Linq;
 
 namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 {
-	public abstract class BrowserUpdateDriverVersion
+    public abstract class DriverUpdateVersion
 	{
+		public static BrowserType BrowserType { get; private set; }
 		public static string[] DefaultLocations { get; } = new[] { @"C:\Program Files", @"C:\Program Files (x86)" };
 		public static string DriverDefaultPath { get; } = @".\WebDriver\";
 
@@ -21,15 +22,15 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 		protected abstract string XmlKey { get; }
 		protected abstract string GetBaseUrl(string versao);
 
-		protected BrowserUpdateDriverVersion() { }
+		protected DriverUpdateVersion(BrowserType browserType) => BrowserType = browserType;
 
-		protected UpdateInfo Start(IEnumerable<string> browserFileLocations)
+		protected UpdateVersionInfo Start(IEnumerable<string> browserFileLocations)
 		{
 			return browserFileLocations.Select(x => StartUpdate(x)).FirstOrDefault(x => x.Updated)
-				?? new UpdateInfo(false, "", BrowserName);
+				?? new UpdateVersionInfo(false, "", BrowserName);
 		}
 
-		private UpdateInfo StartUpdate(string browserFileLocation)
+		private UpdateVersionInfo StartUpdate(string browserFileLocation)
 		{
 			var browserFile = GetBrowserFile(browserFileLocation);
 			if (browserFile.Exists())
@@ -46,9 +47,9 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 					return StartUpdate(browserFileLocation);
 				}
 				else
-					return new UpdateInfo(true, browserFileLocation, BrowserName, browserVersion, driverVersion);
+					return new UpdateVersionInfo(true, browserFileLocation, BrowserName, browserVersion, driverVersion);
 			}
-			return new UpdateInfo(false, browserFileLocation, BrowserName);
+			return new UpdateVersionInfo(false, browserFileLocation, BrowserName);
 		}
 
 		public static FileInfo DownloadWebDriver(string downloadPath, string baseUrl, string version, string driverFileName, FileInfo driverFile = null)

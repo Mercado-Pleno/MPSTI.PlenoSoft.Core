@@ -10,7 +10,7 @@ namespace MPSTI.PlenoSoft.Core.Test.Selenium
 		[FactDebuggerOnly]
 		public void QuandoFazUpdate_ChromeUpdateDriverVersion()
 		{
-			var updateInfo = ChromeUpdateDriverVersion.Update();
+			var updateInfo = ChromeDriverUpdateVersion.Update();
 
 			Assert.NotNull(updateInfo);
 			Assert.True(updateInfo.Updated);
@@ -24,7 +24,7 @@ namespace MPSTI.PlenoSoft.Core.Test.Selenium
 		[FactDebuggerOnly]
 		public void QuandoFazUpdate_EdgeUpdateDriverVersion()
 		{
-			var updateInfo = EdgeUpdateDriverVersion.Update();
+			var updateInfo = EdgeDriverUpdateVersion.Update();
 
 			Assert.NotNull(updateInfo);
 			Assert.True(updateInfo.Updated);
@@ -38,7 +38,7 @@ namespace MPSTI.PlenoSoft.Core.Test.Selenium
 		[FactDebuggerOnly]
 		public void QuandoFazUpdateFirefoxUpdateDriverVersion()
 		{
-			var updateInfo = FirefoxUpdateDriverVersion.Update();
+			var updateInfo = FirefoxDriverUpdateVersion.Update();
 
 			Assert.NotNull(updateInfo);
 			Assert.True(updateInfo.Updated);
@@ -52,7 +52,7 @@ namespace MPSTI.PlenoSoft.Core.Test.Selenium
 		[FactDebuggerOnly]
 		public void QuandoChamaChromeWebDriver_SeleniumFactory()
 		{
-			var webDriver = SeleniumFactory.ChromeWebDriver(null, null);
+			var webDriver = SeleniumFactory.GetChromeDriver(null, null);
 
 			Assert.NotNull(webDriver);
 			webDriver.Create().CloseAndDispose();
@@ -62,8 +62,8 @@ namespace MPSTI.PlenoSoft.Core.Test.Selenium
 		[FactDebuggerOnly]
 		public void QuandoChamaChromeWebDriver_Google()
 		{
-			_ = ChromeUpdateDriverVersion.Update();
-			var webDriver = SeleniumFactory.BrowserWebDriver(null, null);
+			_ = ChromeDriverUpdateVersion.Update();
+			var webDriver = SeleniumFactory.GetDriver(null, null);
 			var selenium = webDriver.Create();
 			selenium.GoTo("https://www.google.com.br/");
 			var element = selenium.GetElementsByTagName("div").FirstOrDefault();

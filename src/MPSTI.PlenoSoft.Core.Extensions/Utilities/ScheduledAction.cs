@@ -8,12 +8,12 @@ namespace MPSTI.PlenoSoft.Core.Extensions.Utilities
 {
 	public class ScheduledAction<TKey> : IScheduledAction<TKey> where TKey : notnull
 	{
+		private bool wasDisposed = false;
 		private readonly object _access = new();
 		private readonly Dictionary<TKey, Timer> _timers;
 		private readonly TimeSpan _dueTime;
 		private readonly TimeSpan _period;
 		private readonly Action<TKey> _actionOnTimer;
-		private bool wasDisposed = false;
 
 		public ScheduledAction(Action<TKey> actionOnTimer, TimeSpan dueTime, TimeSpan? period = null)
 		{
@@ -46,6 +46,26 @@ namespace MPSTI.PlenoSoft.Core.Extensions.Utilities
 			}
 		}
 
+		public virtual void UnscheduleAll()
+		{
+			lock (_access)
+			{
+				var keys = _timers.Keys.ToArray();
+				foreach (var key in keys)
+					Unschedule(key);
+			}
+		}
+
+		public virtual void ProcessAll()
+		{
+			lock (_access)
+			{
+				var keys = _timers.Keys.ToArray();
+				foreach (var key in keys)
+					OnTimerCallback(key);
+			}
+		}
+
 		protected virtual void OnTimerCallback(TKey key)
 		{
 			Unschedule(key);
@@ -65,11 +85,7 @@ namespace MPSTI.PlenoSoft.Core.Extensions.Utilities
 			lock (_access)
 			{
 				if (!wasDisposed)
-				{
-					var keys = _timers.Keys.ToArray();
-					foreach (var key in keys)
-						OnTimerCallback(key);
-				}
+					ProcessAll();
 				wasDisposed = true;
 			}
 		}

@@ -24,12 +24,13 @@
 		<Title>Extensions @ Mercado Pleno Soluções em Computação</Title>
 		<Description>MPSTI.PlenoSoft.Core.Extensions</Description>
 		<PackageTags>Extensions Mercado Pleno Soluções em Tecnologia da Informação</PackageTags>
-		<AssemblyVersion>1.0.0.20</AssemblyVersion>
-		<FileVersion>1.0.0.20</FileVersion>
-		<Version>1.0.0.20</Version>
+		<AssemblyVersion>1.0.0.21</AssemblyVersion>
+		<FileVersion>1.0.0.21</FileVersion>
+		<Version>1.0.0.21</Version>
 		<PackageReleaseNotes>
 			<![CDATA[(Atual)
-2022/11/07 - 1.0.0.20 - Implementa do ScheduledAction para agendar ações e resetar caso um novo evento aconteça;
+2022/11/08 - 1.0.0.21 - Implementa UnscheduleAll e ProcessAll no ScheduledAction refatora o método Dispose para seguir o padrão;
+2022/11/07 - 1.0.0.20 - Implementação do ScheduledAction para agendar ações e resetar caso um novo evento aconteça;
 2022/11/07 - 1.0.0.19 - Refatoração dos namespaces e separação do pacote de Azure Service Bus;
 2022/11/07 - 1.0.0.18 - Ícones o Pacote do Selenium e migração do repositório WatiN;
 2022/11/07 - 1.0.0.17 - Inclusão de CrossProject e definindo icones para os pacotes nuget;

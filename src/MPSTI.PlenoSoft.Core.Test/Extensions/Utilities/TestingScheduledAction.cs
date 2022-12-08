@@ -33,33 +33,23 @@ namespace MPSTI.PlenoSoft.Core.Test.Extensions.Utilities
 		{
 			var lista = new List<string>();
 			var timeout = TimeSpan.FromMilliseconds(100);
-			var delay = TimeSpan.FromMilliseconds(50);
+			var delay = TimeSpan.FromMilliseconds(10);
 			var scheduleAction = new ScheduledAction<string>(id => lista.Add(id), timeout);
-			lista.Should().HaveCount(0);
 
-			Thread.Sleep(delay);
-			scheduleAction.Schedule("1");
-			scheduleAction.Schedule("2");
-			lista.Should().HaveCount(0);
-
-			Thread.Sleep(delay);
-			scheduleAction.Schedule("1");
-			lista.Should().HaveCount(0);
-
-			Thread.Sleep(delay);
-			scheduleAction.Schedule("1");
-			lista.Should().HaveCount(1);
-
-			for (int i = 0; i < 10; i++)
+			for (int i = 0; i < 15; i++)
 			{
-				Thread.Sleep(delay);
+				lista.Should().HaveCount(0);
 				scheduleAction.Schedule("1");
-				lista.Should().HaveCount(1);
+				scheduleAction.Schedule("2");
+				Thread.Sleep(delay);
 			}
 
+			lista.Should().HaveCount(0);
 			Thread.Sleep(delay);
-			lista.Should().HaveCount(1);
-			Thread.Sleep(delay);
+			Thread.Sleep(timeout);
+			lista.Should().HaveCount(2);
+
+			scheduleAction.Dispose();
 			lista.Should().HaveCount(2);
 		}
 	}

@@ -48,7 +48,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="6.0.10" />
 		<PackageReference Include="MySqlClient" Version="5.4.2" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 		<PackageReference Include="RestSharp" Version="108.0.2" />
 		<PackageReference Include="SQLitePCLRaw.bundle_winsqlite3" Version="2.1.2" />
 		<PackageReference Include="System.Data.SqlClient" Version="4.8.4" />

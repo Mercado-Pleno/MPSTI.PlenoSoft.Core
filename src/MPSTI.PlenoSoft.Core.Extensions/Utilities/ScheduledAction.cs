@@ -13,6 +13,7 @@ namespace MPSTI.PlenoSoft.Core.Extensions.Utilities
 		private readonly TimeSpan _dueTime;
 		private readonly TimeSpan _period;
 		private readonly Action<TKey> _actionOnTimer;
+		private bool wasDisposed = false;
 
 		public ScheduledAction(Action<TKey> actionOnTimer, TimeSpan dueTime, TimeSpan? period = null)
 		{
@@ -20,18 +21,6 @@ namespace MPSTI.PlenoSoft.Core.Extensions.Utilities
 			_actionOnTimer = actionOnTimer;
 			_dueTime = dueTime;
 			_period = period ?? Timeout.InfiniteTimeSpan;
-		}
-
-		~ScheduledAction() => Dispose();
-
-		public virtual void Dispose()
-		{
-			lock (_access)
-			{
-				var keys = _timers.Keys.ToArray();
-				foreach (var key in keys)
-					OnTimerCallback(key);
-			}
 		}
 
 		public virtual void Schedule(TKey key)
@@ -61,6 +50,28 @@ namespace MPSTI.PlenoSoft.Core.Extensions.Utilities
 		{
 			Unschedule(key);
 			_actionOnTimer?.Invoke(key);
+		}
+
+		~ScheduledAction() => Dispose(disposing: false);
+
+		public void Dispose()
+		{
+			Dispose(disposing: true);
+			GC.SuppressFinalize(this);
+		}
+
+		protected virtual void Dispose(bool disposing)
+		{
+			lock (_access)
+			{
+				if (!wasDisposed)
+				{
+					var keys = _timers.Keys.ToArray();
+					foreach (var key in keys)
+						OnTimerCallback(key);
+				}
+				wasDisposed = true;
+			}
 		}
 	}
 }

@@ -24,11 +24,12 @@
 		<Title>Extensions @ Mercado Pleno Soluções em Computação</Title>
 		<Description>MPSTI.PlenoSoft.Core.Extensions</Description>
 		<PackageTags>Extensions Mercado Pleno Soluções em Tecnologia da Informação</PackageTags>
-		<AssemblyVersion>1.0.0.21</AssemblyVersion>
-		<FileVersion>1.0.0.21</FileVersion>
-		<Version>1.0.0.21</Version>
+		<AssemblyVersion>1.0.0.22</AssemblyVersion>
+		<FileVersion>1.0.0.22</FileVersion>
+		<Version>1.0.0.22</Version>
 		<PackageReleaseNotes>
 			<![CDATA[(Atual)
+2022/11/08 - 1.0.0.22 - Adiciona UnscheduleAll e ProcessAll na interface IScheduledAction;
 2022/11/08 - 1.0.0.21 - Implementa UnscheduleAll e ProcessAll no ScheduledAction refatora o método Dispose para seguir o padrão;
 2022/11/07 - 1.0.0.20 - Implementação do ScheduledAction para agendar ações e resetar caso um novo evento aconteça;
 2022/11/07 - 1.0.0.19 - Refatoração dos namespaces e separação do pacote de Azure Service Bus;

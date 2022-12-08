@@ -6,5 +6,7 @@ namespace MPSTI.PlenoSoft.Core.Extensions.Providers
 	{
 		void Schedule(TKey key);
 		void Unschedule(TKey key);
+		void UnscheduleAll();
+		void ProcessAll();
 	}
 }

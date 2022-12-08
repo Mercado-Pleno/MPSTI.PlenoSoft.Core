@@ -36,7 +36,7 @@ namespace MPSTI.PlenoSoft.Core.Test.Extensions.Utilities
 			var delay = TimeSpan.FromMilliseconds(10);
 			var scheduleAction = new ScheduledAction<string>(id => lista.Add(id), timeout);
 
-			for (int i = 0; i < 15; i++)
+			for (int i = 0; i < 20; i++)
 			{
 				lista.Should().HaveCount(0);
 				scheduleAction.Schedule("1");

@@ -2,6 +2,7 @@
 \
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/mercado-pleno/MPSTI.PlenoSoft.Core?style=plastic)
 ![GitHub last commit](https://img.shields.io/github/last-commit/mercado-pleno/MPSTI.PlenoSoft.Core?style=plastic)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Mercado-Pleno_MPSTI.PlenoSoft.Core&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Mercado-Pleno_MPSTI.PlenoSoft.Core)
 \
 Confira a lista de todos os pacotes deste repositório no [nuget.org](https://www.nuget.org/profiles/mercadopleno.com.br)
 \

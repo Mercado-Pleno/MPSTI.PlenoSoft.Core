@@ -1,11 +1,14 @@
-name: SonarCloud
+name: Sonar
 on:
   push:
     branches:
       - master
   pull_request:
     types: [opened, synchronize, reopened]
-
+env:
+  NUGET_API_SOURCE: "https://api.nuget.org/v3/index.json"
+  BASE_PATH: src
+  
 jobs:
   build:
     name: Build and analyze

@@ -41,10 +41,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SOLUTION_FILE: ${{ format('{0}/{1}.sln', env.BASE_PATH, 'MPSTI.PlenoSoft.Core') }}
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"Mercado-Pleno_MPSTI.PlenoSoft.Core" /o:"mercado-pleno" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build --configuration Release ${{ env.SOLUTION_FILE }}
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
-        env:
-          SOLUTION_FILE: ${{ format('{0}/{1}.sln', env.BASE_PATH, 'MPSTI.PlenoSoft.Core') }}

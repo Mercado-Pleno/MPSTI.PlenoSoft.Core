@@ -7,6 +7,8 @@ namespace MPSTI.PlenoSoft.Core.Test.Selenium
 {
 	public class TestingSelenium
 	{
+		private static readonly string[] browserFileLocations = new[] { @"C:\Program Files\", @"C:\Program Files (x86)\" };
+
 		[FactDebuggerOnly]
 		public void QuandoFazUpdate_ChromeUpdateDriverVersion()
 		{
@@ -58,6 +60,11 @@ namespace MPSTI.PlenoSoft.Core.Test.Selenium
 			webDriver.Create().CloseAndDispose();
 		}
 
+		[FactDebuggerOnly]
+		public void QuandoChamaChromeUpdateDriverVersionUpdate()
+		{
+			var updateInfo2 = ChromeDriverUpdateVersion.Update(browserFileLocations);
+		}
 
 		[FactDebuggerOnly]
 		public void QuandoChamaChromeWebDriver_Google()

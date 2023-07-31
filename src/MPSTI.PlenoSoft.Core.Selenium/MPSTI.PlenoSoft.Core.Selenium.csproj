@@ -24,11 +24,12 @@
 		<Title>Selenium.Extension @ Mercado-Pleno</Title>
 		<Description>O Selenium.Extension é um conjunto de ferramentas que facilita o uso do Selenium muito simples de utilizar.</Description>
 		<PackageTags>Pleno Selenium Extension Test Automate Mercado Pleno Soluções Tecnologia Informação</PackageTags>
-		<AssemblyVersion>1.0.0.28</AssemblyVersion>
-		<FileVersion>1.0.0.28</FileVersion>
-		<Version>1.0.0.28</Version>
+		<AssemblyVersion>1.0.0.29</AssemblyVersion>
+		<FileVersion>1.0.0.29</FileVersion>
+		<Version>1.0.0.29</Version>
 		<PackageReleaseNotes>
 			<![CDATA[(Atual)
+2023/07/31 - 1.0.0.29 - Ajustes para baixar o último driver quando a versão especificada não existir;
 2022/12/06 - 1.0.0.28 - Padronizando nomes no SeleniumFactory e no DriverUpdateVersion, ajuste do namespace Drivers;
 2022/12/06 - 1.0.0.27 - Implements GetInnerHtml e GetContent for a IWebElement and refactor SetElements;
 2022/12/05 - 1.0.0.26 - Atualização dos pacotes do Selenium no pacote MPSTI.PlenoSoft.Core.Selenium.Net4;

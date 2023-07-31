@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 {
-    public abstract class DriverUpdateVersion
+	public abstract class DriverUpdateVersion
 	{
 		public static BrowserType BrowserType { get; private set; }
 		public static string[] DefaultLocations { get; } = new[] { @"C:\Program Files", @"C:\Program Files (x86)" };
@@ -43,8 +43,11 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 					var versions = SearchDriverVersions(browserVersion.Split('.'));
 					var version = ChooseBetterDriverVersion(versions);
 					DownloadWebDriver(DriverDefaultPath, BaseUrlDownload, version, DriverFileName, driverFile);
-
-					return StartUpdate(browserFileLocation);
+					
+					if (versions.Length > 100)
+						return new UpdateVersionInfo(true, browserFileLocation, BrowserName, browserVersion, driverVersion);
+					else
+						return StartUpdate(browserFileLocation);
 				}
 				else
 					return new UpdateVersionInfo(true, browserFileLocation, BrowserName, browserVersion, driverVersion);
@@ -80,7 +83,7 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 				return intVers.ToArray();
 			}
 
-			var version = versions.Select(v => Converter(v))
+			var version = versions.Select(v => Converter(v)).Where(v => v.Length >= 4)
 				.OrderBy(v => v[0]).ThenBy(v => v[1]).ThenBy(v => v[2]).ThenBy(v => v[3])
 				.Select(v => string.Join(".", v)).LastOrDefault();
 
@@ -101,10 +104,13 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 				var versoes = new string[0];
 				while (versoes.Length == 0 && take > 0)
 				{
-					versao = string.Join(".", versionArray.Take(take));
 					versoes = files.Where(x => x.InnerXml.StartsWith(versao)).Select(n => n.InnerXml).ToArray();
 					take--;
+					versao = string.Join(".", versionArray.Take(take));
 				}
+
+				if (string.IsNullOrWhiteSpace(versao))
+					versoes = files.Select(n => n.InnerXml).ToArray();
 
 				return versoes;
 			}

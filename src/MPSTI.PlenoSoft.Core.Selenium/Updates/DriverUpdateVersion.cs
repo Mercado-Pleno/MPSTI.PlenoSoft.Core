@@ -9,7 +9,7 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 	public abstract class DriverUpdateVersion
 	{
 		public static BrowserType BrowserType { get; private set; }
-		public static string[] DefaultLocations { get; } = new[] { @"C:\Program Files", @"C:\Program Files (x86)" };
+		public static string[] DefaultLocations { get; } = new[] { @"C:\Program Files (x86)", @"C:\Program Files" };
 		public static string DriverDefaultPath { get; } = @".\WebDriver\";
 
 		protected abstract string BrowserName { get; }
@@ -29,7 +29,7 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 			var locations = browserFileLocations.Union(DefaultLocations).Distinct().ToArray();
 
 			return locations.Select(x => StartUpdate(x)).FirstOrDefault(x => x.Updated)
-				?? new UpdateVersionInfo(false, "", BrowserName);
+				?? new UpdateVersionInfo(false, string.Join(" ; ", locations), BrowserName);
 		}
 
 		private UpdateVersionInfo StartUpdate(string browserFileLocation, bool updated = false)
@@ -40,9 +40,9 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 				var driverFile = IoExtension.FindFile(DriverDefaultPath, DriverFileName, SearchOption.TopDirectoryOnly);
 				var driverVersion = driverFile.GetDriverVersion();
 				var browserVersion = browserFile.GetBrowserVersion();
-				if (updated)
+				if (updated || !NeedUpdate(browserVersion, driverVersion))
 					return new UpdateVersionInfo(true, browserFileLocation, BrowserName, browserVersion, driverVersion);
-				else if (NeedUpdate(browserVersion, driverVersion))
+				else
 				{
 					var versions = SearchDriverVersions(browserVersion.Split('.'));
 					var version = ChooseBetterDriverVersion(versions);
@@ -65,7 +65,6 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 
 			return newFile;
 		}
-
 
 		private bool NeedUpdate(string browserVersion, string driverVersion) => !VersionCompatible(browserVersion.Split('.'), driverVersion.Split('.'), 0, 1, 2);
 

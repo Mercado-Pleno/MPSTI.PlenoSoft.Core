@@ -57,10 +57,10 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 			try
 			{
 				var directory = new DirectoryInfo(relativePath ?? ".");
-				while (!directory.Exists && directory.Parent.Exists())
+				while (!directory.Exists() && directory.Parent != null)
 					directory = directory.Parent;
 
-				if (directory.Exists)
+				if (directory.Exists())
 				{
 					var fileLocation = directory.EnumerateFiles(fileNamePattern, SearchOption.AllDirectories).FirstOrDefault();
 					while (!fileLocation.Exists() && directory.Parent.Exists())

@@ -7,7 +7,7 @@ namespace MPSTI.PlenoSoft.Core.Test.Selenium
 {
 	public class TestingSelenium
 	{
-		private static readonly string[] browserFileLocations = new[] { @"C:\Program Files\", @"C:\Program Files (x86)\" };
+		private static readonly string[] browserFileLocations = new[] { @"C:\Program Files (x86)", @"C:\Program Files" };
 
 		[FactDebuggerOnly]
 		public void QuandoFazUpdate_ChromeUpdateDriverVersion()
@@ -65,7 +65,7 @@ namespace MPSTI.PlenoSoft.Core.Test.Selenium
 		{
 			var updateInfo1 = EdgeDriverUpdateVersion.Update(browserFileLocations);
 			var updateInfo2 = ChromeDriverUpdateVersion.Update(browserFileLocations);
-            Console.WriteLine($"{updateInfo1?.Message}\r\n\r\n{updateInfo2?.Message}");
+			Console.WriteLine($"{updateInfo1?.Message}\r\n\r\n{updateInfo2?.Message}");
 			//var a = SeleniumFactory.OpenChromeDriver(9222);
 		}
 

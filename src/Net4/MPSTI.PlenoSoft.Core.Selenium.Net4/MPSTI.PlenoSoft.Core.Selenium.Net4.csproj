@@ -85,6 +85,9 @@
     <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Factories\SeleniumFactory.cs">
       <Link>Factories\SeleniumFactory.cs</Link>
     </Compile>
+    <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Factories\Try.cs">
+      <Link>Factories\Try.cs</Link>
+    </Compile>
     <Compile Include="..\..\MPSTI.PlenoSoft.Core.Selenium\Updates\ChromeDriverUpdateVersion.cs">
       <Link>Updates\ChromeDriverUpdateVersion.cs</Link>
     </Compile>

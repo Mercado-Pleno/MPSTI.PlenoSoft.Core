@@ -30,7 +30,7 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 				?? new UpdateVersionInfo(false, "", BrowserName);
 		}
 
-		private UpdateVersionInfo StartUpdate(string browserFileLocation, int level = 0)
+		private UpdateVersionInfo StartUpdate(string browserFileLocation, bool updated = false)
 		{
 			var browserFile = GetBrowserFile(browserFileLocation);
 			if (browserFile.Exists())
@@ -38,16 +38,16 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 				var driverFile = IoExtension.FindFile(DriverDefaultPath, DriverFileName, SearchOption.TopDirectoryOnly);
 				var driverVersion = driverFile.GetDriverVersion();
 				var browserVersion = browserFile.GetBrowserVersion();
-				if ((level == 0) && NeedUpdate(browserVersion, driverVersion))
+				if (updated)
+					return new UpdateVersionInfo(true, browserFileLocation, BrowserName, browserVersion, driverVersion);
+				else if (NeedUpdate(browserVersion, driverVersion))
 				{
 					var versions = SearchDriverVersions(browserVersion.Split('.'));
 					var version = ChooseBetterDriverVersion(versions);
 					DownloadWebDriver(DriverDefaultPath, BaseUrlDownload, version, DriverFileName, driverFile);
 					
-					return StartUpdate(browserFileLocation, level + 1);
+					return StartUpdate(browserFileLocation, true);
 				}
-				else
-					return new UpdateVersionInfo(true, browserFileLocation, BrowserName, browserVersion, driverVersion);
 			}
 			return new UpdateVersionInfo(false, browserFileLocation, BrowserName);
 		}
@@ -117,7 +117,7 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 			}
 		}
 
-		private FileInfo GetBrowserFile(string browserFileLocation)
+		public FileInfo GetBrowserFile(string browserFileLocation)
 		{
 			var fileInfo = new FileInfo(Path.Combine(browserFileLocation, BrowserDefaultPath));
 			return IoExtension.FindFile(fileInfo, BrowserFileName, SearchOption.AllDirectories);

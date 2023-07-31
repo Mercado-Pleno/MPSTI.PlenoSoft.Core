@@ -26,7 +26,9 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 
 		protected UpdateVersionInfo Start(IEnumerable<string> browserFileLocations)
 		{
-			return browserFileLocations.Select(x => StartUpdate(x)).FirstOrDefault(x => x.Updated)
+			var locations = browserFileLocations.Union(DefaultLocations).Distinct().ToArray();
+
+			return locations.Select(x => StartUpdate(x)).FirstOrDefault(x => x.Updated)
 				?? new UpdateVersionInfo(false, "", BrowserName);
 		}
 

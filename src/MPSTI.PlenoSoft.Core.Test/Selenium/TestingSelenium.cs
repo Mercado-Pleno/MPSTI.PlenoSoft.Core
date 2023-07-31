@@ -63,8 +63,10 @@ namespace MPSTI.PlenoSoft.Core.Test.Selenium
 		[FactDebuggerOnly]
 		public void QuandoChamaChromeUpdateDriverVersionUpdate()
 		{
-			//var updateInfo2 = ChromeDriverUpdateVersion.Update(browserFileLocations);
-			var a = SeleniumFactory.OpenChromeDriver(9222);
+			var updateInfo1 = EdgeDriverUpdateVersion.Update(browserFileLocations);
+			var updateInfo2 = ChromeDriverUpdateVersion.Update(browserFileLocations);
+            Console.WriteLine($"{updateInfo1?.Message}\r\n\r\n{updateInfo2?.Message}");
+			//var a = SeleniumFactory.OpenChromeDriver(9222);
 		}
 
 		[FactDebuggerOnly]

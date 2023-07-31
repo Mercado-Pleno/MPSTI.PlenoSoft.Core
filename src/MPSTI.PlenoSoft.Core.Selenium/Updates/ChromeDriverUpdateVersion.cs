@@ -19,9 +19,8 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 
 		public static UpdateVersionInfo Update(params string[] browserFileLocations)
 		{
-			var locations = browserFileLocations.Union(DefaultLocations).Distinct();
 			var driverUpdateVersion = new ChromeDriverUpdateVersion();
-			return driverUpdateVersion.Start(locations);
+			return driverUpdateVersion.Start(browserFileLocations);
 		}
 	}
 }

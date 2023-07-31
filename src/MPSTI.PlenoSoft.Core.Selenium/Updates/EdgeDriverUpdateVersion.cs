@@ -20,7 +20,7 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
         public static UpdateVersionInfo Update(params string[] browserFileLocations)
         {
 			var driverUpdateVersion = new EdgeDriverUpdateVersion();
-			return driverUpdateVersion.Start(browserFileLocations.Union(DefaultLocations));
+			return driverUpdateVersion.Start(browserFileLocations);
 		}
 	}
 }

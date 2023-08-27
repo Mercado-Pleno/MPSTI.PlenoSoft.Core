@@ -25,5 +25,7 @@ Driver : {DriverVersion}.";
 			BrowserVersion = browserVersion ?? IoExtension.EmptyVersion;
 			DriverVersion = driverVersion ?? IoExtension.EmptyVersion;
 		}
-	}
+
+		public override string ToString() => Message;
+    }
 }

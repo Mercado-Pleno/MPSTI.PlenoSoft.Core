@@ -27,10 +27,10 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
 			return version;
 		}
 
-		public static FileInfo DownloadDriver(string downloadPath, string baseUrl, string version)
+		public static FileInfo DownloadDriver(string downloadPath, string fullUrl)
 		{
-			var arquivoZip = new FileInfo(Path.Combine(downloadPath, version));
-			return XmlUtil.DownloadFromUrl($"{baseUrl}/{version}", arquivoZip);
+			var arquivoZip = new FileInfo(downloadPath);
+			return XmlUtil.DownloadFromUrl(fullUrl, arquivoZip);
 		}
 
 		public static DirectoryInfo Unzip(FileInfo arquivoZip)

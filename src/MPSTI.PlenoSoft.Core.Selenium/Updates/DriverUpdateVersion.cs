@@ -51,11 +51,11 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
                     }
                     else if (tentativa == 2)
                         DownloadWebDriverInAlternateServer(versionArray, driverFile);
-                    else
-                        return new UpdateVersionInfo(true, browserFileLocation, BrowserName, browserVersion, driverVersion);
 
                     return StartUpdate(browserFileLocation, tentativa + 1);
                 }
+
+                return new UpdateVersionInfo(true, browserFileLocation, BrowserName, browserVersion, driverVersion);
             }
             return new UpdateVersionInfo(false, browserFileLocation, BrowserName);
         }
@@ -116,7 +116,7 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Updates
                 }
 
                 if (string.IsNullOrWhiteSpace(versao))
-                        versoes = files.Select(n => n.InnerXml).ToArray();
+                    versoes = files.Select(n => n.InnerXml).ToArray();
 
                 return versoes;
             }

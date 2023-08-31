@@ -46,6 +46,9 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Drivers
         public IEnumerable<IWebElement> GetElementsByTagName(string tagName, int skip = 0, Func<IWebElement, bool> filter = null)
             => WebDriver.GetElementsByTagName(tagName, skip, filter);
 
+        public IEnumerable<IWebElement> GetElementsByCssSelector(string tagName, int skip = 0, Func<IWebElement, bool> filter = null)
+            => WebDriver.GetElementsByCssSelector(tagName, skip, filter);
+
         public bool WaitUntilContainsAllText(CancellationToken cancellationToken, bool caseSensitive, params string[] texts)
             => WebDriver.WaitUntilContainsAllText(cancellationToken, caseSensitive, texts);
 

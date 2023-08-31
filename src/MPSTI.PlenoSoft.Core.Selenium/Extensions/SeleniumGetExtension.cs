@@ -40,8 +40,10 @@ namespace MPSTI.PlenoSoft.Core.Selenium.Extensions
 		public static IEnumerable<IWebElement> GetElementsByTagName(this ISearchContext searchContext, string tagName, int skip = 0, Func<IWebElement, bool> filter = null)
 			=> searchContext.FindElements(By.TagName(tagName)).Skip(skip).Where(filter ?? (x => true));
 
+        public static IEnumerable<IWebElement> GetElementsByCssSelector(this ISearchContext searchContext, string cssSelector, int skip = 0, Func<IWebElement, bool> filter = null)
+            => searchContext.FindElements(By.CssSelector(cssSelector)).Skip(skip).Where(filter ?? (x => true));
 
-		public static string GetValueOrTextOrContent(this IWebElement webElement)
+        public static string GetValueOrTextOrContent(this IWebElement webElement)
 		{
 			var result = webElement.GetValue();
 

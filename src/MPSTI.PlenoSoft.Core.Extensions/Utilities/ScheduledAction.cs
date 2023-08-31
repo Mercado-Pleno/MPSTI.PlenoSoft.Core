@@ -1,4 +1,4 @@
-﻿using MPSTI.PlenoSoft.Core.Extensions.Providers;
+﻿using MPSTI.PlenoSoft.Core.Extensions.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace MPSTI.PlenoSoft.Core.Extensions.Utilities
 {
-	public class ScheduledAction<TKey> : IScheduledAction<TKey> where TKey : notnull
+    public class ScheduledAction<TKey> : IScheduledAction<TKey> where TKey : notnull
 	{
 		private bool wasDisposed = false;
 		private readonly object _access = new();

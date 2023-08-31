@@ -12,7 +12,7 @@
 		<summary>O Selenium.Extension é um conjunto de ferramentas que facilita o uso do Selenium muito simples de utilizar. </summary>
 		<tags>Selenium WebDriver Test Teste Interface front frontEnd Pleno Soft</tags>
 		<icon>images\package-selenium.png</icon>
-		<version>1.0.0.34</version>
+		<version>1.0.0.35</version>
 		<releaseNotes>
 			<![CDATA[(Atual)
 2023-08-31 - 1.0.0.35 - Corrige a lógica de atualização do driver de um servidor alternativo do proprio google;

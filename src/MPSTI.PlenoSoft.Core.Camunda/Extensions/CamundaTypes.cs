@@ -99,21 +99,28 @@ namespace MPSTI.PlenoSoft.Core.Camunda.Extensions
 
 		public static T ChangeType<T>(object value, T defaultValue)
 		{
+            if (value == null)
+                return defaultValue;
+            
 			var type = GetType(defaultValue);
 			if (value is DateTimeOffset dateTimeOffsetValue)
 				return (T)Convert.ChangeType(dateTimeOffsetValue.DateTime, type);
 
-			if (defaultValue is Guid && Guid.TryParse(value as string, out var guid))
+			if ((defaultValue is Guid) && Guid.TryParse(value as string, out var guid))
 				return (T)Convert.ChangeType(guid, type);
 
-			if (!type.IsEnum)
-				return (T)Convert.ChangeType(value, type) ?? defaultValue;
+            if (type.IsEnum && Enum.TryParse(type, value?.ToString(), true, out var enumerado))
+                return (T)enumerado;
 
-			if (Enum.TryParse(type, value?.ToString(), true, out var enumerado))
-				return (T)enumerado;
-
-			return defaultValue;
-		}
+            try
+            {
+                return (T)Convert.ChangeType(value, type) ?? defaultValue;
+            }
+            catch
+            {
+                return defaultValue;
+            }
+        }
 
 		public static object ConvertToCamundaValue<T>(T value)
 		{

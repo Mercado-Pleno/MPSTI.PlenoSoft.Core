@@ -15,9 +15,9 @@ namespace MPSTI.PlenoSoft.Core.Collections.Generic
 
 	public class ContainerObject : IEnumerable<object>, IContainerBuilder
 	{
-		private readonly Dictionary<Type, IList> _containerLists = new Dictionary<Type, IList>();
+		private readonly Dictionary<Type, IList> _containerLists = new();
 		public virtual IEnumerable<object> Objects => _containerLists.Values.SelectMany(v => v.OfType<object>());
-		public virtual IEnumerable<object> SnapshotObjects => Objects.ToArray();
+		public virtual IEnumerable<object> SnapshotObjects() => Objects.ToArray();
 
 		public virtual TItem Obter<TItem>(Func<TItem, bool> filtro)
 		{
@@ -78,7 +78,7 @@ namespace MPSTI.PlenoSoft.Core.Collections.Generic
 
 		private IEnumerator<object> GetEnumeratorImplementation()
 		{
-			return SnapshotObjects.GetEnumerator();
+			return SnapshotObjects().GetEnumerator();
 		}
 
 		IEnumerator<object> IEnumerable<object>.GetEnumerator()

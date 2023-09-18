@@ -6,7 +6,8 @@ namespace MPSTI.PlenoSoft.Core.Collections.Generic
 {
 	public class Lista<TItem> : IEnumerable<TItem>
 	{
-		private readonly List<TItem> _lista = new List<TItem>();
+		private readonly object _lock = new();
+		private readonly List<TItem> _lista = new();
 		private readonly Action<TItem> _onAdicionar;
 		private readonly Action<TItem> _onRemover;
 		private Func<IEnumerable<TItem>> _filler;
@@ -70,7 +71,7 @@ namespace MPSTI.PlenoSoft.Core.Collections.Generic
 		{
 			if (_filler != null)
 			{
-				lock (this)
+				lock (_lock)
 				{
 					if (_filler != null)
 					{

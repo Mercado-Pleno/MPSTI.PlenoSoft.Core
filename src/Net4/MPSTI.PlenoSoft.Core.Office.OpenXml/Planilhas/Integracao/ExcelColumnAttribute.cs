@@ -35,8 +35,6 @@ namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Integracao
 
 		public ExcelColumnAttribute(String titulo, Int32 posicao) : this(null, titulo, posicao, null, null) { }
 
-		public ExcelColumnAttribute(String propertyName, String titulo, Int32 posicao) : this(propertyName, titulo, posicao, null, null) { }
-
 		public ExcelColumnAttribute(String propertyName, String titulo, Int32 posicao, TipoEnum? tipo = null, String formato = null)
 		{
 			PropertyName = propertyName;

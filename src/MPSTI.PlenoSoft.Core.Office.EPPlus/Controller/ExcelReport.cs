@@ -1,5 +1,6 @@
 ﻿using MPSTI.PlenoSoft.Core.Office.EPPlus.Attributes;
 using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -13,7 +14,7 @@ namespace MPSTI.PlenoSoft.Core.Office.EPPlus.Controller
     {
         public async Task<byte[]> GerarAsync<T>(IEnumerable<T> list)
         {
-            if (!list.Any()) return new byte[0];
+            if (!list.Any()) return Array.Empty<byte>();
 
             using var stream = new MemoryStream();
             using var package = new ExcelPackage(stream);
@@ -51,7 +52,7 @@ namespace MPSTI.PlenoSoft.Core.Office.EPPlus.Controller
             return dataTable;
         }
 
-        private IEnumerable<ExcelColumnAttribute> GetAttributes(PropertyInfo[] properties)
+        protected virtual IEnumerable<ExcelColumnAttribute> GetAttributes(PropertyInfo[] properties)
         {
             foreach (var property in properties)
             {
@@ -63,7 +64,7 @@ namespace MPSTI.PlenoSoft.Core.Office.EPPlus.Controller
             }
         }
 
-        private IEnumerable<DataColumn> GetDataColumns(IEnumerable<ExcelColumnAttribute> attributes)
+        protected virtual IEnumerable<DataColumn> GetDataColumns(IEnumerable<ExcelColumnAttribute> attributes)
         {
             return attributes.Select(x => new DataColumn(x.PropertyName, x.DataType)
             {

@@ -36,6 +36,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Azure.CosmosDb\MPSTI.PlenoSoft.Core.Azure.CosmosDb.csproj" />
 		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Flux\MPSTI.PlenoSoft.Core.Flux.csproj" />
+		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Office.OpenXml\MPSTI.PlenoSoft.Core.Office.OpenXml.csproj" />
 		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Selenium\MPSTI.PlenoSoft.Core.Selenium.csproj" />
 		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.xUnit\MPSTI.PlenoSoft.Core.xUnit.csproj" />
 	</ItemGroup>

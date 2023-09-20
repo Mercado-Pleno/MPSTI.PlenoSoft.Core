@@ -6,7 +6,7 @@ namespace MPSTI.PlenoSoft.Core.Test.Office.OpenXml
 {
     public class TestingPlenoExcel
     {
-        [Fact]
+        [FactDebuggerOnly]
         public void WhenCenario1_StatusTrue()
         {
             var directory = new DirectoryInfo("D:/Excel");

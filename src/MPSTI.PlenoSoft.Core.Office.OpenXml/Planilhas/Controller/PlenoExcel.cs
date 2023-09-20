@@ -12,6 +12,9 @@ using System.Reflection;
 
 namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Controller
 {
+    /// <summary>
+    /// https://learn.microsoft.com/pt-br/office/open-xml/spreadsheets
+    /// </summary>
     public class PlenoExcel
     {
         private readonly Mode _mode;

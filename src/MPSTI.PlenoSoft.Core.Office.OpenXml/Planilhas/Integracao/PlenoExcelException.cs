@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Controller
+namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Integracao
 {
     [Serializable]
     public class PlenoExcelException : Exception

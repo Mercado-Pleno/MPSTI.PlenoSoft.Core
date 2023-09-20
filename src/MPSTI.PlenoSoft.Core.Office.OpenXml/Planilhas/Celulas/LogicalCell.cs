@@ -1,10 +1,9 @@
 ﻿using DocumentFormat.OpenXml.Spreadsheet;
-using MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Controller;
 using System;
 
 namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Celulas
 {
-	public class LogicalCell : Cell
+    public class LogicalCell : Cell
 	{
 		private static String _valor0;
 		private static String _valor1;

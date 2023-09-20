@@ -1,10 +1,9 @@
 ﻿using DocumentFormat.OpenXml.Spreadsheet;
-using MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Controller;
 using System;
 
 namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Celulas
 {
-	public class FormulaCell : Cell
+    public class FormulaCell : Cell
 	{
 		public FormulaCell(Celula celula, String formula)
 		{

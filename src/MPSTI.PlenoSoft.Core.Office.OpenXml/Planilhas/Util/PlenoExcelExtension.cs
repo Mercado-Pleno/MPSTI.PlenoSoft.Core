@@ -6,7 +6,7 @@ namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Util
 {
     public static class PlenoExcelExtension
 	{
-		public static Boolean Is(this Modo self, Modo modo)
+		public static Boolean Is(this Mode self, Mode modo)
 		{
 			return (self & modo) == modo;
 		}

@@ -1,12 +1,11 @@
 ﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Spreadsheet;
-using MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Controller;
 using System;
 using System.Globalization;
 
 namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Celulas
 {
-	public class NumberCell : Cell
+    public class NumberCell : Cell
 	{
 		private static readonly CultureInfo en_US = CultureInfo.GetCultureInfo("en-US");
 

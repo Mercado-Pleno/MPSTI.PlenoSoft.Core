@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Integracao
 {
-    public enum Tipo
+    public enum XlType
     {
         General,
         String,
@@ -23,8 +23,8 @@ namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Integracao
         public string Title { get; set; }
         public int Order { get; set; }
         public string Format { get; set; }
-        public double Width { get; set; }
-        public Tipo ExcelType { get; set; }
+        public double? Width { get; set; }
+        public XlType ExcelType { get; set; }
 
         public string PropertyName => PropertyInfo.DeclaringType.Name + "." + PropertyInfo.Name;
         public string DateFormat
@@ -33,7 +33,7 @@ namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Integracao
             set => Format = value;
         }
 
-        public ExcelColumnAttribute(string title, int order, Tipo xlType = Tipo.General, string format = null)
+        public ExcelColumnAttribute(string title, int order, XlType xlType = XlType.General, string format = null)
         {
             Width = 20.00;
             Title = title;

@@ -1,13 +1,12 @@
 ﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Spreadsheet;
-using MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Controller;
 using System;
 using Cor = System.Drawing.Color;
 using Translator = System.Drawing.ColorTranslator;
 
 namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Celulas
 {
-	public class HeaderCell : TextCell
+    public class HeaderCell : TextCell
 	{
 		public HeaderCell(Celula celula, String text, Stylesheet styles, Cor fillColor, Double? fontSize, Boolean isBold)
 			: base(celula, text)

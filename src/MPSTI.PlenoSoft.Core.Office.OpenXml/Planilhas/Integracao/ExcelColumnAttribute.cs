@@ -4,17 +4,6 @@ using System.Reflection;
 
 namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Integracao
 {
-    public enum XlType
-    {
-        General,
-        String,
-        Int,
-        Long,
-        Double,
-        Decimal,
-        DateTime,
-    }
-
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     public class ExcelColumnAttribute : Attribute
     {
@@ -22,24 +11,15 @@ namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Integracao
 
         public string Title { get; set; }
         public int Order { get; set; }
-        public string Format { get; set; }
-        public double Width { get; set; }
-        public XlType ExcelType { get; set; }
+        public double? Width { get; set; }
+        public string PropertyName => PropertyInfo?.DeclaringType.Name + "." + PropertyInfo?.Name;
 
-        public string PropertyName => PropertyInfo.DeclaringType.Name + "." + PropertyInfo.Name;
-        public string DateFormat
+        public ExcelColumnAttribute(string title, int order, double width = 0)
         {
-            get => Format ??= "{0:yyyy/MM/dd}";
-            set => Format = value;
-        }
-
-        public ExcelColumnAttribute(string title, int order, XlType xlType = XlType.General, string format = null)
-        {
-            Width = 20.00;
             Title = title;
             Order = order;
-            ExcelType = xlType;
-            Format = format;
+            if (width > 0)
+                Width = width;
         }
 
         private ExcelColumnAttribute(PropertyInfo propertyInfo, int posicao)
@@ -60,20 +40,10 @@ namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Integracao
 
             if (!attributes.Any(x => x != null))
                 attributes = properties.Select((p, i) => new ExcelColumnAttribute(p, i));
-            
+
             return attributes.Where(x => x != null).OrderBy(x => x.Order).ToArray();
         }
 
-        public object GetValue<TClass>(TClass dto)
-        {
-            try
-            {
-                return PropertyInfo.GetValue(dto, null);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
+        public object GetValue<TClass>(TClass dto) => PropertyInfo.GetValue(dto, null);
     }
 }

@@ -15,7 +15,7 @@ namespace MPSTI.PlenoSoft.Core.Test.Office.OpenXml
             var fileInfo = new FileInfo(Path.Combine(directory.FullName, $"A-{DateTime.Now:HH.mm.ss}.xlsx"));
             var plenoExcel = new PlenoExcel(fileInfo, Mode.Padrao | Mode.ApagarSeExistir | Mode.FazerBackupAntes);
 
-            var pessoas = PessoaFactory.Create(0);
+            var pessoas = PessoaFactory.Create(10000);
             plenoExcel.Export(pessoas);
 
             plenoExcel.Close();
@@ -36,7 +36,7 @@ namespace MPSTI.PlenoSoft.Core.Test.Office.OpenXml
 
             public static Pessoa CreateOne(int id)
             {
-                var nascimento = new DateTime(1982, 11, 30);
+                var nascimento = new DateTime(1982, 11, 30, 0, 0, 0, DateTimeKind.Local);
                 return new Pessoa
                 {
                     Id = NewId(),
@@ -56,25 +56,25 @@ namespace MPSTI.PlenoSoft.Core.Test.Office.OpenXml
 
         public class Pessoa
         {
-            [ExcelColumn("Id", 1, XlType.Long, Width = 5)]
+            [ExcelColumn("Id", 1, 7)]
             public long Id { get; set; }
 
-            [ExcelColumn("Nome", 2, XlType.String, Width = 30)]
+            [ExcelColumn("Nome", 2, 30)]
             public string Nome { get; set; }
 
-            [ExcelColumn("Genero", 3, XlType.String, Width = 10)]
+            [ExcelColumn("Gênero", 3, 12)]
             public Genero Genero { get; set; }
 
-            [ExcelColumn("Nascimento", 4, XlType.DateTime, Width = 8)]
+            [ExcelColumn("Nascimento", 4, 12)]
             public DateTime Nascimento { get; set; }
 
-            [ExcelColumn("LimiteCredito", 5, XlType.Double, Width = 8)]
+            [ExcelColumn("LimiteCredito", 5, 14)]
             public decimal LimiteCredito { get; set; }
 
-            [ExcelColumn("Ativo", 6, XlType.General, Width = 9)]
+            [ExcelColumn("Ativo", 6, 13)]
             public bool Ativo { get; set; }
 
-            [ExcelColumn("Classe", 7, XlType.String, Width = 2)]
+            [ExcelColumn("Classe", 7, 6)]
             public char Classe { get; set; }
         }
     }

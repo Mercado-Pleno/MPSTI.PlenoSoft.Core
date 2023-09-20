@@ -2,7 +2,6 @@
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Celulas;
-using MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Controller;
 using MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Integracao;
 using System;
 using System.Collections;
@@ -12,19 +11,29 @@ using System.Linq;
 namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Util
 {
     public static class OpenXmlExtension
-	{
-
+    {
         public static Type GetTypeOfItems<T>(this IEnumerable<T> _) => typeof(T);
 
-        public static void WriteAll(this SheetData sheetdata, IEnumerable lista, IEnumerable<ExcelColumnAttribute> attributes)
+        public static void WriteAll(this SheetData sheetData, IEnumerable lista, IEnumerable<ExcelColumnAttribute> attributes)
         {
-            WriteHeader(sheetdata, attributes);
-            WriteLines(sheetdata, lista, attributes);
+            if (attributes.Any())
+            {
+                WriteHeader(sheetData, attributes);
+                WriteLines(sheetData, lista, attributes);
+            }
         }
 
         public static void WriteHeader(this SheetData sheetData, IEnumerable<ExcelColumnAttribute> attributes)
         {
-            WriteLine(sheetData, attributes, Style.Header, attribute => attribute.Title);
+            var style = StyleFactory.Get(Style.Header);
+            var line = sheetData.ChildElements.Count + 1;
+            var newRow = sheetData.NewRow(line);
+            var column = 0;
+            foreach (var attribute in attributes)
+            {
+                var cell = CellFactory.Create(line, ++column, attribute.Title, style);
+                newRow.AppendChild(cell);
+            }
             ResizeColumns(sheetData, attributes);
         }
 
@@ -34,54 +43,54 @@ namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Util
             columns.Resize(attributes.Select(x => x.Width));
         }
 
-        public static void WriteLines(this SheetData sheetdata, IEnumerable lista, IEnumerable<ExcelColumnAttribute> attributes)
+        public static void WriteLines(this SheetData sheetData, IEnumerable lista, IEnumerable<ExcelColumnAttribute> attributes)
         {
             foreach (var item in lista)
-                WriteLine(sheetdata, attributes, style: null, attribute => attribute.GetValue(item));
+                WriteLine(sheetData, item, attributes);
         }
 
-        public static void WriteLine(this SheetData sheetdata, IEnumerable<ExcelColumnAttribute> attributes, Style? style, Func<ExcelColumnAttribute, object> getValue)
+        public static void WriteLine(this SheetData sheetData, object item, IEnumerable<ExcelColumnAttribute> attributes)
         {
-            if (attributes.Any())
+            var line = sheetData.ChildElements.Count + 1;
+            var newRow = sheetData.NewRow(line);
+            var column = 0;
+            foreach (var attribute in attributes)
             {
-                var line = sheetdata.ChildElements.Count + 1;
-                var column = 0;
-                var newRow = sheetdata.GetRow(line);
-
-                foreach (var attribute in attributes)
-                {
-                    var value = getValue.Invoke(attribute);
-                    var cell = CellFactory.Create(line, ++column, value, StyleFactory.Get(style));
-                    newRow.AppendChild(cell);
-                }
+                var value = attribute.GetValue(item);
+                var cell = CellFactory.Create(line, ++column, value, null);
+                newRow.AppendChild(cell);
             }
         }
 
         public static SheetData GetSheetDataBySheet(this WorkbookPart workbookPart, Sheet sheet)
-		{
-			if ((workbookPart == null) || (sheet == null)) return null;
-			var worksheetPart = workbookPart.GetPartById(sheet.Id) as WorksheetPart;
-			return worksheetPart?.Worksheet.GetFirstChild<SheetData>();
-		}
+        {
+            if ((workbookPart == null) || (sheet == null)) return new SheetData();
+            var worksheetPart = workbookPart.GetPartById(sheet.Id) as WorksheetPart;
+            return worksheetPart?.Worksheet.GetFirstChild<SheetData>();
+        }
 
-		public static IEnumerable<Row> GetRows(this SheetData sheetData, Func<Row, Int32, Boolean> filtro = null)
-		{
-			var rows = sheetData.ChildElements.OfType<Row>();
-			return (filtro != null) ? rows.Where(filtro) : rows;
-		}
+        public static IEnumerable<Row> GetRows(this SheetData sheetData, Func<Row, Int32, Boolean> filtro = null)
+        {
+            var rows = sheetData.ChildElements.OfType<Row>();
+            return (filtro != null) ? rows.Where(filtro) : rows;
+        }
 
-		public static Row GetRow(this SheetData sheetData, Int32 linha)
-		{
-			var row = sheetData.GetRows((r, i) => r.RowIndex == linha).FirstOrDefault();
-			if (row == null)
-			{
-				row = new Row { RowIndex = (UInt32)linha };
-                sheetData.Append(row);
-			}
-			return row;
-		}
+        public static Row GetRow(this SheetData sheetData, Int32 linha)
+        {
+            var row = sheetData.GetRows((r, i) => r.RowIndex == linha).FirstOrDefault();
+            if (row == null)
+                row = sheetData.NewRow(linha);
+            return row;
+        }
 
-        public static Columns Resize(this Columns columns, IEnumerable<double> widths)
+        private static Row NewRow(this SheetData sheetData, int linha)
+        {
+            var row = new Row { RowIndex = (UInt32)linha };
+            sheetData.Append(row);
+            return row;
+        }
+
+        public static Columns Resize(this Columns columns, IEnumerable<double?> widths)
         {
             columns.RemoveAllChildren();
 

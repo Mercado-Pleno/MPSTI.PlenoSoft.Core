@@ -23,7 +23,7 @@ namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Integracao
         public string Title { get; set; }
         public int Order { get; set; }
         public string Format { get; set; }
-        public double? Width { get; set; }
+        public double Width { get; set; }
         public XlType ExcelType { get; set; }
 
         public string PropertyName => PropertyInfo.DeclaringType.Name + "." + PropertyInfo.Name;

@@ -1,7 +1,8 @@
-﻿using DocumentFormat.OpenXml.Packaging;
+﻿using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-using DocumentFormat.OpenXml.Wordprocessing;
 using MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Celulas;
+using MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Controller;
 using MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Integracao;
 using System;
 using System.Collections;
@@ -12,6 +13,7 @@ namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Util
 {
     public static class OpenXmlExtension
 	{
+
         public static Type GetTypeOfItems<T>(this IEnumerable<T> _) => typeof(T);
 
         public static void WriteAll(this SheetData sheetdata, IEnumerable lista, IEnumerable<ExcelColumnAttribute> attributes)
@@ -22,7 +24,7 @@ namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Util
 
         public static void WriteHeader(this SheetData sheetData, IEnumerable<ExcelColumnAttribute> attributes)
         {
-            WriteLine(sheetData, attributes, style: null, attribute => attribute.Title);
+            WriteLine(sheetData, attributes, Style.Header, attribute => attribute.Title);
             ResizeColumns(sheetData, attributes);
         }
 
@@ -38,7 +40,7 @@ namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Util
                 WriteLine(sheetdata, attributes, style: null, attribute => attribute.GetValue(item));
         }
 
-        public static void WriteLine(this SheetData sheetdata, IEnumerable<ExcelColumnAttribute> attributes, uint? style, Func<ExcelColumnAttribute, object> getValue)
+        public static void WriteLine(this SheetData sheetdata, IEnumerable<ExcelColumnAttribute> attributes, Style? style, Func<ExcelColumnAttribute, object> getValue)
         {
             if (attributes.Any())
             {
@@ -49,7 +51,7 @@ namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Util
                 foreach (var attribute in attributes)
                 {
                     var value = getValue.Invoke(attribute);
-                    var cell = CellFactory.Create(line, ++column, value, style);
+                    var cell = CellFactory.Create(line, ++column, value, StyleFactory.Get(style));
                     newRow.AppendChild(cell);
                 }
             }
@@ -79,7 +81,7 @@ namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Util
 			return row;
 		}
 
-        public static Columns Resize(this Columns columns, IEnumerable<double?> widths)
+        public static Columns Resize(this Columns columns, IEnumerable<double> widths)
         {
             columns.RemoveAllChildren();
 

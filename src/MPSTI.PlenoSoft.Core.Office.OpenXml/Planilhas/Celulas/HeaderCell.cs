@@ -59,7 +59,7 @@ namespace MPSTI.PlenoSoft.Core.Office.OpenXml.Planilhas.Celulas
 			if (fontSize.HasValue)
 				font.Append(new FontSize() { Val = fontSize.Value });
 
-			if (isBold == true)
+			if (isBold)
 				font.Append(new Bold());
 
 			font.Append(new Color() { Rgb = ObterCorRGB(cor) });

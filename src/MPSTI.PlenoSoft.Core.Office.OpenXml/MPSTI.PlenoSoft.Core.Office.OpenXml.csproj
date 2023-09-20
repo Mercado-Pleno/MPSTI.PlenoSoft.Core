@@ -24,32 +24,32 @@
 		<Title>MPSTI.PlenoSoft.Core.Office.OpenXml @ Mercado-Pleno</Title>
 		<Description>Pleno Excel é um façade para o DocumentFormat.OpenXML muito simples de utilizar.</Description>
 		<PackageTags>Pleno Excel OpenDocument Open Document Mercado Pleno Soluções Tecnologia Informação</PackageTags>
-		<AssemblyVersion>1.0.0.1</AssemblyVersion>
-		<FileVersion>1.0.0.1</FileVersion>
-		<Version>1.0.0.1</Version>
+		<AssemblyVersion>2.0.0.1</AssemblyVersion>
+		<FileVersion>2.0.0.1</FileVersion>
+		<Version>2.0.0.1</Version>
 		<PackageReleaseNotes>
 			<![CDATA[(Atual)
-2023/09/16 - 1.0.0.1 -> Versão inicial;
+2023-09-20 - 2.0.0.01 -> Trocando o target do pacote MPSTI.PlenoSoft.Core.Office.OpenXml para o .Net 6;
+2022-11-05 - 1.0.0.18 -> Refatoração e limpeza do projeto, com alteração do nome de PlenoMapa para ExcelColumnAttribute;
+2021-05-07 - 1.0.0.17 -> Correção do bug de exportar uma lista de DTOs;
+2018-04-26 - 1.0.0.16 -> Inclusão da suíte de testes unitários e reestruturação das pastas de código fonte;
+2018-02-02 - 1.0.0.15 -> Correção do bug de exportar campo do tipo Decimal;
+2017-10-20 - 1.0.0.14 -> Possibilitar o carregamento automático da configuração através de arquivo XML;
+2017-10-18 - 1.0.0.13 -> Correção do posicionamento do cabeçalho;
+2017-09-14 - 1.0.0.12 -> Implementando a configuração através de recursos externos da aplicação;
+2017-08-17 - 1.0.0.11 -> Suporte à Backup durante a manipulação de arquivos;
+2017-08-07 - 1.0.0.10 -> Configuração de campos através de Atributos no DTO;
+2017-08-06 - 1.0.0.09 -> Exportação de Listas de um DTO como sheets da planilha;
+2017-08-05 - 1.0.0.08 -> Versão Inicial do façade para o DocumentFormat.OpenXML muito simples de utilizar;
 ]]>
 		</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="ZipXml\**" />
-	  <EmbeddedResource Remove="ZipXml\**" />
-	  <None Remove="ZipXml\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Remove="Planilhas\Controller\Planilha.cs" />
-	  <Compile Remove="Planilhas\Util\FabricaDeEstilo.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Include="..\asset\package-plenoexcel.png">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
+		<None Include="..\asset\package-plenoexcel.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>

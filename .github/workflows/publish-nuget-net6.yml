@@ -96,6 +96,11 @@ jobs:
       env:
         PACKAGE_FILE: ${{ format('**/{0}/**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.MongoDb') }}
 
+    - name: Publish Package (Core.Office.OpenXml)
+      run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
+      env:
+        PACKAGE_FILE: ${{ format('**/{0}/**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Office.OpenXml') }}
+
     - name: Publish Package (Core.Office.EPPlus)
       run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
       env:

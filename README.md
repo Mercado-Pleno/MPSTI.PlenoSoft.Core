@@ -20,6 +20,7 @@ Endereços dos pacotes NuGet (.Net6):
 - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.CrossProject.Web?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.CrossProject.Web?style=plastic) MPSTI.PlenoSoft.Core.CrossProject.Web](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.CrossProject.Web)
 - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.Flux?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.Flux?style=plastic) MPSTI.PlenoSoft.Core.Flux](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Flux)
 - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.MongoDb?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.MongoDb?style=plastic) MPSTI.PlenoSoft.Core.MongoDb](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.MongoDb)
+- [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.Office.OpenXml?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.Office.OpenXml?style=plastic) MPSTI.PlenoSoft.Core.Office.OpenXml](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Office.OpenXml)
 - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.Office.EPPlus?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.Office.EPPlus?style=plastic) MPSTI.PlenoSoft.Core.Office.EPPlus](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Office.EPPlus)
 - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.Selenium?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.Selenium?style=plastic) MPSTI.PlenoSoft.Core.Selenium](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Selenium)
 - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.xUnit?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.xUnit?style=plastic) MPSTI.PlenoSoft.Core.xUnit](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.xUnit)
@@ -29,7 +30,7 @@ Endereços dos pacotes NuGet (.Net6):
 
 [![Publish Nuget .Net4](https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core/actions/workflows/publish-nuget-net4.yml/badge.svg)](https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core/actions/workflows/publish-nuget-net4.yml)
 Endereços dos pacotes NuGet (.Net Framework 4.8):
-- [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.Office.OpenXML?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.Office.OpenXML?style=plastic) MPSTI.PlenoSoft.Core.Office.OpenXML](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Office.OpenXML)
+- [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.Office.OpenXML.Net4?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.Office.OpenXML.Net4?style=plastic) MPSTI.PlenoSoft.Core.Office.OpenXML.Net4](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Office.OpenXML.Net4)
 - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.Selenium.Net4?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.Selenium.Net4?style=plastic) MPSTI.PlenoSoft.Core.Selenium.Net4](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.Selenium.Net4)
 - [![](https://img.shields.io/nuget/v/MPSTI.PlenoSoft.Core.WatiN.Net4?style=plastic) ![](https://img.shields.io/nuget/dt/MPSTI.PlenoSoft.Core.WatiN.Net4?style=plastic) MPSTI.PlenoSoft.Core.WatiN.Net4](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.WatiN.Net4)
 

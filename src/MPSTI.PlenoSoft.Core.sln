@@ -46,7 +46,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.xUnit"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Exemplo.AzureFunction", "MPSTI.PlenoSoft.Exemplo.AzureFunction\MPSTI.PlenoSoft.Exemplo.AzureFunction.csproj", "{40FD8BED-1E79-41D5-A15F-71628167DEED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPSTI.PlenoSoft.Core.Office.OpenXml", "MPSTI.PlenoSoft.Core.Office.OpenXml\MPSTI.PlenoSoft.Core.Office.OpenXml.csproj", "{40124EA5-144F-41BD-97BB-6D35A2B0B3A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Office.OpenXml", "MPSTI.PlenoSoft.Core.Office.OpenXml\MPSTI.PlenoSoft.Core.Office.OpenXml.csproj", "{40124EA5-144F-41BD-97BB-6D35A2B0B3A2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPSTI.PlenoSoft.Core.Configurations", "MPSTI.PlenoSoft.Core.Configurations\MPSTI.PlenoSoft.Core.Configurations.csproj", "{84F60864-8D29-4A50-B56E-C718A9E2C5DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -262,6 +264,18 @@ Global
 		{40124EA5-144F-41BD-97BB-6D35A2B0B3A2}.Release|x64.Build.0 = Release|x64
 		{40124EA5-144F-41BD-97BB-6D35A2B0B3A2}.Release|x86.ActiveCfg = Release|x86
 		{40124EA5-144F-41BD-97BB-6D35A2B0B3A2}.Release|x86.Build.0 = Release|x86
+		{84F60864-8D29-4A50-B56E-C718A9E2C5DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84F60864-8D29-4A50-B56E-C718A9E2C5DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84F60864-8D29-4A50-B56E-C718A9E2C5DA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{84F60864-8D29-4A50-B56E-C718A9E2C5DA}.Debug|x64.Build.0 = Debug|Any CPU
+		{84F60864-8D29-4A50-B56E-C718A9E2C5DA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{84F60864-8D29-4A50-B56E-C718A9E2C5DA}.Debug|x86.Build.0 = Debug|Any CPU
+		{84F60864-8D29-4A50-B56E-C718A9E2C5DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84F60864-8D29-4A50-B56E-C718A9E2C5DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84F60864-8D29-4A50-B56E-C718A9E2C5DA}.Release|x64.ActiveCfg = Release|Any CPU
+		{84F60864-8D29-4A50-B56E-C718A9E2C5DA}.Release|x64.Build.0 = Release|Any CPU
+		{84F60864-8D29-4A50-B56E-C718A9E2C5DA}.Release|x86.ActiveCfg = Release|Any CPU
+		{84F60864-8D29-4A50-B56E-C718A9E2C5DA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -71,6 +71,11 @@ jobs:
       env:
         PACKAGE_FILE: ${{ format('**/{0}/**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Collections') }}
 
+    - name: Publish Package (Core.Configurations)
+      run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
+      env:
+        PACKAGE_FILE: ${{ format('**/{0}/**/{0}*.nupkg', 'MPSTI.PlenoSoft.Core.Configurations') }}
+
     - name: Publish Package (Core.CrossProject)
       run: nuget push -SkipDuplicate -src ${{ env.NUGET_API_SOURCE }} ${{ env.PACKAGE_FILE }}
       env:

@@ -72,6 +72,7 @@ namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql
         internal static IDbCommand CreateCommand(this IDbConnection dbConnection, string commandText)
         {
             var dbCommand = dbConnection.CreateCommand();
+            dbCommand.CommandType = CommandType.Text;
             dbCommand.CommandText = commandText;
             return dbCommand;
         }

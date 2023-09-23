@@ -19,8 +19,10 @@
 	<ItemGroup>
 		<PackageReference Include="FluentAssertions" Version="6.8.0" />
 		<PackageReference Include="Microsoft.Azure.Cosmos" Version="3.31.2" />
+		<PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.11" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
 		<PackageReference Include="xunit" Version="2.4.1" />
 
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
@@ -35,6 +37,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Azure.CosmosDb\MPSTI.PlenoSoft.Core.Azure.CosmosDb.csproj" />
+		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.DbConfigurations\MPSTI.PlenoSoft.Core.DbConfigurations.csproj" />
 		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Flux\MPSTI.PlenoSoft.Core.Flux.csproj" />
 		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Office.OpenXml\MPSTI.PlenoSoft.Core.Office.OpenXml.csproj" />
 		<ProjectReference Include="..\MPSTI.PlenoSoft.Core.Selenium\MPSTI.PlenoSoft.Core.Selenium.csproj" />
@@ -46,6 +49,9 @@
 	</ItemGroup>
 	<ItemGroup>
 		<None Update="Abstracao\appsettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Abstracao\Database.sqlite">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>

@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
-using MPSTI.PlenoSoft.Core.Configurations.DbSql.Interfaces;
+using MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Interfaces;
 using System;
 using System.Data;
 
-namespace MPSTI.PlenoSoft.Core.Configurations.DbSql.Extensions
+namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql
 {
     public static class DbConfigurationExtensions
     {

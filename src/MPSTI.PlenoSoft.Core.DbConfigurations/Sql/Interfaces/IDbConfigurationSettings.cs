@@ -2,7 +2,7 @@
 using System;
 using System.Data;
 
-namespace MPSTI.PlenoSoft.Core.Configurations.DbSql.Interfaces
+namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Interfaces
 {
     public interface IDbConfigurationSettings
     {

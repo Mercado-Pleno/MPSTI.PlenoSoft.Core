@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 
-namespace MPSTI.PlenoSoft.Core.Configurations.DbSql.Interfaces
+namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Interfaces
 {
     public interface IDbConfigurationSource : IConfigurationSource
     {
-        void ExecuteQueryAndLoadData(IDictionary<string, string> dataSource);
+        void ExecuteQueryAndFillDataSource(IDictionary<string, string> dataSource);
     }
 }

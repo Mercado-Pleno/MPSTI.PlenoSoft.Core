@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
-using MPSTI.PlenoSoft.Core.Configurations.DbSql.Interfaces;
+using MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Interfaces;
 using System;
 using System.Data;
 
-namespace MPSTI.PlenoSoft.Core.Configurations.DbSql
+namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql
 {
     public class DbConfigurationSettings : IDbConfigurationSettings
     {
@@ -12,6 +12,9 @@ namespace MPSTI.PlenoSoft.Core.Configurations.DbSql
         public string ConfigurationValueColumn { get; set; }
         public Func<IConfiguration, IDbConnection> DbConnectionFactory { get; set; }
 
-        IConfigurationSource IDbConfigurationSettings.CreateConfigurationSource() => new DbConfigurationSourceProxy(this);
+        IConfigurationSource IDbConfigurationSettings.CreateConfigurationSource()
+        {
+            return new DbConfigurationSourceProxy(this);
+        }
     }
 }

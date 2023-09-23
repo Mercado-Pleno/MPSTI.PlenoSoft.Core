@@ -22,13 +22,14 @@
 		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</RepositoryUrl>
 		<Title>Configurations @ Mercado Pleno Soluções em Computação</Title>
-		<Description>MPSTI.PlenoSoft.Core.Configurations</Description>
+		<Description>MPSTI.PlenoSoft.Core.DbConfigurations</Description>
 		<PackageTags>DbConfigurations Mercado Pleno Soluções em Tecnologia da Informação</PackageTags>
-		<AssemblyVersion>1.0.0.2</AssemblyVersion>
-		<FileVersion>1.0.0.2</FileVersion>
-		<Version>1.0.0.2</Version>
+		<AssemblyVersion>1.0.0.3</AssemblyVersion>
+		<FileVersion>1.0.0.3</FileVersion>
+		<Version>1.0.0.3</Version>
 		<PackageReleaseNotes>
 			<![CDATA[(Atual)
+2023-09-22 - 1.0.0.3 - Rename package from MPSTI.PlenoSoft.Core.Configurations to MPSTI.PlenoSoft.Core.DbConfigurations;
 2023-09-22 - 1.0.0.2 - Remove unused Packages References from Project;
 2023-09-22 - 1.0.0.1 - Versão Inicial do MPSTI.PlenoSoft.Core.Configurations que permite carregar configurações de uma tabela do banco de dados;
 ]]>

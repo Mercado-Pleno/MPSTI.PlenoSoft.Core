@@ -1,11 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
-using MPSTI.PlenoSoft.Core.Configurations.DbSql.Extensions;
-using MPSTI.PlenoSoft.Core.Configurations.DbSql.Interfaces;
+using MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Interfaces;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
-namespace MPSTI.PlenoSoft.Core.Configurations.DbSql
+namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql
 {
     public abstract class DbConfigurationSource : IDbConfigurationSource
     {
@@ -21,28 +20,43 @@ namespace MPSTI.PlenoSoft.Core.Configurations.DbSql
             return new DbConfigurationProvider(this);
         }
 
-        void IDbConfigurationSource.ExecuteQueryAndLoadData(IDictionary<string, string> dataSource)
+        void IDbConfigurationSource.ExecuteQueryAndFillDataSource(IDictionary<string, string> dataSource)
         {
             using var dbConnection = GetConnection();
-            using var dbCommand = dbConnection.CreateCommand(CommandSelectQuerySql);
-            using var dataReader = dbCommand.ExecuteReader();
-            var keyIndex = dataReader.GetOrdinal(ConfigurationKeyColumn);
-            var valueIndex = dataReader.GetOrdinal(ConfigurationValueColumn);
-            while (dataReader.Read())
+            try
             {
-                var key = dataReader.GetString(keyIndex);
-                var value = dataReader.GetString(valueIndex);
-                dataSource[key] = value;
+                using var dbCommand = dbConnection.CreateCommand(CommandSelectQuerySql);
+                using var dataReader = dbCommand.ExecuteReader();
+                try
+                {
+                    var keyIndex = dataReader.GetOrdinal(ConfigurationKeyColumn);
+                    var valueIndex = dataReader.GetOrdinal(ConfigurationValueColumn);
+                    while (dataReader.Read())
+                    {
+                        var key = dataReader.GetString(keyIndex);
+                        var value = dataReader.GetString(valueIndex);
+                        dataSource[key] = value;
+                    }
+                }
+                finally
+                {
+                    dataReader.Close();
+                }
             }
-            dataReader.Close();
-            dbConnection.Close();
+            finally
+            {
+                dbConnection.Close();
+            }
         }
 
         private IDbConnection GetConnection()
         {
             var configuration = BuildPartialConfiguration();
             var dbConnection = CreateDbConnection(configuration);
-            dbConnection.Open();
+
+            if (dbConnection.State != ConnectionState.Open)
+                dbConnection.Open();
+
             return dbConnection;
         }
 
@@ -50,7 +64,8 @@ namespace MPSTI.PlenoSoft.Core.Configurations.DbSql
         {
             var configurationProviders = _configurationBuilder.Sources
                 .Where(x => x is not IDbConfigurationSource)
-                .Select(x => x.Build(_configurationBuilder)).ToArray();
+                .Select(x => x.Build(_configurationBuilder))
+                .ToArray();
 
             foreach (var configurationProvider in configurationProviders)
                 configurationProvider.Load();

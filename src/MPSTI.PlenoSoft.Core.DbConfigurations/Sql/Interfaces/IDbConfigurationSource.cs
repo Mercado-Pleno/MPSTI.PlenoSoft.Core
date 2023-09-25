@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Interfaces
 {
-    public interface IDbConfigurationSource : IConfigurationSource
-    {
-        void ExecuteQueryAndFillDataSource(IDictionary<string, string> dataSource);
-    }
+	public interface IDbConfigurationSource : IConfigurationSource
+	{
+		void FillDataSource(IDictionary<string, string> dataSource);
+	}
 }

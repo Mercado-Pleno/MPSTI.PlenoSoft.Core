@@ -1,76 +1,65 @@
 ﻿using Microsoft.Extensions.Configuration;
+using MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Extensions;
 using MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Interfaces;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 
 namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql
 {
-    public abstract class DbConfigurationSource : IDbConfigurationSource
-    {
-        private IConfigurationBuilder _configurationBuilder;
-        protected abstract string CommandSelectQuerySql { get; }
-        protected abstract string ConfigurationKeyColumn { get; }
-        protected abstract string ConfigurationValueColumn { get; }
-        protected abstract IDbConnection CreateDbConnection(IConfiguration configuration);
+	public class DbConfigurationSource : IDbConfigurationSource
+	{
+		private readonly IDbConfigurationSettings _dbConfigurationSettings;
+		private IConfigurationBuilder _configurationBuilder;
 
-        IConfigurationProvider IConfigurationSource.Build(IConfigurationBuilder builder)
-        {
-            _configurationBuilder = builder;
-            return new DbConfigurationProvider(this);
-        }
+		public DbConfigurationSource(IDbConfigurationSettings dbConfigurationSettings)
+		{
+			_dbConfigurationSettings = dbConfigurationSettings;
+		}
 
-        void IDbConfigurationSource.ExecuteQueryAndFillDataSource(IDictionary<string, string> dataSource)
-        {
-            using var dbConnection = GetConnection();
-            try
-            {
-                using var dbCommand = dbConnection.CreateCommand(CommandSelectQuerySql);
-                using var dataReader = dbCommand.ExecuteReader();
-                try
-                {
-                    var keyIndex = dataReader.GetOrdinal(ConfigurationKeyColumn);
-                    var valueIndex = dataReader.GetOrdinal(ConfigurationValueColumn);
-                    while (dataReader.Read())
-                    {
-                        var key = dataReader.GetString(keyIndex);
-                        var value = dataReader.GetString(valueIndex);
-                        dataSource[key] = value;
-                    }
-                }
-                finally
-                {
-                    dataReader.Close();
-                }
-            }
-            finally
-            {
-                dbConnection.Close();
-            }
-        }
+		public IConfigurationProvider Build(IConfigurationBuilder builder)
+		{
+			_configurationBuilder = builder;
+			return new DbConfigurationProvider(this);
+		}
 
-        private IDbConnection GetConnection()
-        {
-            var configuration = BuildPartialConfiguration();
-            var dbConnection = CreateDbConnection(configuration);
+		public void FillDataSource(IDictionary<string, string> dataSource)
+		{
+			using var configuration = _configurationBuilder.BuildPartialConfiguration();
+			using var dbConnection = GetConnection(configuration);
+			try
+			{
+				using var dbCommand = dbConnection.CreateCommand(_dbConfigurationSettings.CommandSelectQuerySql);
+				using var dataReader = dbCommand.ExecuteReader();
+				try
+				{
+					var keyIndex = dataReader.GetOrdinal(_dbConfigurationSettings.ConfigurationKeyColumn);
+					var valueIndex = dataReader.GetOrdinal(_dbConfigurationSettings.ConfigurationValueColumn);
+					while (dataReader.Read())
+					{
+						var key = dataReader.GetString(keyIndex);
+						var value = dataReader.GetString(valueIndex);
+						dataSource[key] = value;
+					}
+				}
+				finally
+				{
+					dataReader.Close();
+				}
+			}
+			finally
+			{
+				dbConnection.Close();
+			}
+		}
 
-            if (dbConnection.State != ConnectionState.Open)
-                dbConnection.Open();
+		private IDbConnection GetConnection(IConfiguration configuration)
+		{
+			var dbConnection = _dbConfigurationSettings.CreateDbConnection(configuration);
+			if (dbConnection.State != ConnectionState.Open)
+				dbConnection.Open();
+			return dbConnection;
+		}
 
-            return dbConnection;
-        }
-
-        private IConfiguration BuildPartialConfiguration()
-        {
-            var configurationProviders = _configurationBuilder.Sources
-                .Where(x => x is not IDbConfigurationSource)
-                .Select(x => x.Build(_configurationBuilder))
-                .ToArray();
-
-            foreach (var configurationProvider in configurationProviders)
-                configurationProvider.Load();
-
-            return new ConfigurationRoot(configurationProviders);
-        }
-    }
+		public override string ToString() => _dbConfigurationSettings.ToString();
+	}
 }

@@ -14,7 +14,9 @@ namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql
 
         public override void Load()
         {
-            _dbConfigurationSource.ExecuteQueryAndFillDataSource(Data);
+            _dbConfigurationSource.FillDataSource(Data);
         }
-    }
+
+		public override string ToString() => $"DbConfigurationProvider for {_dbConfigurationSource}";
+	}
 }

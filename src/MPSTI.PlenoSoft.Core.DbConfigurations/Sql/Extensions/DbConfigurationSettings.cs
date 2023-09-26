@@ -5,8 +5,8 @@ using System.Data;
 
 namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Extensions
 {
-    public class DbConfigurationSettings : IDbConfigurationSettings
-    {
+    public class DbConfigurationSettings : IDbConfigurationSettings, ISetDbConfigurationSettings
+	{
         public virtual string CommandSelectQuerySql { get; set; }
         public virtual string ConfigurationKeyColumn { get; set; }
         public virtual string ConfigurationValueColumn { get; set; }

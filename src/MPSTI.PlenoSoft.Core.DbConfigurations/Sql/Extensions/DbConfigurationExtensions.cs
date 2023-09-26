@@ -10,9 +10,9 @@ namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Extensions
 	{
 		/// <summary>
 		///	To use this method,
-		///		TDbConfigurationSettings need implements the IDbConfigurationSettings
+		///		TDbConfigurationSettings needs to implements the IDbConfigurationSettings
 		///		OR
-		///		TDbConfigurationSettings need inherit the DbConfigurationSettings that already implement the IDbConfigurationSettings
+		///		TDbConfigurationSettings needs to inherit the DbConfigurationSettings that already implement the IDbConfigurationSettings
 		///		
 		/// <code>
 		/// var builder = new ConfigurationBuilder()
@@ -20,7 +20,7 @@ namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Extensions
 		///		.AddJsonFile("appsettings.json", optional: false)
 		///		.AddDbConfiguration<SqlServerConfigurationSettings>()
 		///		.AddDbConfiguration<SqliteConfigurationSettings>();
-		/// var configuration = _configurationBuilder.Build();
+		/// var configuration = builder.Build();
 		/// 
 		/// // ...
 		/// 
@@ -73,15 +73,16 @@ namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Extensions
 		///			cfg.ConfigurationValueColumn = "Value";
 		///			cfg.DbConnectionFactory = configuration => new SqlConnection(configuration.GetConnectionString("ConnectionName"));
 		///		});
+		/// var configuration = builder.Build();
 		/// </code>
 		/// </summary>
 		/// <param name="builder">IConfigurationBuilder</param>
-		/// <param name="configureSettings">Action<DbConfigurationSettings></param>
+		/// <param name="setupSettings">Action<DbConfigurationSettings></param>
 		/// <returns>IConfigurationBuilder</returns>
-		public static IConfigurationBuilder AddDbConfiguration(this IConfigurationBuilder builder, Action<DbConfigurationSettings> configureSettings)
+		public static IConfigurationBuilder AddDbConfiguration(this IConfigurationBuilder builder, Action<ISetDbConfigurationSettings> setupSettings)
 		{
 			var dbConfigurationSettings = new DbConfigurationSettings();
-			configureSettings.Invoke(dbConfigurationSettings);
+			setupSettings.Invoke(dbConfigurationSettings);
 			return AddDbConfiguration(builder, dbConfigurationSettings);
 		}
 

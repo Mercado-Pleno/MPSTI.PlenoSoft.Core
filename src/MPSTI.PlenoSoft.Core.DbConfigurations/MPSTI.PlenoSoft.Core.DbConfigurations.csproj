@@ -13,6 +13,7 @@
 		<Authors>Bruno-N-Fernandes,mercadopleno.com.br</Authors>
 		<Company>Mercado Pleno Soluções em Tecnologia da Informação</Company>
 		<Copyright>Mercado Pleno Soluções em Tecnologia da Informação</Copyright>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryType>git</RepositoryType>
 		<NeutralLanguage>pt-BR</NeutralLanguage>
 	</PropertyGroup>
@@ -21,14 +22,15 @@
 		<PackageIcon>package-configurations.png</PackageIcon>
 		<PackageProjectUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core</RepositoryUrl>
-		<Title>Configurations @ Mercado Pleno Soluções em Computação</Title>
+		<Title>DbConfigurations @ Mercado Pleno Soluções em Computação</Title>
 		<Description>MPSTI.PlenoSoft.Core.DbConfigurations</Description>
 		<PackageTags>DbConfigurations Mercado Pleno Soluções em Tecnologia da Informação</PackageTags>
-		<AssemblyVersion>1.0.0.5</AssemblyVersion>
-		<FileVersion>1.0.0.5</FileVersion>
-		<Version>1.0.0.5</Version>
+		<AssemblyVersion>1.0.0.6</AssemblyVersion>
+		<FileVersion>1.0.0.6</FileVersion>
+		<Version>1.0.0.6</Version>
 		<PackageReleaseNotes>
 			<![CDATA[(Atual)
+2023-09-25 - 1.0.0.6 - Refatora o DbConfigurationExtensions para usar o ISetDbConfigurationSettings + Adiciona documentação do Readme.md no projeto e no pacote nuget;
 2023-09-25 - 1.0.0.5 - Refatora as classes para deixar com um designer mais simples e amigável + documentação dos métodos para uso deste pacote;
 2023-09-23 - 1.0.0.4 - Remove tratamento de erro para deixar lançar exception e ser capturada na inicialização + Escrita de testes unitários com o Sqlite;
 2023-09-22 - 1.0.0.3 - Rename package from MPSTI.PlenoSoft.Core.Configurations to MPSTI.PlenoSoft.Core.DbConfigurations;
@@ -43,6 +45,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Include="README.md" Pack="true" PackagePath="\"/>
 		<None Include="..\asset\package-configurations.png">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>

@@ -9,13 +9,12 @@ Este pacote permite que você use a estrutura de configuração do .net (IConfig
 
 
 ## Getting started
-Para usar este pacote, você precisará de 3 arquivos no seu projeto, sendo que, dependendo da configuração que você escolher, o último pode não ser necessário:
+Para usar este pacote, você precisará de 2 arquivos no seu projeto:
 1. [`appsettings.json`](#appsettings.json)
    - Terá as configurações das strings de conexão com o seu banco de dados;
 2. [`Program.cs`](#Program.cs)
-   - Onde o Configuration builder será Criado e configurado;
-3. [`DbSettings.cs`](#DbSettings.cs)
-   - Opcional, caso queira usar a configuração in-line.
+   - Onde o Configuration builder será criado e configurado;
+
 
 
 ### Prerequisites
@@ -41,32 +40,28 @@ Siga os passoa abaixo apara validar a solução:
 3. Compile o programa e execute-o;
 
 
+### Show me the code!
 
-### `appsettings.json`
+
+#### `appsettings.json`
 ```
 {
 	"ConnectionStrings": {
-		"Sqlite": "Data Source=ConfigDb.sqlite;Cache=Shared",
-		"SqlServer": "Server=your-sqlserver.database.net;Database=Config;Trusted_Connection=True;"
-		"MySql": "Server=yourServerAddress;Port=1234;Database=Config;Uid=myUsername;Pwd=myPassword;"
+		"Sqlite": "Data Source=ConfigDb.sqlite;Cache=Shared"
 	}
 }
 ```
 
 
-### `Program.cs`
+#### `Program.cs`
 ```using System;
-using System.Data;
-using System.Data.Common;
-using System.Data.SqlClient;
+using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Extensions;
-using SmartCase.DbConfigurations;
 
 namespace SmartCase
 {
-    public static class Program
+	public static class Program
 	{
 		public static void Main()
 		{
@@ -75,54 +70,96 @@ namespace SmartCase
 			var messageWorld = configuration["DbKeyWorld"];
 			Console.WriteLine($"{messageHello} {messageWorld}!");
 		}
-		
+
 		private static IConfiguration UseConfiguration()
 		{
 			var builder = new ConfigurationBuilder()
 				.SetBasePath(Directory.GetCurrentDirectory())
-
-				// Needs to configuration.GetConnectionString, e.g., MySql, SqlServer, Sqlite.
-				.AddJsonFile("appsettings.json", optional: false)
-
-				// Use Sqlite With Configuration Setting Class
-				.AddDbConfiguration<SqliteConfigurationSettings>()
-
-				// Use SqlServer With Configuration Setting Class
-				.AddDbConfiguration<SqlServerConfigurationSettings>()
-
-				// Use MySql With Setup Configuration Settings
-				.AddDbConfiguration(settings =>
+				.AddJsonFile("appsettings.json", optional: false) // Needs to configuration.GetConnectionString
+				.AddDbConfiguration(settings => // Use Sqlite With Setup Configuration Settings... but, you can use a separated file for this
 				{
 					settings.CommandSelectQuerySql = "Select * From Configuration;";
 					settings.ConfigurationKeyColumn = "Key";
 					settings.ConfigurationValueColumn = "Value";
-					settings.DbConnectionFactory = configuration => new MySqlConnection(configuration.GetConnectionString("MySql"));
+					settings.DbConnectionFactory = configuration => new SqliteConnection(configuration.GetConnectionString("Sqlite"));
 				});
 
-			var configuration = builder.Build();
+			return builder.Build();
 		}
 	}
 }
+```
 
+
+
+
+
+## Additional documentation
+
+[View In GitHub Repository](https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core)
+\
+or
+\
+[Inspect Source Code Directly](https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core/tree/master/src/MPSTI.PlenoSoft.Core.DbConfigurations/Sql)
+
+
+### Other implementation
+
+#### `appsettings.json`
+```
+{
+	"ConnectionStrings": {
+		"SqlServer": "Server=your-sqlserver.database.net;Database=Config;Trusted_Connection=True;"
+	}
+}
+```
+
+
+#### `Program.cs`
+```using System;
+using System.Data;
+using System.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Extensions;
+using MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Interfaces;
+using SmartCase.DbConfigurations;
+
+namespace SmartCase
+{
+	public static class Program
+	{
+		public static void Main()
+		{
+			var configuration = UseConfiguration();
+			var messageHello = configuration["DbKeyHello"];
+			var messageWorld = configuration["DbKeyWorld"];
+			Console.WriteLine($"{messageHello} {messageWorld}!");
+		}
+
+		private static IConfiguration UseConfiguration()
+		{
+			var builder = new ConfigurationBuilder()
+				.SetBasePath(Directory.GetCurrentDirectory())
+				.AddJsonFile("appsettings.json", optional: false) // Needs to configuration.GetConnectionString
+				.AddDbConfiguration<SqlServerConfigurationSettings>(); // Use SqlServer With Configuration Setting Class
+
+			return builder.Build();
+		}
+	}
+}
 ```
 
 
 ### `DbSettings.cs`
-```namespace SmartCase.DbConfigurations
-{
-	// Sqlite Configuration Settings Class needs to inherit the DbConfigurationSettings that already implement the IDbConfigurationSettings
-	public class SqliteConfigurationSettings : DbConfigurationSettings
-	{
-		public override string CommandSelectQuerySql => "Select Chave, Valor From Configuracao;";
-		public override string ConfigurationKeyColumn => "Chave";
-		public override string ConfigurationValueColumn => "Valor";
-		public override IDbConnection CreateDbConnection(IConfiguration configuration)
-		{
-			var connectionString = configuration.GetConnectionString("Sqlite");
-			return new SqliteConnection(connectionString);
-		}
-	}
+```using System;
+using System.Data;
+using System.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Interfaces;
 
+
+namespace SmartCase.DbConfigurations
+{
 	// SqlServer Configuration Setting Class needs only to implements the IDbConfigurationSettings
 	public class SqlServerConfigurationSettings : IDbConfigurationSettings
 	{
@@ -138,14 +175,6 @@ namespace SmartCase
 }
 ```
 
-
-## Additional documentation
-
-[View In GitHub Repository](https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core)
-\
-or
-\
-[Inspect Source Code Directly](https://github.com/Mercado-Pleno/MPSTI.PlenoSoft.Core/tree/master/src/MPSTI.PlenoSoft.Core.DbConfigurations/Sql)
 
 ## Feedback
 

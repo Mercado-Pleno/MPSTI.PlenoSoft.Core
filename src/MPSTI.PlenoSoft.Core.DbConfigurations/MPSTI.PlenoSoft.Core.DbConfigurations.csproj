@@ -25,11 +25,12 @@
 		<Title>DbConfigurations @ Mercado Pleno Soluções em Computação</Title>
 		<Description>MPSTI.PlenoSoft.Core.DbConfigurations</Description>
 		<PackageTags>DbConfigurations Mercado Pleno Soluções em Tecnologia da Informação</PackageTags>
-		<AssemblyVersion>1.0.0.6</AssemblyVersion>
-		<FileVersion>1.0.0.6</FileVersion>
-		<Version>1.0.0.6</Version>
+		<AssemblyVersion>1.0.0.7</AssemblyVersion>
+		<FileVersion>1.0.0.7</FileVersion>
+		<Version>1.0.0.7</Version>
 		<PackageReleaseNotes>
 			<![CDATA[(Atual)
+2023-09-25 - 1.0.0.7 - Melhoria da documentação do Readme.md no projeto e no pacote nuget;
 2023-09-25 - 1.0.0.6 - Refatora o DbConfigurationExtensions para usar o ISetDbConfigurationSettings + Adiciona documentação do Readme.md no projeto e no pacote nuget;
 2023-09-25 - 1.0.0.5 - Refatora as classes para deixar com um designer mais simples e amigável + documentação dos métodos para uso deste pacote;
 2023-09-23 - 1.0.0.4 - Remove tratamento de erro para deixar lançar exception e ser capturada na inicialização + Escrita de testes unitários com o Sqlite;

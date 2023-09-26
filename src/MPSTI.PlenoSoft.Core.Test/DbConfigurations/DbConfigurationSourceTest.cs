@@ -15,71 +15,58 @@ namespace MPSTI.PlenoSoft.Core.Test.DbConfigurations
 		{
 			_configurationBuilder = new ConfigurationBuilder()
 				.SetBasePath(Directory.GetCurrentDirectory())
-				.AddJsonFile("Abstracao/appsettings.json", optional: false)
-				.AddDbConfiguration(x =>
-				{
-					x.CommandSelectQuerySql = "Select * From Configuracao";
-					x.ConfigurationKeyColumn = "Key";
-					x.ConfigurationValueColumn = "Value";
-					x.DbConnectionFactory = configuration => new SqliteConnection(configuration.GetConnectionString("Sqlite"));
-				})
-			;
+				.AddJsonFile("Abstracao/appsettings.json", optional: false);
 		}
 
 		[Fact]
-		public void Test()
+		public void TestWithSqlite()
 		{
+			_configurationBuilder.AddDbConfiguration(x =>
+			{
+				x.CommandSelectQuerySql = "Select * From Configuracao";
+				x.ConfigurationKeyColumn = "Key";
+				x.ConfigurationValueColumn = "Value";
+				x.DbConnectionFactory = configuration => new SqliteConnection(configuration.GetConnectionString("Sqlite"));
+			});
+
 			var configuration = _configurationBuilder.Build();
 
 			configuration.Should().NotBeNull();
 			configuration.Providers.Should().NotBeNull();
-			configuration.Providers.Should().HaveCount(3);
+			configuration.Providers.Should().HaveCount(2);
+		}
+
+		[FactDebuggerOnly]
+		public void TestWithSqlServerSetup()
+		{
+			_configurationBuilder.AddDbConfiguration(x =>
+			{
+				x.CommandSelectQuerySql = "Select * From Configuracao";
+				x.ConfigurationKeyColumn = "Key";
+				x.ConfigurationValueColumn = "Value";
+				x.DbConnectionFactory = configuration => new SqlConnection(configuration.GetConnectionString("SqlServer"));
+			});
+
+			var configuration = _configurationBuilder.Build();
+
+			configuration.Should().NotBeNull();
+			configuration.Providers.Should().NotBeNull();
+			configuration.Providers.Should().HaveCount(2);
+		}
+
+		[FactDebuggerOnly]
+		public void TestWithSqlServerClass()
+		{
+			_configurationBuilder.AddDbConfiguration<SqlServerConfigurationSettings>();
+
+			var configuration = _configurationBuilder.Build();
+
+			configuration.Should().NotBeNull();
+			configuration.Providers.Should().NotBeNull();
+			configuration.Providers.Should().HaveCount(2);
 		}
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// .AddDbConfiguration<SqlServerConfigurationSettings>()
 	public class SqlServerConfigurationSettings : IDbConfigurationSettings
 	{
 		public string CommandSelectQuerySql => "Select * From ControleConfiguracaoNegocio Where (Modulo Like '%VG%'). ";

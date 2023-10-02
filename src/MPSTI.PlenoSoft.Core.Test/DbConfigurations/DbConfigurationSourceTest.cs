@@ -15,49 +15,67 @@ namespace MPSTI.PlenoSoft.Core.Test.DbConfigurations
 		{
 			_configurationBuilder = new ConfigurationBuilder()
 				.SetBasePath(Directory.GetCurrentDirectory())
-				.AddJsonFile("Abstracao/appsettings.json", optional: false, reloadOnChange: true)
-				.AddDbConfiguration<SqliteConfigurationSettings>()
-				.AddDbConfiguration(x =>
-				{
-					x.CommandSelectQuerySql = "Select * From Configuracao";
-					x.ConfigurationKeyColumn = "Key";
-					x.ConfigurationValueColumn = "Value";
-					x.DbConnectionFactory = configuration => new SqliteConnection(configuration.GetConnectionString("Sqlite"));
-				})
-			;
+				.AddJsonFile("Abstracao/appsettings.json", optional: false);
 		}
 
 		[Fact]
-		public void Test()
+		public void TestWithSqlite()
 		{
+			_configurationBuilder.AddDbConfiguration(x =>
+			{
+				x.CommandSelectQuerySql = "Select * From Configuracao";
+				x.ConfigurationKeyColumn = "Key";
+				x.ConfigurationValueColumn = "Value";
+				x.DbConnectionFactory = configuration => new SqliteConnection(configuration.GetConnectionString("Sqlite"));
+			});
+
 			var configuration = _configurationBuilder.Build();
 
 			configuration.Should().NotBeNull();
 			configuration.Providers.Should().NotBeNull();
-			configuration.Providers.Should().HaveCount(3);
+			configuration.Providers.Should().HaveCount(2);
+		}
+
+		[FactDebuggerOnly]
+		public void TestWithSqlServerSetup()
+		{
+			_configurationBuilder.AddDbConfiguration(x =>
+			{
+				x.CommandSelectQuerySql = "Select * From Configuracao";
+				x.ConfigurationKeyColumn = "Key";
+				x.ConfigurationValueColumn = "Value";
+				x.DbConnectionFactory = configuration => new SqlConnection(configuration.GetConnectionString("SqlServer"));
+			});
+
+			var configuration = _configurationBuilder.Build();
+
+			configuration.Should().NotBeNull();
+			configuration.Providers.Should().NotBeNull();
+			configuration.Providers.Should().HaveCount(2);
+		}
+
+		[FactDebuggerOnly]
+		public void TestWithSqlServerClass()
+		{
+			_configurationBuilder.AddDbConfiguration<SqlServerConfigurationSettings>();
+
+			var configuration = _configurationBuilder.Build();
+
+			configuration.Should().NotBeNull();
+			configuration.Providers.Should().NotBeNull();
+			configuration.Providers.Should().HaveCount(2);
 		}
 	}
 
 	public class SqlServerConfigurationSettings : IDbConfigurationSettings
 	{
-		public string CommandSelectQuerySql => "Select Key, Value From Configuracao";
-		public string ConfigurationKeyColumn => "Key";
-		public string ConfigurationValueColumn => "Value";
+		public string CommandSelectQuerySql => "Select * From ControleConfiguracaoNegocio Where (Modulo Like '%VG%'). ";
+		public string ConfigurationKeyColumn => "Identificador";
+		public string ConfigurationValueColumn => "Valor";
 		public IDbConnection CreateDbConnection(IConfiguration configuration)
 		{
-			var connectionString = configuration.GetConnectionString("SqlServer-ConnectionName");
+			var connectionString = configuration.GetConnectionString("SqlServer");
 			return new SqlConnection(connectionString);
-		}
-	}
-
-	public class SqliteConfigurationSettings : DbConfigurationSettings
-	{
-		public override string CommandSelectQuerySql => "Select Key, Value From Configuracao";
-		public override string ConfigurationKeyColumn => "Key";
-		public override string ConfigurationValueColumn => "Value";
-		public override IDbConnection CreateDbConnection(IConfiguration configuration)
-		{
-			return new SqliteConnection(configuration.GetConnectionString("Sqlite"));
 		}
 	}
 }

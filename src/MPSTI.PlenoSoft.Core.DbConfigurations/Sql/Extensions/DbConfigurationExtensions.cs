@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
@@ -54,10 +55,10 @@ namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Extensions
 		/// <typeparam name="TDbConfigurationSettings">where TDbConfigurationSettings : IDbConfigurationSettings, new()</typeparam>
 		/// <param name="builder">IConfigurationBuilder</param>
 		/// <returns>IConfigurationBuilder</returns>
-		public static IConfigurationBuilder AddDbConfiguration<TDbConfigurationSettings>(this IConfigurationBuilder builder) where TDbConfigurationSettings : IDbConfigurationSettings, new()
+		public static IConfigurationBuilder AddDbConfiguration<TDbConfigurationSettings>(this IConfigurationBuilder builder, TimeSpan? checkChangeIntervalToReload = null) where TDbConfigurationSettings : IDbConfigurationSettings, new()
 		{
 			var dbConfigurationSettings = new TDbConfigurationSettings();
-			return AddDbConfiguration(builder, dbConfigurationSettings);
+			return AddDbConfiguration(builder, dbConfigurationSettings, checkChangeIntervalToReload);
 		}
 
 
@@ -79,16 +80,16 @@ namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Extensions
 		/// <param name="builder">IConfigurationBuilder</param>
 		/// <param name="setupSettings">Action<DbConfigurationSettings></param>
 		/// <returns>IConfigurationBuilder</returns>
-		public static IConfigurationBuilder AddDbConfiguration(this IConfigurationBuilder builder, Action<ISetDbConfigurationSettings> setupSettings)
+		public static IConfigurationBuilder AddDbConfiguration(this IConfigurationBuilder builder, Action<ISetDbConfigurationSettings> setupSettings, TimeSpan? checkChangeIntervalToReload = null)
 		{
 			var dbConfigurationSettings = new DbConfigurationSettings();
 			setupSettings.Invoke(dbConfigurationSettings);
-			return AddDbConfiguration(builder, dbConfigurationSettings);
+			return AddDbConfiguration(builder, dbConfigurationSettings, checkChangeIntervalToReload);
 		}
 
-		public static IConfigurationBuilder AddDbConfiguration(IConfigurationBuilder builder, IDbConfigurationSettings dbConfigurationSettings)
+		public static IConfigurationBuilder AddDbConfiguration(IConfigurationBuilder builder, IDbConfigurationSettings dbConfigurationSettings, TimeSpan? checkChangeIntervalToReload)
 		{
-			var dbConfigurationSource = new DbConfigurationSource(dbConfigurationSettings);
+			var dbConfigurationSource = new DbConfigurationSource(dbConfigurationSettings, checkChangeIntervalToReload ?? TimeSpan.Zero);
 			return builder?.Add(dbConfigurationSource);
 		}
 
@@ -101,6 +102,26 @@ namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Extensions
 				configurationProvider.Load();
 
 			return new ConfigurationRoot(configurationProviders);
+		}
+
+		public static bool HasChanged(this IDictionary<string, string> currentData, IDictionary<string, string> newData)
+		{
+			var changed = currentData.Count != newData.Count;
+			changed |= !currentData.Keys.All(k => newData.ContainsKey(k));
+			changed |= !currentData.Values.All(v => newData.Values.Contains(v));
+
+			if (!changed)
+				foreach (var key in currentData.Keys)
+					changed |= currentData[key] != newData[key];
+
+			return changed;
+		}
+
+		public static void CopyTo<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> source, IDictionary<TKey, TValue> destination)
+		{
+			destination.Clear();
+			foreach (var item in source)
+				destination[item.Key] = item.Value;
 		}
 
 		public static IDbCommand CreateCommand(this IDbConnection dbConnection, string commandText)

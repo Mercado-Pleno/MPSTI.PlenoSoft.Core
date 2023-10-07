@@ -25,11 +25,12 @@
 		<Title>DbConfigurations @ Mercado Pleno Soluções em Computação</Title>
 		<Description>MPSTI.PlenoSoft.Core.DbConfigurations</Description>
 		<PackageTags>DbConfigurations Mercado Pleno Soluções em Tecnologia da Informação</PackageTags>
-		<AssemblyVersion>1.0.0.8</AssemblyVersion>
-		<FileVersion>1.0.0.8</FileVersion>
-		<Version>1.0.0.8</Version>
+		<AssemblyVersion>1.0.0.9</AssemblyVersion>
+		<FileVersion>1.0.0.9</FileVersion>
+		<Version>1.0.0.9</Version>
 		<PackageReleaseNotes>
 			<![CDATA[(Atual)
+2023-10-06 - 1.0.0.9 - Implementa o ReloadOnChange através do DbConfigurationMonitorLazy com tempo configurável através do CheckChangeInterval, que otimiza a utilização dos recursos;
 2023-10-02 - 1.0.0.8 - Implementa o ReloadOnChange através do DbConfigurationMonitor (via pooling) com tempo configurável;
 2023-09-25 - 1.0.0.7 - Melhoria da documentação do Readme.md no projeto e no pacote nuget + Correção do teste;
 2023-09-25 - 1.0.0.6 - Refatora o DbConfigurationExtensions para usar o ISetDbConfigurationSettings + Adiciona documentação do Readme.md no projeto e no pacote nuget;

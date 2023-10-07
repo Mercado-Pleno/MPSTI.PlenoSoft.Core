@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Extensions;
 using MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -9,20 +8,18 @@ namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql
 {
 	public class DbConfigurationSource : IDbConfigurationSource
 	{
-		private readonly IDbConfigurationSettings _dbConfigurationSettings;
-		private readonly TimeSpan _checkChangeInterval;
+		private readonly IGetDbConfigurationSettings _dbConfigurationSettings;
 		private IConfigurationBuilder _configurationBuilder;
 
-		public DbConfigurationSource(IDbConfigurationSettings dbConfigurationSettings, TimeSpan checkChangeInterval)
+		public DbConfigurationSource(IGetDbConfigurationSettings dbConfigurationSettings)
 		{
 			_dbConfigurationSettings = dbConfigurationSettings;
-			_checkChangeInterval = checkChangeInterval;
 		}
 
 		public IConfigurationProvider Build(IConfigurationBuilder builder)
 		{
 			_configurationBuilder = builder;
-			return new DbConfigurationProvider(this, _checkChangeInterval);
+			return new DbConfigurationProvider(this, _dbConfigurationSettings.CheckChangeInterval);
 		}
 
 		public void FillDataSource(IDictionary<string, string> dataSource)

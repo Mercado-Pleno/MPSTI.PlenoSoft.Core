@@ -55,12 +55,11 @@ namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Extensions
 		/// <typeparam name="TDbConfigurationSettings">where TDbConfigurationSettings : IDbConfigurationSettings, new()</typeparam>
 		/// <param name="builder">IConfigurationBuilder</param>
 		/// <returns>IConfigurationBuilder</returns>
-		public static IConfigurationBuilder AddDbConfiguration<TDbConfigurationSettings>(this IConfigurationBuilder builder, TimeSpan? checkChangeIntervalToReload = null) where TDbConfigurationSettings : IDbConfigurationSettings, new()
+		public static IConfigurationBuilder AddDbConfiguration<TDbConfigurationSettings>(this IConfigurationBuilder builder) where TDbConfigurationSettings : IGetDbConfigurationSettings, new()
 		{
 			var dbConfigurationSettings = new TDbConfigurationSettings();
-			return AddDbConfiguration(builder, dbConfigurationSettings, checkChangeIntervalToReload);
+			return AddDbConfiguration(builder, dbConfigurationSettings);
 		}
-
 
 		/// <summary>
 		/// <code>
@@ -80,16 +79,16 @@ namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Extensions
 		/// <param name="builder">IConfigurationBuilder</param>
 		/// <param name="setupSettings">Action<DbConfigurationSettings></param>
 		/// <returns>IConfigurationBuilder</returns>
-		public static IConfigurationBuilder AddDbConfiguration(this IConfigurationBuilder builder, Action<ISetDbConfigurationSettings> setupSettings, TimeSpan? checkChangeIntervalToReload = null)
+		public static IConfigurationBuilder AddDbConfiguration(this IConfigurationBuilder builder, Action<ISetDbConfigurationSettings> setupSettings)
 		{
 			var dbConfigurationSettings = new DbConfigurationSettings();
 			setupSettings.Invoke(dbConfigurationSettings);
-			return AddDbConfiguration(builder, dbConfigurationSettings, checkChangeIntervalToReload);
+			return AddDbConfiguration(builder, dbConfigurationSettings);
 		}
 
-		public static IConfigurationBuilder AddDbConfiguration(IConfigurationBuilder builder, IDbConfigurationSettings dbConfigurationSettings, TimeSpan? checkChangeIntervalToReload)
+		public static IConfigurationBuilder AddDbConfiguration(IConfigurationBuilder builder, IGetDbConfigurationSettings dbConfigurationSettings)
 		{
-			var dbConfigurationSource = new DbConfigurationSource(dbConfigurationSettings, checkChangeIntervalToReload ?? TimeSpan.Zero);
+			var dbConfigurationSource = new DbConfigurationSource(dbConfigurationSettings);
 			return builder?.Add(dbConfigurationSource);
 		}
 

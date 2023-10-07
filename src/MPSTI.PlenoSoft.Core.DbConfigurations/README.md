@@ -10,7 +10,7 @@ Este pacote permite que você use a estrutura de configuração do .net (IConfig
 
 ## Getting started
 Para usar este pacote, você precisará de 2 arquivos no seu projeto:
-1. [`appsettings.json`](#appsettings.json)
+1. [`appsettings.json / local.settings.json`](#appsettings.json)
    - Terá as configurações das strings de conexão com o seu banco de dados;
 2. [`Program.cs`](#Program.cs)
    - Onde o Configuration builder será criado e configurado;
@@ -31,7 +31,7 @@ Para usar este pacote, você precisará de 2 arquivos no seu projeto:
 Siga os passoa abaixo apara validar a solução:
 1. Instale a última versão do pacote Nuget [`MPSTI.PlenoSoft.Core.DbConfigurations`](https://www.nuget.org/packages/MPSTI.PlenoSoft.Core.DbConfigurations/):
    - `Install-Package MPSTI.PlenoSoft.Core.DbConfigurations`
-   - `<PackageReference Include="MPSTI.PlenoSoft.Core.DbConfigurations" Version="1.0.0.6" />`
+   - `<PackageReference Include="MPSTI.PlenoSoft.Core.DbConfigurations" Version="1.0.0.9" />`
 2. Crie ou edite o arquivo `appsettings.json` abaixo (ao final deste passo-à-passo):
    - 2.1 Remova as strings de conexão que você não tem ou não deseja usar:
      - Dica: se você não tiver nenhum banco de dados, recomendo o uso do Sqlite para validar a solução;
@@ -46,9 +46,9 @@ Siga os passoa abaixo apara validar a solução:
 #### `appsettings.json`
 ```
 {
-	"ConnectionStrings": {
-		"Sqlite": "Data Source=ConfigDb.sqlite;Cache=Shared"
-	}
+    "ConnectionStrings": {
+        "Sqlite": "Data Source=ConfigDb.sqlite;Cache=Shared"
+    }
 }
 ```
 
@@ -61,32 +61,33 @@ using MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Extensions;
 
 namespace SmartCase
 {
-	public static class Program
-	{
-		public static void Main()
-		{
-			var configuration = UseConfiguration();
-			var messageHello = configuration["DbKeyHello"];
-			var messageWorld = configuration["DbKeyWorld"];
-			Console.WriteLine($"{messageHello} {messageWorld}!");
-		}
+    public static class Program
+    {
+        public static void Main()
+        {
+            var configuration = UseConfiguration();
+            var messageHello = configuration["DbKeyHello"];
+            var messageWorld = configuration["DbKeyWorld"];
+            Console.WriteLine($"{messageHello} {messageWorld}!");
+        }
 
-		private static IConfiguration UseConfiguration()
-		{
-			var builder = new ConfigurationBuilder()
-				.SetBasePath(Directory.GetCurrentDirectory())
-				.AddJsonFile("appsettings.json", optional: false) // Needs to configuration.GetConnectionString
-				.AddDbConfiguration(settings => // Use Sqlite With Setup Configuration Settings... but, you can use a separated file for this
-				{
-					settings.CommandSelectQuerySql = "Select * From Configuration;";
-					settings.ConfigurationKeyColumn = "Key";
-					settings.ConfigurationValueColumn = "Value";
-					settings.DbConnectionFactory = configuration => new SqliteConnection(configuration.GetConnectionString("Sqlite"));
-				});
+        private static IConfiguration UseConfiguration()
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false) // Needs to configuration.GetConnectionString
+                .AddDbConfiguration(settings => // Use Sqlite With Setup Configuration Settings... but, you can use a separated file for this
+                {
+                    settings.CheckChangeInterval = TimeSpan.FromMinutes(1);
+                    settings.CommandSelectQuerySql = "Select * From Configuration;";
+                    settings.ConfigurationKeyColumn = "Key";
+                    settings.ConfigurationValueColumn = "Value";
+                    settings.DbConnectionFactory = configuration => new SqliteConnection(configuration.GetConnectionString("Sqlite"));
+                });
 
-			return builder.Build();
-		}
-	}
+            return builder.Build();
+        }
+    }
 }
 ```
 
@@ -108,9 +109,9 @@ or
 #### `appsettings.json`
 ```
 {
-	"ConnectionStrings": {
-		"SqlServer": "Server=your-sqlserver.database.net;Database=Config;Trusted_Connection=True;"
-	}
+    "ConnectionStrings": {
+        "SqlServer": "Server=your-sqlserver.database.net;Database=Config;Trusted_Connection=True;"
+    }
 }
 ```
 
@@ -126,26 +127,26 @@ using SmartCase.DbConfigurations;
 
 namespace SmartCase
 {
-	public static class Program
-	{
-		public static void Main()
-		{
-			var configuration = UseConfiguration();
-			var messageHello = configuration["DbKeyHello"];
-			var messageWorld = configuration["DbKeyWorld"];
-			Console.WriteLine($"{messageHello} {messageWorld}!");
-		}
+    public static class Program
+    {
+        public static void Main()
+        {
+            var configuration = UseConfiguration();
+            var messageHello = configuration["DbKeyHello"];
+            var messageWorld = configuration["DbKeyWorld"];
+            Console.WriteLine($"{messageHello} {messageWorld}!");
+        }
 
-		private static IConfiguration UseConfiguration()
-		{
-			var builder = new ConfigurationBuilder()
-				.SetBasePath(Directory.GetCurrentDirectory())
-				.AddJsonFile("appsettings.json", optional: false) // Needs to configuration.GetConnectionString
-				.AddDbConfiguration<SqlServerConfigurationSettings>(); // Use SqlServer With Configuration Setting Class
+        private static IConfiguration UseConfiguration()
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false) // Needs to configuration.GetConnectionString
+                .AddDbConfiguration<SqlServerConfigurationSettings>(); // Use SqlServer With Configuration Setting Class
 
-			return builder.Build();
-		}
-	}
+            return builder.Build();
+        }
+    }
 }
 ```
 
@@ -160,18 +161,19 @@ using MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Interfaces;
 
 namespace SmartCase.DbConfigurations
 {
-	// SqlServer Configuration Setting Class needs only to implements the IDbConfigurationSettings
-	public class SqlServerConfigurationSettings : IDbConfigurationSettings
-	{
-		public string CommandSelectQuerySql => "Select Key, Value From Configuration Where (System Like '%SmartCase%');";
-		public string ConfigurationKeyColumn => "Key";
-		public string ConfigurationValueColumn => "Value";
-		public IDbConnection CreateDbConnection(IConfiguration configuration)
-		{
-			var connectionString = configuration.GetConnectionString("SqlServer");
-			return new SqlConnection(connectionString);
-		}
-	}
+    // SqlServer Configuration Setting Class needs only to implements the IDbConfigurationSettings
+    public class SqlServerConfigurationSettings : IDbConfigurationSettings
+    {
+        public TimeSpan CheckChangeInterval => TimeSpan.FromMinutes(1);
+        public string CommandSelectQuerySql => "Select Key, Value From Configuration Where (System Like '%SmartCase%');";
+        public string ConfigurationKeyColumn => "Key";
+        public string ConfigurationValueColumn => "Value";
+        public IDbConnection CreateDbConnection(IConfiguration configuration)
+        {
+            var connectionString = configuration.GetConnectionString("SqlServer");
+            return new SqlConnection(connectionString);
+        }
+    }
 }
 ```
 

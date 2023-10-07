@@ -23,28 +23,11 @@ namespace MPSTI.PlenoSoft.Core.Test.DbConfigurations
 		{
 			_configurationBuilder.AddDbConfiguration(x =>
 			{
+				x.CheckChangeInterval = TimeSpan.FromSeconds(30);
 				x.CommandSelectQuerySql = "Select * From Configuracao";
 				x.ConfigurationKeyColumn = "Key";
 				x.ConfigurationValueColumn = "Value";
 				x.DbConnectionFactory = configuration => new SqliteConnection(configuration.GetConnectionString("Sqlite"));
-			});
-
-			var configuration = _configurationBuilder.Build();
-
-			configuration.Should().NotBeNull();
-			configuration.Providers.Should().NotBeNull();
-			configuration.Providers.Should().HaveCount(2);
-		}
-
-		[FactDebuggerOnly]
-		public void TestWithSqlServerSetup()
-		{
-			_configurationBuilder.AddDbConfiguration(x =>
-			{
-				x.CommandSelectQuerySql = "Select * From Configuracao";
-				x.ConfigurationKeyColumn = "Key";
-				x.ConfigurationValueColumn = "Value";
-				x.DbConnectionFactory = configuration => new SqlConnection(configuration.GetConnectionString("SqlServer"));
 			});
 
 			var configuration = _configurationBuilder.Build();
@@ -67,11 +50,13 @@ namespace MPSTI.PlenoSoft.Core.Test.DbConfigurations
 		}
 	}
 
-	public class SqlServerConfigurationSettings : IDbConfigurationSettings
+	public class SqlServerConfigurationSettings : IGetDbConfigurationSettings
 	{
+		public TimeSpan CheckChangeInterval => TimeSpan.FromMinutes(1);
 		public string CommandSelectQuerySql => "Select * From ControleConfiguracaoNegocio Where (Modulo Like '%VG%'). ";
 		public string ConfigurationKeyColumn => "Identificador";
 		public string ConfigurationValueColumn => "Valor";
+
 		public IDbConnection CreateDbConnection(IConfiguration configuration)
 		{
 			var connectionString = configuration.GetConnectionString("SqlServer");

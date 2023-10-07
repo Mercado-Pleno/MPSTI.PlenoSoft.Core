@@ -5,8 +5,9 @@ using System.Data;
 
 namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Extensions
 {
-    public class DbConfigurationSettings : IDbConfigurationSettings, ISetDbConfigurationSettings
+    public class DbConfigurationSettings : IGetDbConfigurationSettings, ISetDbConfigurationSettings
 	{
+		public virtual TimeSpan CheckChangeInterval { get; set; }
         public virtual string CommandSelectQuerySql { get; set; }
         public virtual string ConfigurationKeyColumn { get; set; }
         public virtual string ConfigurationValueColumn { get; set; }
@@ -17,7 +18,7 @@ namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Extensions
 			return DbConnectionFactory.Invoke(configuration);
 		}
 
-		IDbConnection IDbConfigurationSettings.CreateDbConnection(IConfiguration configuration)
+		IDbConnection IGetDbConfigurationSettings.CreateDbConnection(IConfiguration configuration)
         {
             return CreateDbConnection(configuration);
         }

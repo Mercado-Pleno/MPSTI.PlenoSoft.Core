@@ -8,6 +8,7 @@ namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Interfaces
 {
 	public interface ISetDbConfigurationSettings
 	{
+		TimeSpan CheckChangeInterval { set; }
 		string CommandSelectQuerySql { set; }
 		string ConfigurationKeyColumn { set; }
 		string ConfigurationValueColumn { set; }

@@ -1,10 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Data;
 
 namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql.Interfaces
 {
-	public interface IDbConfigurationSettings
+	public interface IGetDbConfigurationSettings
 	{
+		TimeSpan CheckChangeInterval { get; }
 		string CommandSelectQuerySql { get; }
 		string ConfigurationKeyColumn { get; }
 		string ConfigurationValueColumn { get; }

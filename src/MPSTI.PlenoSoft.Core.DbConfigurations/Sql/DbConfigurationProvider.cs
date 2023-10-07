@@ -9,23 +9,34 @@ namespace MPSTI.PlenoSoft.Core.DbConfigurations.Sql
 	public class DbConfigurationProvider : ConfigurationProvider
 	{
 		private readonly IDbConfigurationSource _dbConfigurationSource;
-		private readonly DbConfigurationMonitor _dbConfigurationMonitor;
+		private readonly IDbConfigurationMonitor _dbConfigurationMonitor;
 
 		public DbConfigurationProvider(IDbConfigurationSource dbConfigurationSource, TimeSpan checkChangeInterval)
 		{
 			_dbConfigurationSource = dbConfigurationSource;
-			_dbConfigurationMonitor = new DbConfigurationMonitor(_dbConfigurationSource, checkChangeInterval, Reload);
+			_dbConfigurationMonitor = new DbConfigurationMonitorLazy(_dbConfigurationSource, checkChangeInterval, ReloadChanges);
 		}
 
 		public override void Load()
 		{
-			Data.Clear();
 			_dbConfigurationSource.FillDataSource(Data);
-			_dbConfigurationMonitor.Start(Data);
+			_dbConfigurationMonitor.VerifyChanges(Data);
 			OnReload();
 		}
 
-		private void Reload(IDictionary<string, string> newData)
+		public override bool TryGet(string key, out string value)
+		{
+			_dbConfigurationMonitor.VerifyChanges(Data);
+			return base.TryGet(key, out value);
+		}
+
+		public override IEnumerable<string> GetChildKeys(IEnumerable<string> earlierKeys, string parentPath)
+		{
+			_dbConfigurationMonitor.VerifyChanges(Data);
+			return base.GetChildKeys(earlierKeys, parentPath);
+		}
+
+		private void ReloadChanges(IDictionary<string, string> newData)
 		{
 			newData.CopyTo(Data);
 			OnReload();
